@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-02-2025 a las 04:30:49
+-- Tiempo de generación: 19-02-2025 a las 01:34:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -52,7 +52,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
-(1, 'superadmin@pos.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3Mzk2NzU0MzAsImV4cCI6MTczOTc2MTgzMCwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.H3xFsQp2hDY9TEmBiqMWvJDtiWXvML_2zGw96UTr-fE', '1739761830', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', NULL, NULL, '2025-02-14', '2025-02-16 03:10:31');
+(1, 'superadmin@pos.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3Mzk5MTc4MzIsImV4cCI6MTc0MDAwNDIzMiwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.MKfiu9N-jz47EvzdKGrRXKmThfGWVxMnIAO4JxLSmTM', '1740004232', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', NULL, NULL, '2025-02-14', '2025-02-18 22:30:32');
 
 -- --------------------------------------------------------
 
@@ -164,7 +164,18 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (24, 8, 'title_category', 'Categoría ', 'text', NULL, 1, '2025-02-16', '2025-02-16 03:20:10'),
 (25, 8, 'img_category', 'Imagen', 'image', NULL, 1, '2025-02-16', '2025-02-16 03:20:10'),
 (26, 8, 'order_category', 'Orden', 'order', NULL, 1, '2025-02-16', '2025-02-16 03:20:10'),
-(27, 8, 'status_category', 'Estado', 'boolean', NULL, 1, '2025-02-16', '2025-02-16 03:20:10');
+(27, 8, 'status_category', 'Estado', 'boolean', NULL, 1, '2025-02-16', '2025-02-16 03:20:10'),
+(28, 10, 'title_product', 'Producto', 'text', NULL, 1, '2025-02-18', '2025-02-18 22:46:26'),
+(29, 10, 'img_product', 'Imagen', 'image', NULL, 1, '2025-02-18', '2025-02-18 22:46:26'),
+(30, 10, 'id_category_product', 'Categoría ', 'relations', 'categories', 1, '2025-02-18', '2025-02-18 22:49:11'),
+(31, 10, 'sku_product', 'SKU', 'text', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
+(32, 10, 'unit_product', 'Medida', 'select', 'unidad,centímetros cúbicos,decibel,pie cúbico,libra,tonelada', 1, '2025-02-18', '2025-02-18 23:23:00'),
+(33, 10, 'tax_product', 'Impuesto', 'select', 'IVA_19,INC_4', 1, '2025-02-18', '2025-02-18 22:53:36'),
+(34, 10, 'rte_product', 'Retención ', 'select', 'NULL,RETF_11', 1, '2025-02-18', '2025-02-18 22:55:46'),
+(35, 10, 'stock_product', 'Stock', 'int', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
+(36, 10, 'discount_product', 'Descuento', 'double', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
+(37, 10, 'status_product', 'Estado', 'boolean', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
+(38, 10, 'id_office_product', 'Sucursal', 'relations', 'offices', 1, '2025-02-18', '2025-02-18 22:56:51');
 
 -- --------------------------------------------------------
 
@@ -196,7 +207,21 @@ INSERT INTO `files` (`id_file`, `id_folder_file`, `name_file`, `extension_file`,
 (3, 1, '67632df45101e56', 'png', 'image/png', 3709, 'http://cms.pos.com/views/assets/files/67b15ae56d5ae29.png', NULL, NULL, '2025-02-16', '2025-02-16 03:26:29'),
 (4, 1, '67632e0cbf0a320', 'png', 'image/png', 4095, 'http://cms.pos.com/views/assets/files/67b15b38d40f452.png', NULL, NULL, '2025-02-16', '2025-02-16 03:27:52'),
 (5, 1, '67632e2558a3145', 'png', 'image/png', 2209, 'http://cms.pos.com/views/assets/files/67b15b6d3f7d145.png', NULL, NULL, '2025-02-16', '2025-02-16 03:28:45'),
-(6, 1, '67632e3962b825', 'png', 'image/png', 4586, 'http://cms.pos.com/views/assets/files/67b15b96583c926.png', NULL, NULL, '2025-02-16', '2025-02-16 03:29:26');
+(6, 1, '67632e3962b825', 'png', 'image/png', 4586, 'http://cms.pos.com/views/assets/files/67b15b96583c926.png', NULL, NULL, '2025-02-16', '2025-02-16 03:29:26'),
+(7, 1, '676333a5a17a913', 'png', 'image/png', 6759, 'http://cms.pos.com/views/assets/files/67b50e59d065857.png', NULL, NULL, '2025-02-18', '2025-02-18 22:48:57'),
+(8, 1, '6763359f5e7e639', 'png', 'image/png', 8880, 'http://cms.pos.com/views/assets/files/67b511f3b9d8b19.png', NULL, NULL, '2025-02-19', '2025-02-18 23:04:19'),
+(9, 1, '676335bf88cd611', 'png', 'image/png', 12674, 'http://cms.pos.com/views/assets/files/67b51236c169e26.png', NULL, NULL, '2025-02-19', '2025-02-18 23:05:26'),
+(10, 1, '676335e7b765751', 'png', 'image/png', 10279, 'http://cms.pos.com/views/assets/files/67b5126993af317.png', NULL, NULL, '2025-02-19', '2025-02-18 23:06:17'),
+(11, 1, '676336050329e21', 'png', 'image/png', 8830, 'http://cms.pos.com/views/assets/files/67b51293ea9fc59.png', NULL, NULL, '2025-02-19', '2025-02-18 23:07:00'),
+(12, 1, '6763362601cc654', 'png', 'image/png', 8335, 'http://cms.pos.com/views/assets/files/67b512bd6039241.png', NULL, NULL, '2025-02-19', '2025-02-18 23:07:41'),
+(13, 1, '6763364983cdc29', 'png', 'image/png', 10435, 'http://cms.pos.com/views/assets/files/67b512e57b1b121.png', NULL, NULL, '2025-02-19', '2025-02-18 23:08:21'),
+(14, 1, '6763368780d2c31', 'png', 'image/png', 7847, 'http://cms.pos.com/views/assets/files/67b5130b951be59.png', NULL, NULL, '2025-02-19', '2025-02-18 23:08:59'),
+(15, 1, '676336be037ba26', 'png', 'image/png', 11802, 'http://cms.pos.com/views/assets/files/67b513356d92341.png', NULL, NULL, '2025-02-19', '2025-02-18 23:09:41'),
+(16, 1, '676336d8ae17952', 'png', 'image/png', 14185, 'http://cms.pos.com/views/assets/files/67b51365706b829.png', NULL, NULL, '2025-02-19', '2025-02-18 23:10:29'),
+(17, 1, '676336fb70b6d27', 'png', 'image/png', 11585, 'http://cms.pos.com/views/assets/files/67b513a1cf59e29.png', NULL, NULL, '2025-02-19', '2025-02-18 23:11:29'),
+(18, 1, '6763372162e555', 'png', 'image/png', 10007, 'http://cms.pos.com/views/assets/files/67b513cf3ede415.png', NULL, NULL, '2025-02-19', '2025-02-18 23:12:15'),
+(19, 1, '6763375d7ae0e5', 'png', 'image/png', 10979, 'http://cms.pos.com/views/assets/files/67b513f87186b56.png', NULL, NULL, '2025-02-19', '2025-02-18 23:12:56'),
+(20, 1, '676337786b5b132', 'png', 'image/png', 10505, 'http://cms.pos.com/views/assets/files/67b51425c18eb41.png', NULL, NULL, '2025-02-19', '2025-02-18 23:13:41');
 
 -- --------------------------------------------------------
 
@@ -221,7 +246,7 @@ CREATE TABLE `folders` (
 --
 
 INSERT INTO `folders` (`id_folder`, `name_folder`, `size_folder`, `total_folder`, `max_upload_folder`, `url_folder`, `keys_folder`, `date_created_folder`, `date_updated_folder`) VALUES
-(1, 'Server', '200000000000', 12175381, '500000000', 'http://cms.pos.com', NULL, '2025-02-14', '2025-02-16 03:29:26');
+(1, 'Server', '200000000000', 12318483, '500000000', 'http://cms.pos.com', NULL, '2025-02-14', '2025-02-18 23:13:41');
 
 -- --------------------------------------------------------
 
@@ -254,7 +279,9 @@ INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_modu
 (5, 5, 'breadcrumbs', 'clientes', '', '', 100, 1, '2025-02-15', '2025-02-15 01:46:45'),
 (6, 5, 'tables', 'clients', 'client', '', 100, 1, '2025-02-15', '2025-02-15 01:51:48'),
 (7, 6, 'breadcrumbs', 'categorías', '', '', 100, 1, '2025-02-16', '2025-02-16 03:14:49'),
-(8, 6, 'tables', 'categories', 'category', '', 100, 1, '2025-02-16', '2025-02-16 03:20:10');
+(8, 6, 'tables', 'categories', 'category', '', 100, 1, '2025-02-16', '2025-02-16 03:20:10'),
+(9, 7, 'breadcrumbs', 'productos', '', '', 100, 1, '2025-02-18', '2025-02-18 22:35:55'),
+(10, 7, 'tables', 'products', 'product', '', 100, 1, '2025-02-18', '2025-02-18 22:46:26');
 
 -- --------------------------------------------------------
 
@@ -307,7 +334,79 @@ INSERT INTO `pages` (`id_page`, `title_page`, `url_page`, `icon_page`, `type_pag
 (3, 'Archivos', 'archivos', 'bi bi-file-earmark-image', 'custom', 4, '2025-02-14', '2025-02-15 00:58:28'),
 (4, 'Sucursales', 'sucursales', 'bi bi-shop', 'modules', 3, '2025-02-15', '2025-02-15 00:58:28'),
 (5, 'Clientes', 'clientes', 'bi bi-people', 'modules', 1000, '2025-02-15', '2025-02-15 01:46:20'),
-(6, 'Categorías', 'categorias', 'bi bi-card-list', 'modules', 1000, '2025-02-16', '2025-02-16 03:14:14');
+(6, 'Categorías', 'categorias', 'bi bi-card-list', 'modules', 1000, '2025-02-16', '2025-02-16 03:14:14'),
+(7, 'Productos', 'productos', 'bi bi-box', 'modules', 1000, '2025-02-18', '2025-02-18 22:35:38');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `products`
+--
+
+CREATE TABLE `products` (
+  `id_product` int(11) NOT NULL,
+  `title_product` text DEFAULT NULL,
+  `img_product` text DEFAULT NULL,
+  `id_category_product` int(11) DEFAULT 0,
+  `sku_product` text DEFAULT NULL,
+  `unit_product` text DEFAULT NULL,
+  `tax_product` text DEFAULT NULL,
+  `rte_product` text DEFAULT NULL,
+  `stock_product` int(11) DEFAULT 0,
+  `discount_product` double DEFAULT 0,
+  `status_product` int(11) DEFAULT 1,
+  `id_office_product` int(11) DEFAULT 0,
+  `date_created_product` date DEFAULT NULL,
+  `date_updated_product` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `products`
+--
+
+INSERT INTO `products` (`id_product`, `title_product`, `img_product`, `id_category_product`, `sku_product`, `unit_product`, `tax_product`, `rte_product`, `stock_product`, `discount_product`, `status_product`, `id_office_product`, `date_created_product`, `date_updated_product`) VALUES
+(1, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-18 23:40:00'),
+(2, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-18 23:41:11'),
+(3, 'Red Nike Angelo', 'http://cms.pos.com/views/assets/files/67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-18 23:42:39'),
+(4, 'Blue+White+OGR', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5126993af317.png', 2, 'PT004', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-18 23:42:24'),
+(5, 'Green+Nike+Fe', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51293ea9fc59.png', 2, 'PT005', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-18 23:50:35'),
+(6, 'Iphone+11', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512bd6039241.png', 3, 'PT006', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:17:27'),
+(7, 'Iphone+14+64GB', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512e57b1b121.png', 3, 'PT007', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:18:04'),
+(8, 'Rolex+Tribute+V3', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5130b951be59.png', 4, 'PT008', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:19:09'),
+(9, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:19:41'),
+(10, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:20:16'),
+(11, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:20:53'),
+(12, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:21:28'),
+(13, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:22:00'),
+(14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:22:28'),
+(15, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:15'),
+(16, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:22'),
+(17, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:28'),
+(18, 'Blue+White+OGR', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5126993af317.png', 2, 'PT004', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:34'),
+(19, 'Green+Nike+Fe', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51293ea9fc59.png', 2, 'PT005', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:40'),
+(20, 'Iphone+11', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512bd6039241.png', 3, 'PT006', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:46'),
+(21, 'Iphone+14+64GB', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512e57b1b121.png', 3, 'PT007', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:52'),
+(22, 'Rolex+Tribute+V3', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5130b951be59.png', 4, 'PT008', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:00'),
+(23, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:05'),
+(24, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:12'),
+(25, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:18'),
+(26, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:24'),
+(27, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:30'),
+(28, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:36'),
+(29, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:25:53'),
+(30, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:25:59'),
+(31, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:05'),
+(32, 'Blue+White+OGR', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5126993af317.png', 2, 'PT004', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:12'),
+(33, 'Green+Nike+Fe', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51293ea9fc59.png', 2, 'PT005', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:18'),
+(34, 'Iphone+11', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512bd6039241.png', 3, 'PT006', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:24'),
+(35, 'Iphone+14+64GB', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512e57b1b121.png', 3, 'PT007', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:30'),
+(36, 'Rolex+Tribute+V3', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5130b951be59.png', 4, 'PT008', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:37'),
+(37, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:43'),
+(38, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:49'),
+(39, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:55'),
+(40, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:27:03'),
+(41, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:27:09'),
+(42, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:27:15');
 
 --
 -- Índices para tablas volcadas
@@ -368,6 +467,12 @@ ALTER TABLE `pages`
   ADD PRIMARY KEY (`id_page`);
 
 --
+-- Indices de la tabla `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id_product`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -393,13 +498,13 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `files`
 --
 ALTER TABLE `files`
-  MODIFY `id_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `folders`
@@ -411,7 +516,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT de la tabla `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `offices`
@@ -423,7 +528,13 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `products`
+--
+ALTER TABLE `products`
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
