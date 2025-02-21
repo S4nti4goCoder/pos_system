@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2025 a las 01:36:55
+-- Tiempo de generación: 21-02-2025 a las 01:57:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -184,7 +184,19 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (44, 12, 'qty_purchase', 'Cantidad', 'int', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
 (45, 12, 'invest_purchase', 'Inversión ', 'money', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
 (46, 12, 'contact_purchase', 'Teléfono ', 'text', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
-(47, 12, 'id_office_purchase', 'Sucursal', 'relations', 'offices', 1, '2025-02-20', '2025-02-20 22:40:50');
+(47, 12, 'id_office_purchase', 'Sucursal', 'relations', 'offices', 1, '2025-02-20', '2025-02-20 22:40:50'),
+(48, 14, 'transaction_order', 'Transacción ', 'text', NULL, 1, '2025-02-21', '2025-02-21 00:50:48'),
+(49, 14, 'id_admin_order', 'Vendedor', 'relations', 'admins', 1, '2025-02-21', '2025-02-21 00:51:33'),
+(50, 14, 'id_client_order', 'Cliente', 'relations', 'clients', 1, '2025-02-21', '2025-02-21 00:51:39'),
+(51, 14, 'subtotal_order', 'Subtotal', 'money', NULL, 1, '2025-02-21', '2025-02-21 00:50:48'),
+(52, 14, 'discount_order', 'Decuento', 'money', NULL, 1, '2025-02-21', '2025-02-21 00:50:48'),
+(53, 14, 'tax_order', 'Impuesto', 'money', NULL, 1, '2025-02-21', '2025-02-21 00:50:48'),
+(54, 14, 'total_order', 'Total', 'money', NULL, 1, '2025-02-21', '2025-02-21 00:50:48'),
+(55, 14, 'method_order', 'Método ', 'select', 'efectivo,transferencia,tarjeta', 1, '2025-02-21', '2025-02-21 00:55:57'),
+(56, 14, 'transfer_order', 'Transferencia', 'text', NULL, 1, '2025-02-21', '2025-02-21 00:50:49'),
+(57, 14, 'status_order', 'Estado', 'select', 'Completada,Pendiente', 1, '2025-02-21', '2025-02-21 00:56:13'),
+(58, 14, 'date_order', 'Fecha', 'timestamp', NULL, 1, '2025-02-21', '2025-02-21 00:50:49'),
+(59, 14, 'id_office_order', 'Sucursal', 'relations', 'offices', 1, '2025-02-21', '2025-02-21 00:51:51');
 
 -- --------------------------------------------------------
 
@@ -292,7 +304,9 @@ INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_modu
 (9, 7, 'breadcrumbs', 'productos', '', '', 100, 1, '2025-02-18', '2025-02-18 22:35:55'),
 (10, 7, 'tables', 'products', 'product', '', 100, 1, '2025-02-18', '2025-02-18 22:46:26'),
 (11, 8, 'breadcrumbs', 'compras', '', '', 100, 1, '2025-02-20', '2025-02-20 22:30:54'),
-(12, 8, 'tables', 'purchases', 'purchase', '', 100, 1, '2025-02-20', '2025-02-20 22:36:21');
+(12, 8, 'tables', 'purchases', 'purchase', '', 100, 1, '2025-02-20', '2025-02-20 22:36:21'),
+(13, 9, 'breadcrumbs', 'Órdenes', '', '', 100, 1, '2025-02-21', '2025-02-21 00:42:21'),
+(14, 9, 'tables', 'orders', 'order', '', 100, 0, '2025-02-21', '2025-02-21 00:55:16');
 
 -- --------------------------------------------------------
 
@@ -317,6 +331,30 @@ INSERT INTO `offices` (`id_office`, `title_office`, `address_office`, `phone_off
 (1, 'Sucursal+Pueblo+Lindo', 'Calle+24+%23+23+45', '6043214576', '2025-02-15', '2025-02-15 01:10:27'),
 (2, 'Sucursal+Colinas+del+Monte', 'Calle+67+%23+45+67', '6043218798', '2025-02-15', '2025-02-15 01:12:16'),
 (3, 'Sucursal+Valles', 'Calle+30+%23+98+56', '6043211234', '2025-02-15', '2025-02-15 01:12:49');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orders`
+--
+
+CREATE TABLE `orders` (
+  `id_order` int(11) NOT NULL,
+  `transaction_order` text DEFAULT NULL,
+  `id_admin_order` int(11) DEFAULT 0,
+  `id_client_order` int(11) DEFAULT 0,
+  `subtotal_order` double DEFAULT 0,
+  `discount_order` double DEFAULT 0,
+  `tax_order` double DEFAULT 0,
+  `total_order` double DEFAULT 0,
+  `method_order` text DEFAULT NULL,
+  `transfer_order` text DEFAULT NULL,
+  `status_order` text DEFAULT NULL,
+  `date_order` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_office_order` int(11) DEFAULT 0,
+  `date_created_order` date DEFAULT NULL,
+  `date_updated_order` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -347,7 +385,8 @@ INSERT INTO `pages` (`id_page`, `title_page`, `url_page`, `icon_page`, `type_pag
 (5, 'Clientes', 'clientes', 'bi bi-people', 'modules', 1000, '2025-02-15', '2025-02-15 01:46:20'),
 (6, 'Categorías', 'categorias', 'bi bi-card-list', 'modules', 1000, '2025-02-16', '2025-02-16 03:14:14'),
 (7, 'Productos', 'productos', 'bi bi-box', 'modules', 1000, '2025-02-18', '2025-02-18 22:35:38'),
-(8, 'Compras', 'compras', 'bi bi-basket-fill', 'modules', 1000, '2025-02-20', '2025-02-20 22:30:25');
+(8, 'Compras', 'compras', 'bi bi-basket-fill', 'modules', 1000, '2025-02-20', '2025-02-20 22:30:25'),
+(9, 'Órdenes', 'ordenes', 'bi bi-ticket-detailed', 'modules', 1000, '2025-02-21', '2025-02-21 00:42:04');
 
 -- --------------------------------------------------------
 
@@ -542,6 +581,12 @@ ALTER TABLE `offices`
   ADD PRIMARY KEY (`id_office`);
 
 --
+-- Indices de la tabla `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id_order`);
+
+--
 -- Indices de la tabla `pages`
 --
 ALTER TABLE `pages`
@@ -585,7 +630,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `files`
@@ -603,7 +648,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT de la tabla `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `offices`
@@ -612,10 +657,16 @@ ALTER TABLE `offices`
   MODIFY `id_office` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `products`

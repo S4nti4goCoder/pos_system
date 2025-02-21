@@ -26,3 +26,5 @@ Stack trace:
 #6 C:\xampp\htdocs\pos_system\cms\index.php(26): TemplateController->index()
 #7 {main}
   thrown in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\tables\manage\blocks\forms\text.php on line 8
+[21-Feb-2025 01:52:03 Europe/Berlin] PHP Warning:  Undefined array key "method_order" in C:\xampp\htdocs\pos_system\cms\controllers\dynamic.controller.php on line 104
+[21-Feb-2025 01:52:03 Europe/Berlin] PHP Warning:  Undefined array key "status_order" in C:\xampp\htdocs\pos_system\cms\controllers\dynamic.controller.php on line 104
