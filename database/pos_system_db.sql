@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2025 a las 01:57:52
+-- Tiempo de generación: 21-02-2025 a las 08:39:43
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -196,7 +196,18 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (56, 14, 'transfer_order', 'Transferencia', 'text', NULL, 1, '2025-02-21', '2025-02-21 00:50:49'),
 (57, 14, 'status_order', 'Estado', 'select', 'Completada,Pendiente', 1, '2025-02-21', '2025-02-21 00:56:13'),
 (58, 14, 'date_order', 'Fecha', 'timestamp', NULL, 1, '2025-02-21', '2025-02-21 00:50:49'),
-(59, 14, 'id_office_order', 'Sucursal', 'relations', 'offices', 1, '2025-02-21', '2025-02-21 00:51:51');
+(59, 14, 'id_office_order', 'Sucursal', 'relations', 'offices', 1, '2025-02-21', '2025-02-21 00:51:51'),
+(60, 16, 'id_order_sale', 'Orden', 'relations', 'orders', 1, '2025-02-21', '2025-02-21 03:27:55'),
+(61, 16, 'id_product_sale', 'Producto', 'relations', 'products', 1, '2025-02-21', '2025-02-21 03:27:45'),
+(62, 16, 'tax_type_sale', 'Tipo Impuesto', 'text', NULL, 1, '2025-02-21', '2025-02-21 03:25:49'),
+(63, 16, 'tax_sale', 'Impuesto', 'money', NULL, 1, '2025-02-21', '2025-02-21 03:25:49'),
+(64, 16, 'discount_sale', 'Descuento', 'money', NULL, 1, '2025-02-21', '2025-02-21 03:25:49'),
+(65, 16, 'qty_sale', 'Cantidad', 'int', NULL, 1, '2025-02-21', '2025-02-21 03:25:49'),
+(66, 16, 'subtotal_sale', 'Subtotal', 'money', NULL, 1, '2025-02-21', '2025-02-21 03:25:49'),
+(67, 16, 'status_sale', 'Estado', 'select', 'Completada,Pendiente', 1, '2025-02-21', '2025-02-21 03:27:24'),
+(68, 16, 'id_admin_sale', 'Vendedor', 'relations', 'admins', 1, '2025-02-21', '2025-02-21 03:27:05'),
+(69, 16, 'id_client_sale', 'Cliente', 'relations', 'clients', 1, '2025-02-21', '2025-02-21 03:27:02'),
+(70, 16, 'id_office_sale', 'Sucursal', 'relations', 'offices', 1, '2025-02-21', '2025-02-21 03:26:51');
 
 -- --------------------------------------------------------
 
@@ -306,7 +317,9 @@ INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_modu
 (11, 8, 'breadcrumbs', 'compras', '', '', 100, 1, '2025-02-20', '2025-02-20 22:30:54'),
 (12, 8, 'tables', 'purchases', 'purchase', '', 100, 1, '2025-02-20', '2025-02-20 22:36:21'),
 (13, 9, 'breadcrumbs', 'Órdenes', '', '', 100, 1, '2025-02-21', '2025-02-21 00:42:21'),
-(14, 9, 'tables', 'orders', 'order', '', 100, 0, '2025-02-21', '2025-02-21 00:55:16');
+(14, 9, 'tables', 'orders', 'order', '', 100, 0, '2025-02-21', '2025-02-21 00:55:16'),
+(15, 10, 'breadcrumbs', 'ventas', '', '', 100, 1, '2025-02-21', '2025-02-21 03:21:59'),
+(16, 10, 'tables', 'sales', 'sale', '', 100, 0, '2025-02-21', '2025-02-21 03:25:48');
 
 -- --------------------------------------------------------
 
@@ -386,7 +399,8 @@ INSERT INTO `pages` (`id_page`, `title_page`, `url_page`, `icon_page`, `type_pag
 (6, 'Categorías', 'categorias', 'bi bi-card-list', 'modules', 1000, '2025-02-16', '2025-02-16 03:14:14'),
 (7, 'Productos', 'productos', 'bi bi-box', 'modules', 1000, '2025-02-18', '2025-02-18 22:35:38'),
 (8, 'Compras', 'compras', 'bi bi-basket-fill', 'modules', 1000, '2025-02-20', '2025-02-20 22:30:25'),
-(9, 'Órdenes', 'ordenes', 'bi bi-ticket-detailed', 'modules', 1000, '2025-02-21', '2025-02-21 00:42:04');
+(9, 'Órdenes', 'ordenes', 'bi bi-ticket-detailed', 'modules', 1000, '2025-02-21', '2025-02-21 00:42:04'),
+(10, 'Ventas', 'ventas', 'bi bi-cash-coin', 'modules', 1000, '2025-02-21', '2025-02-21 03:21:36');
 
 -- --------------------------------------------------------
 
@@ -528,6 +542,29 @@ INSERT INTO `purchases` (`id_purchase`, `supplier_purchase`, `id_product_purchas
 (41, 'Lenovo', 28, 999, '40%25', 1398.6, 100, 99900, '3154488674', 2, '2025-02-21', '2025-02-21 00:32:58'),
 (42, 'Lenovo', 42, 999, '40%25', 1398.6, 100, 99900, '3154488674', 3, '2025-02-21', '2025-02-21 00:33:10');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sales`
+--
+
+CREATE TABLE `sales` (
+  `id_sale` int(11) NOT NULL,
+  `id_order_sale` int(11) DEFAULT 0,
+  `id_product_sale` int(11) DEFAULT 0,
+  `tax_type_sale` text DEFAULT NULL,
+  `tax_sale` double DEFAULT 0,
+  `discount_sale` double DEFAULT 0,
+  `qty_sale` int(11) DEFAULT 0,
+  `subtotal_sale` double DEFAULT 0,
+  `status_sale` text DEFAULT NULL,
+  `id_admin_sale` int(11) DEFAULT 0,
+  `id_client_sale` int(11) DEFAULT 0,
+  `id_office_sale` int(11) DEFAULT 0,
+  `date_created_sale` date DEFAULT NULL,
+  `date_updated_sale` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -605,6 +642,12 @@ ALTER TABLE `purchases`
   ADD PRIMARY KEY (`id_purchase`);
 
 --
+-- Indices de la tabla `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id_sale`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -630,7 +673,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de la tabla `files`
@@ -648,7 +691,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT de la tabla `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `offices`
@@ -666,7 +709,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
@@ -679,6 +722,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `purchases`
   MODIFY `id_purchase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT de la tabla `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

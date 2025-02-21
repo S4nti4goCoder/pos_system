@@ -23,4 +23,4 @@ function totalInvest(qty, cost) {
   var cost = Number(cost);
 
   $("#invest_purchase").val(cost * qty);
-}
+}    
