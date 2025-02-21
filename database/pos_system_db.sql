@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-02-2025 a las 01:34:10
+-- Tiempo de generación: 21-02-2025 a las 01:36:55
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -52,7 +52,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
-(1, 'superadmin@pos.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3Mzk5MTc4MzIsImV4cCI6MTc0MDAwNDIzMiwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.MKfiu9N-jz47EvzdKGrRXKmThfGWVxMnIAO4JxLSmTM', '1740004232', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', NULL, NULL, '2025-02-14', '2025-02-18 22:30:32');
+(1, 'superadmin@pos.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDAwOTA2MTEsImV4cCI6MTc0MDE3NzAxMSwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.YzfZTSvNfY4X3po272lhOQGYOFYEuOJOktFj_8rVqIE', '1740177011', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', NULL, NULL, '2025-02-14', '2025-02-20 22:30:11');
 
 -- --------------------------------------------------------
 
@@ -175,7 +175,16 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (35, 10, 'stock_product', 'Stock', 'int', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
 (36, 10, 'discount_product', 'Descuento', 'double', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
 (37, 10, 'status_product', 'Estado', 'boolean', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
-(38, 10, 'id_office_product', 'Sucursal', 'relations', 'offices', 1, '2025-02-18', '2025-02-18 22:56:51');
+(38, 10, 'id_office_product', 'Sucursal', 'relations', 'offices', 1, '2025-02-18', '2025-02-18 22:56:51'),
+(39, 12, 'supplier_purchase', 'Proveedor', 'text', NULL, 1, '2025-02-20', '2025-02-20 22:36:21'),
+(40, 12, 'id_product_purchase', 'Producto', 'relations', 'products', 1, '2025-02-20', '2025-02-20 22:40:00'),
+(41, 12, 'cost_purchase', 'Costo', 'money', NULL, 1, '2025-02-20', '2025-02-20 22:36:21'),
+(42, 12, 'utility_purchase', 'Utilidad', 'select', '10%,20%,30%,40%,50%', 1, '2025-02-20', '2025-02-20 23:52:05'),
+(43, 12, 'price_purchase', 'Precio', 'money', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
+(44, 12, 'qty_purchase', 'Cantidad', 'int', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
+(45, 12, 'invest_purchase', 'Inversión ', 'money', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
+(46, 12, 'contact_purchase', 'Teléfono ', 'text', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
+(47, 12, 'id_office_purchase', 'Sucursal', 'relations', 'offices', 1, '2025-02-20', '2025-02-20 22:40:50');
 
 -- --------------------------------------------------------
 
@@ -281,7 +290,9 @@ INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_modu
 (7, 6, 'breadcrumbs', 'categorías', '', '', 100, 1, '2025-02-16', '2025-02-16 03:14:49'),
 (8, 6, 'tables', 'categories', 'category', '', 100, 1, '2025-02-16', '2025-02-16 03:20:10'),
 (9, 7, 'breadcrumbs', 'productos', '', '', 100, 1, '2025-02-18', '2025-02-18 22:35:55'),
-(10, 7, 'tables', 'products', 'product', '', 100, 1, '2025-02-18', '2025-02-18 22:46:26');
+(10, 7, 'tables', 'products', 'product', '', 100, 1, '2025-02-18', '2025-02-18 22:46:26'),
+(11, 8, 'breadcrumbs', 'compras', '', '', 100, 1, '2025-02-20', '2025-02-20 22:30:54'),
+(12, 8, 'tables', 'purchases', 'purchase', '', 100, 1, '2025-02-20', '2025-02-20 22:36:21');
 
 -- --------------------------------------------------------
 
@@ -335,7 +346,8 @@ INSERT INTO `pages` (`id_page`, `title_page`, `url_page`, `icon_page`, `type_pag
 (4, 'Sucursales', 'sucursales', 'bi bi-shop', 'modules', 3, '2025-02-15', '2025-02-15 00:58:28'),
 (5, 'Clientes', 'clientes', 'bi bi-people', 'modules', 1000, '2025-02-15', '2025-02-15 01:46:20'),
 (6, 'Categorías', 'categorias', 'bi bi-card-list', 'modules', 1000, '2025-02-16', '2025-02-16 03:14:14'),
-(7, 'Productos', 'productos', 'bi bi-box', 'modules', 1000, '2025-02-18', '2025-02-18 22:35:38');
+(7, 'Productos', 'productos', 'bi bi-box', 'modules', 1000, '2025-02-18', '2025-02-18 22:35:38'),
+(8, 'Compras', 'compras', 'bi bi-basket-fill', 'modules', 1000, '2025-02-20', '2025-02-20 22:30:25');
 
 -- --------------------------------------------------------
 
@@ -408,6 +420,75 @@ INSERT INTO `products` (`id_product`, `title_product`, `img_product`, `id_catego
 (41, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:27:09'),
 (42, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:27:15');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `purchases`
+--
+
+CREATE TABLE `purchases` (
+  `id_purchase` int(11) NOT NULL,
+  `supplier_purchase` text DEFAULT NULL,
+  `id_product_purchase` int(11) DEFAULT 0,
+  `cost_purchase` double DEFAULT 0,
+  `utility_purchase` text DEFAULT NULL,
+  `price_purchase` double DEFAULT 0,
+  `qty_purchase` int(11) DEFAULT 0,
+  `invest_purchase` double DEFAULT 0,
+  `contact_purchase` text DEFAULT NULL,
+  `id_office_purchase` int(11) DEFAULT 0,
+  `date_created_purchase` date DEFAULT NULL,
+  `date_updated_purchase` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `purchases`
+--
+
+INSERT INTO `purchases` (`id_purchase`, `supplier_purchase`, `id_product_purchase`, `cost_purchase`, `utility_purchase`, `price_purchase`, `qty_purchase`, `invest_purchase`, `contact_purchase`, `id_office_purchase`, `date_created_purchase`, `date_updated_purchase`) VALUES
+(1, 'Apple', 1, 300, '30%25', 390, 100, 30000, '605423256', 1, '2025-02-21', '2025-02-20 23:52:35'),
+(2, 'JBL', 2, 100, '40%25', 140, 100, 10000, '605423274', 1, '2025-02-21', '2025-02-20 23:53:19'),
+(3, 'Nike', 3, 80, '50%', 120, 100, 8000, '6043218787', 1, '2025-02-21', '2025-02-20 23:55:26'),
+(4, 'Adidas', 4, 80, '50%25', 120, 100, 8000, '6014567865', 1, '2025-02-21', '2025-02-20 23:56:03'),
+(5, 'Nike', 5, 80, '50%25', 120, 100, 8000, '6014567864', 1, '2025-02-21', '2025-02-20 23:56:38'),
+(6, 'Apple', 6, 699, '40%25', 978.6, 100, 69900, '6014567852', 1, '2025-02-21', '2025-02-20 23:57:20'),
+(7, 'Apple', 7, 899, '40%25', 1258.6, 100, 89900, '6014567892', 1, '2025-02-21', '2025-02-21 00:13:04'),
+(8, 'Rolex', 8, 199, '30%25', 258.7, 100, 19900, '6014567802', 1, '2025-02-21', '2025-02-21 00:15:55'),
+(9, 'Rolex', 9, 299, '30%25', 388.7, 100, 29900, '6014567884', 1, '2025-02-21', '2025-02-21 00:16:36'),
+(10, 'Fossil', 10, 399, '30%25', 518.7, 100, 39900, '6014567865', 1, '2025-02-21', '2025-02-21 00:17:17'),
+(11, 'Apple', 11, 1099, '40%25', 1538.6, 100, 109900, '6014567865', 1, '2025-02-21', '2025-02-21 00:21:27'),
+(12, 'Lenovo', 12, 599, '40%25', 838.6, 100, 59900, '6014567872', 1, '2025-02-21', '2025-02-21 00:22:23'),
+(13, 'Lenovo', 14, 999, '40%25', 1398.6, 100, 99900, '6014567893', 1, '2025-02-21', '2025-02-21 00:23:00'),
+(14, 'Apple', 15, 300, '30%25', 390, 100, 30000, '6054321234', 2, '2025-02-21', '2025-02-21 00:24:06'),
+(15, 'JBL', 16, 100, '40%25', 140, 100, 10000, '605423274', 2, '2025-02-21', '2025-02-21 00:25:05'),
+(16, 'Nike', 17, 80, '50%25', 120, 100, 8000, '6043218787', 2, '2025-02-21', '2025-02-21 00:25:14'),
+(17, 'Adidas', 18, 80, '50%25', 120, 100, 8000, '6014567865', 2, '2025-02-21', '2025-02-21 00:25:23'),
+(18, 'Nike', 19, 80, '50%25', 120, 100, 8000, '6014567864', 2, '2025-02-21', '2025-02-21 00:25:32'),
+(19, 'Apple', 20, 699, '40%25', 978.6, 100, 69900, '6014567852', 2, '2025-02-21', '2025-02-21 00:25:43'),
+(20, 'Apple', 21, 899, '40%25', 1258.6, 100, 89900, '6014567892', 2, '2025-02-21', '2025-02-21 00:25:51'),
+(21, 'Rolex', 22, 199, '30%25', 258.7, 100, 19900, '6014567802', 2, '2025-02-21', '2025-02-21 00:25:59'),
+(22, 'Rolex', 23, 299, '30%25', 388.7, 100, 29900, '6014567884', 2, '2025-02-21', '2025-02-21 00:26:06'),
+(23, 'Fossil', 24, 399, '30%25', 518.7, 100, 39900, '6014567865', 2, '2025-02-21', '2025-02-21 00:26:14'),
+(24, 'Apple', 25, 1099, '40%25', 1538.6, 100, 109900, '6014567865', 2, '2025-02-21', '2025-02-21 00:26:22'),
+(25, 'Lenovo', 26, 599, '40%25', 838.6, 100, 59900, '6014567872', 2, '2025-02-21', '2025-02-21 00:26:31'),
+(26, 'Lenovo', 27, 999, '40%25', 1398.6, 100, 99900, '6014567893', 2, '2025-02-21', '2025-02-21 00:26:42'),
+(27, 'Apple', 29, 300, '30%25', 390, 100, 30000, '6054321234', 3, '2025-02-21', '2025-02-21 00:29:55'),
+(28, 'JBL', 30, 100, '40%25', 140, 100, 10000, '605423274', 3, '2025-02-21', '2025-02-21 00:30:02'),
+(29, 'Nike', 31, 80, '50%25', 120, 100, 8000, '6043218787', 3, '2025-02-21', '2025-02-21 00:30:11'),
+(30, 'Adidas', 32, 80, '50%25', 120, 100, 8000, '6014567865', 3, '2025-02-21', '2025-02-21 00:30:17'),
+(31, 'Nike', 33, 80, '50%25', 120, 100, 8000, '6014567864', 3, '2025-02-21', '2025-02-21 00:30:25'),
+(32, 'Apple', 34, 699, '40%25', 978.6, 100, 69900, '6014567852', 3, '2025-02-21', '2025-02-21 00:30:32'),
+(33, 'Apple', 35, 899, '40%25', 1258.6, 100, 89900, '6014567892', 3, '2025-02-21', '2025-02-21 00:30:40'),
+(34, 'Rolex', 36, 199, '30%25', 258.7, 100, 19900, '6014567802', 3, '2025-02-21', '2025-02-21 00:30:50'),
+(35, 'Rolex', 37, 299, '30%25', 388.7, 100, 29900, '6014567884', 3, '2025-02-21', '2025-02-21 00:30:57'),
+(36, 'Fossil', 38, 399, '30%25', 518.7, 100, 39900, '6014567865', 3, '2025-02-21', '2025-02-21 00:31:05'),
+(37, 'Apple', 39, 1099, '40%25', 1538.6, 100, 109900, '6014567865', 3, '2025-02-21', '2025-02-21 00:31:12'),
+(38, 'Lenovo', 40, 599, '40%25', 838.6, 100, 59900, '6014567872', 3, '2025-02-21', '2025-02-21 00:31:19'),
+(39, 'Lenovo', 41, 999, '40%25', 1398.6, 100, 99900, '6014567893', 3, '2025-02-21', '2025-02-21 00:31:27'),
+(40, 'Lenovo', 14, 999, '40%25', 1398.6, 100, 99900, '3154488674', 1, '2025-02-21', '2025-02-21 00:32:40'),
+(41, 'Lenovo', 28, 999, '40%25', 1398.6, 100, 99900, '3154488674', 2, '2025-02-21', '2025-02-21 00:32:58'),
+(42, 'Lenovo', 42, 999, '40%25', 1398.6, 100, 99900, '3154488674', 3, '2025-02-21', '2025-02-21 00:33:10');
+
 --
 -- Índices para tablas volcadas
 --
@@ -473,6 +554,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id_product`);
 
 --
+-- Indices de la tabla `purchases`
+--
+ALTER TABLE `purchases`
+  ADD PRIMARY KEY (`id_purchase`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -498,7 +585,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `files`
@@ -516,7 +603,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT de la tabla `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `offices`
@@ -528,13 +615,19 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
   MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT de la tabla `purchases`
+--
+ALTER TABLE `purchases`
+  MODIFY `id_purchase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
