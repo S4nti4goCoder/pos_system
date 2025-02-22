@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2025 a las 08:39:43
+-- Tiempo de generación: 22-02-2025 a las 06:02:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -52,7 +52,30 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
-(1, 'superadmin@pos.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDAwOTA2MTEsImV4cCI6MTc0MDE3NzAxMSwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.YzfZTSvNfY4X3po272lhOQGYOFYEuOJOktFj_8rVqIE', '1740177011', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', NULL, NULL, '2025-02-14', '2025-02-20 22:30:11');
+(1, 'superadmin@pos.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDAxOTk2MTAsImV4cCI6MTc0MDI4NjAxMCwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.CuJfZfHkJfMjSPmEmUPALl1XktxGMVf7wjSpDmoj6Rk', '1740286010', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', NULL, NULL, '2025-02-14', '2025-02-22 04:46:50');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cashs`
+--
+
+CREATE TABLE `cashs` (
+  `id_cash` int(11) NOT NULL,
+  `start_cash` double DEFAULT 0,
+  `bills_cash` double DEFAULT 0,
+  `money_cash` double DEFAULT 0,
+  `diff_cash` double DEFAULT 0,
+  `end_cash` double DEFAULT 0,
+  `gap_cash` double DEFAULT 0,
+  `status_cash` int(11) DEFAULT 1,
+  `date_start_cash` datetime DEFAULT NULL,
+  `date_end_cash` datetime DEFAULT NULL,
+  `id_admin_cash` int(11) DEFAULT 0,
+  `id_office_cash` int(11) DEFAULT 0,
+  `date_created_cash` date DEFAULT NULL,
+  `date_updated_cash` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -207,7 +230,18 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (67, 16, 'status_sale', 'Estado', 'select', 'Completada,Pendiente', 1, '2025-02-21', '2025-02-21 03:27:24'),
 (68, 16, 'id_admin_sale', 'Vendedor', 'relations', 'admins', 1, '2025-02-21', '2025-02-21 03:27:05'),
 (69, 16, 'id_client_sale', 'Cliente', 'relations', 'clients', 1, '2025-02-21', '2025-02-21 03:27:02'),
-(70, 16, 'id_office_sale', 'Sucursal', 'relations', 'offices', 1, '2025-02-21', '2025-02-21 03:26:51');
+(70, 16, 'id_office_sale', 'Sucursal', 'relations', 'offices', 1, '2025-02-21', '2025-02-21 03:26:51'),
+(71, 18, 'start_cash', 'Dinero Inicial', 'money', NULL, 1, '2025-02-22', '2025-02-22 04:59:07'),
+(72, 18, 'bills_cash', 'Gastos', 'money', NULL, 1, '2025-02-22', '2025-02-22 04:59:07'),
+(73, 18, 'money_cash', 'Ingresos', 'money', NULL, 1, '2025-02-22', '2025-02-22 04:59:07'),
+(74, 18, 'diff_cash', 'Diferencia', 'money', NULL, 1, '2025-02-22', '2025-02-22 04:59:08'),
+(75, 18, 'end_cash', 'Dinero Final', 'money', NULL, 1, '2025-02-22', '2025-02-22 04:59:08'),
+(76, 18, 'gap_cash', 'Brecha', 'money', NULL, 1, '2025-02-22', '2025-02-22 04:59:08'),
+(77, 18, 'status_cash', 'Estado', 'boolean', NULL, 1, '2025-02-22', '2025-02-22 04:59:08'),
+(78, 18, 'date_start_cash', 'Fecha Inicial', 'datetime', NULL, 1, '2025-02-22', '2025-02-22 04:59:08'),
+(79, 18, 'date_end_cash', 'Fecha Final', 'datetime', NULL, 1, '2025-02-22', '2025-02-22 04:59:08'),
+(80, 18, 'id_admin_cash', 'Administrador', 'relations', 'admins', 1, '2025-02-22', '2025-02-22 04:59:48'),
+(81, 18, 'id_office_cash', 'Sucursal', 'relations', 'offices', 1, '2025-02-22', '2025-02-22 04:59:40');
 
 -- --------------------------------------------------------
 
@@ -319,7 +353,9 @@ INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_modu
 (13, 9, 'breadcrumbs', 'Órdenes', '', '', 100, 1, '2025-02-21', '2025-02-21 00:42:21'),
 (14, 9, 'tables', 'orders', 'order', '', 100, 0, '2025-02-21', '2025-02-21 00:55:16'),
 (15, 10, 'breadcrumbs', 'ventas', '', '', 100, 1, '2025-02-21', '2025-02-21 03:21:59'),
-(16, 10, 'tables', 'sales', 'sale', '', 100, 0, '2025-02-21', '2025-02-21 03:25:48');
+(16, 10, 'tables', 'sales', 'sale', '', 100, 0, '2025-02-21', '2025-02-21 03:25:48'),
+(17, 11, 'breadcrumbs', 'caja', '', '', 100, 1, '2025-02-22', '2025-02-22 04:51:55'),
+(18, 11, 'tables', 'cashs', 'cash', '', 100, 1, '2025-02-22', '2025-02-22 04:59:07');
 
 -- --------------------------------------------------------
 
@@ -400,7 +436,8 @@ INSERT INTO `pages` (`id_page`, `title_page`, `url_page`, `icon_page`, `type_pag
 (7, 'Productos', 'productos', 'bi bi-box', 'modules', 1000, '2025-02-18', '2025-02-18 22:35:38'),
 (8, 'Compras', 'compras', 'bi bi-basket-fill', 'modules', 1000, '2025-02-20', '2025-02-20 22:30:25'),
 (9, 'Órdenes', 'ordenes', 'bi bi-ticket-detailed', 'modules', 1000, '2025-02-21', '2025-02-21 00:42:04'),
-(10, 'Ventas', 'ventas', 'bi bi-cash-coin', 'modules', 1000, '2025-02-21', '2025-02-21 03:21:36');
+(10, 'Ventas', 'ventas', 'bi bi-cash-coin', 'modules', 1000, '2025-02-21', '2025-02-21 03:21:36'),
+(11, 'Caja', 'caja', 'fas fa-cash-register', 'modules', 1000, '2025-02-22', '2025-02-22 04:51:36');
 
 -- --------------------------------------------------------
 
@@ -576,6 +613,12 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id_admin`);
 
 --
+-- Indices de la tabla `cashs`
+--
+ALTER TABLE `cashs`
+  ADD PRIMARY KEY (`id_cash`);
+
+--
 -- Indices de la tabla `categories`
 --
 ALTER TABLE `categories`
@@ -658,6 +701,12 @@ ALTER TABLE `admins`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `cashs`
+--
+ALTER TABLE `cashs`
+  MODIFY `id_cash` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
@@ -673,7 +722,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT de la tabla `files`
@@ -691,7 +740,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT de la tabla `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `offices`
@@ -709,7 +758,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
