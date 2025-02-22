@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-02-2025 a las 06:02:20
+-- Tiempo de generación: 22-02-2025 a las 06:08:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -53,6 +53,23 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
 (1, 'superadmin@pos.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDAxOTk2MTAsImV4cCI6MTc0MDI4NjAxMCwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.CuJfZfHkJfMjSPmEmUPALl1XktxGMVf7wjSpDmoj6Rk', '1740286010', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', NULL, NULL, '2025-02-14', '2025-02-22 04:46:50');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `bills`
+--
+
+CREATE TABLE `bills` (
+  `id_bill` int(11) NOT NULL,
+  `concept_bill` text DEFAULT NULL,
+  `cost_bill` double DEFAULT 0,
+  `date_bill` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `id_admin_bill` int(11) DEFAULT 0,
+  `id_office_bill` int(11) DEFAULT 0,
+  `date_created_bill` date DEFAULT NULL,
+  `date_updated_bill` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -241,7 +258,12 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (78, 18, 'date_start_cash', 'Fecha Inicial', 'datetime', NULL, 1, '2025-02-22', '2025-02-22 04:59:08'),
 (79, 18, 'date_end_cash', 'Fecha Final', 'datetime', NULL, 1, '2025-02-22', '2025-02-22 04:59:08'),
 (80, 18, 'id_admin_cash', 'Administrador', 'relations', 'admins', 1, '2025-02-22', '2025-02-22 04:59:48'),
-(81, 18, 'id_office_cash', 'Sucursal', 'relations', 'offices', 1, '2025-02-22', '2025-02-22 04:59:40');
+(81, 18, 'id_office_cash', 'Sucursal', 'relations', 'offices', 1, '2025-02-22', '2025-02-22 04:59:40'),
+(82, 20, 'concept_bill', 'Concepto', 'text', NULL, 1, '2025-02-22', '2025-02-22 05:07:19'),
+(83, 20, 'cost_bill', 'Costo', 'money', NULL, 1, '2025-02-22', '2025-02-22 05:07:19'),
+(84, 20, 'date_bill', 'Fecha', 'timestamp', NULL, 1, '2025-02-22', '2025-02-22 05:07:19'),
+(85, 20, 'id_admin_bill', 'Administrador', 'relations', 'admins', 1, '2025-02-22', '2025-02-22 05:07:42'),
+(86, 20, 'id_office_bill', 'Sucursal', 'relations', 'offices', 1, '2025-02-22', '2025-02-22 05:07:46');
 
 -- --------------------------------------------------------
 
@@ -355,7 +377,9 @@ INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_modu
 (15, 10, 'breadcrumbs', 'ventas', '', '', 100, 1, '2025-02-21', '2025-02-21 03:21:59'),
 (16, 10, 'tables', 'sales', 'sale', '', 100, 0, '2025-02-21', '2025-02-21 03:25:48'),
 (17, 11, 'breadcrumbs', 'caja', '', '', 100, 1, '2025-02-22', '2025-02-22 04:51:55'),
-(18, 11, 'tables', 'cashs', 'cash', '', 100, 1, '2025-02-22', '2025-02-22 04:59:07');
+(18, 11, 'tables', 'cashs', 'cash', '', 100, 1, '2025-02-22', '2025-02-22 04:59:07'),
+(19, 12, 'breadcrumbs', 'gastos', '', '', 100, 1, '2025-02-22', '2025-02-22 05:04:33'),
+(20, 12, 'tables', 'bills', 'bill', '', 100, 1, '2025-02-22', '2025-02-22 05:07:19');
 
 -- --------------------------------------------------------
 
@@ -437,7 +461,8 @@ INSERT INTO `pages` (`id_page`, `title_page`, `url_page`, `icon_page`, `type_pag
 (8, 'Compras', 'compras', 'bi bi-basket-fill', 'modules', 1000, '2025-02-20', '2025-02-20 22:30:25'),
 (9, 'Órdenes', 'ordenes', 'bi bi-ticket-detailed', 'modules', 1000, '2025-02-21', '2025-02-21 00:42:04'),
 (10, 'Ventas', 'ventas', 'bi bi-cash-coin', 'modules', 1000, '2025-02-21', '2025-02-21 03:21:36'),
-(11, 'Caja', 'caja', 'fas fa-cash-register', 'modules', 1000, '2025-02-22', '2025-02-22 04:51:36');
+(11, 'Caja', 'caja', 'fas fa-cash-register', 'modules', 1000, '2025-02-22', '2025-02-22 04:51:36'),
+(12, 'Gastos', 'gastos', 'fas fa-money-bill-wave', 'modules', 1000, '2025-02-22', '2025-02-22 05:04:23');
 
 -- --------------------------------------------------------
 
@@ -613,6 +638,12 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id_admin`);
 
 --
+-- Indices de la tabla `bills`
+--
+ALTER TABLE `bills`
+  ADD PRIMARY KEY (`id_bill`);
+
+--
 -- Indices de la tabla `cashs`
 --
 ALTER TABLE `cashs`
@@ -701,6 +732,12 @@ ALTER TABLE `admins`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `bills`
+--
+ALTER TABLE `bills`
+  MODIFY `id_bill` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `cashs`
 --
 ALTER TABLE `cashs`
@@ -722,7 +759,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `files`
@@ -740,7 +777,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT de la tabla `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `offices`
@@ -758,7 +795,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT de la tabla `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_page` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
