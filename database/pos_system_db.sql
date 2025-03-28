@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-02-2025 a las 06:08:49
+-- Tiempo de generación: 28-03-2025 a las 06:50:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,7 +32,7 @@ CREATE TABLE `admins` (
   `email_admin` text DEFAULT NULL,
   `password_admin` text DEFAULT NULL,
   `rol_admin` text DEFAULT NULL,
-  `permissions_admin` text DEFAULT NULL,
+  `permissions_admin` text DEFAULT '{}',
   `token_admin` text DEFAULT NULL,
   `token_exp_admin` text DEFAULT NULL,
   `status_admin` int(11) DEFAULT 1,
@@ -42,6 +42,8 @@ CREATE TABLE `admins` (
   `color_admin` text DEFAULT NULL,
   `back_admin` text DEFAULT NULL,
   `scode_admin` text DEFAULT NULL,
+  `name_admin` text DEFAULT NULL,
+  `id_office_admin` int(11) DEFAULT 0,
   `chatgpt_admin` text DEFAULT NULL,
   `date_created_admin` date DEFAULT NULL,
   `date_updated_admin` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -51,8 +53,10 @@ CREATE TABLE `admins` (
 -- Volcado de datos para la tabla `admins`
 --
 
-INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
-(1, 'superadmin@pos.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDAxOTk2MTAsImV4cCI6MTc0MDI4NjAxMCwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.CuJfZfHkJfMjSPmEmUPALl1XktxGMVf7wjSpDmoj6Rk', '1740286010', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n<link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', NULL, NULL, '2025-02-14', '2025-02-22 04:46:50');
+INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `name_admin`, `id_office_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
+(1, 'superadmin@pos.com', '', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA4NjYsImV4cCI6MTc0MzIyNzI2NiwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.px4wzkkoL9hT1m1FZ2YL91XnnGTVCpql3UVZNHjKa4c', '1743227266', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', '', 'El Programador', 0, NULL, '2025-02-14', '2025-03-28 05:47:46'),
+(2, 'admin@pos.com', '', 'admin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA0MDcsImV4cCI6MTc0MzIyNjgwNywiZGF0YSI6eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBwb3MuY29tIn19.h-kOkv9mNhUhup37tQpJSTovwT-tUcCStC_SAcbut_U', '1743226807', 1, '', '', '', '', '', '', 'Sara Perez', 0, NULL, '2025-03-27', '2025-03-28 05:47:01'),
+(3, 'supervisor@pos.com', '', 'editor', '{\"posify\":\"on\",\"clientes\":\"on\",\"productos\":\"on\",\"compras\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA2NjMsImV4cCI6MTc0MzIyNzA2MywiZGF0YSI6eyJpZCI6MywiZW1haWwiOiJzdXBlcnZpc29yQHBvcy5jb20ifX0.heafrQdOV-CWa0OgEUpfavjKREHmWZ67CP9b_gjFEus', '1743227063', 1, '', '', '', '', '', '', 'Jorge Riquelme', 0, NULL, '2025-03-28', '2025-03-28 05:46:43');
 
 -- --------------------------------------------------------
 
@@ -263,7 +267,9 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (83, 20, 'cost_bill', 'Costo', 'money', NULL, 1, '2025-02-22', '2025-02-22 05:07:19'),
 (84, 20, 'date_bill', 'Fecha', 'timestamp', NULL, 1, '2025-02-22', '2025-02-22 05:07:19'),
 (85, 20, 'id_admin_bill', 'Administrador', 'relations', 'admins', 1, '2025-02-22', '2025-02-22 05:07:42'),
-(86, 20, 'id_office_bill', 'Sucursal', 'relations', 'offices', 1, '2025-02-22', '2025-02-22 05:07:46');
+(86, 20, 'id_office_bill', 'Sucursal', 'relations', 'offices', 1, '2025-02-22', '2025-02-22 05:07:46'),
+(87, 2, 'name_admin', 'Nombre', 'text', NULL, 1, '2025-03-28', '2025-03-28 05:46:21'),
+(88, 2, 'id_office_admin', 'Sucursal', 'relations', NULL, 1, '2025-03-28', '2025-03-28 05:48:44');
 
 -- --------------------------------------------------------
 
@@ -361,7 +367,7 @@ CREATE TABLE `modules` (
 
 INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_module`, `suffix_module`, `content_module`, `width_module`, `editable_module`, `date_created_module`, `date_updated_module`) VALUES
 (1, 2, 'breadcrumbs', 'Administradores', NULL, NULL, 100, 1, '2025-02-14', '2025-02-14 07:06:16'),
-(2, 2, 'tables', 'admins', 'admin', NULL, 100, 0, '2025-02-14', '2025-02-14 07:06:16'),
+(2, 2, 'tables', 'admins', 'admin', '', 100, 0, '2025-02-14', '2025-03-28 05:46:20'),
 (3, 4, 'breadcrumbs', 'sucursales', '', '', 100, 1, '2025-02-15', '2025-02-15 00:59:02'),
 (4, 4, 'tables', 'offices', 'office', '', 100, 1, '2025-02-15', '2025-02-15 01:05:35'),
 (5, 5, 'breadcrumbs', 'clientes', '', '', 100, 1, '2025-02-15', '2025-02-15 01:46:45'),
@@ -729,7 +735,7 @@ ALTER TABLE `sales`
 -- AUTO_INCREMENT de la tabla `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `bills`
@@ -759,7 +765,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de la tabla `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id_column` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de la tabla `files`
