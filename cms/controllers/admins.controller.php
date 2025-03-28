@@ -48,18 +48,24 @@ class AdminsController{
 				}
 
 				/*=============================================
+				Traer la info de sucursales
+				=============================================*/
+				if($login->results[0]->id_office_admin > 0){
+					$url = "relations?rel=admins,offices&type=admin,office&linkTo=id_admin,id_office&equalTo=".$login->results[0]->id_admin.",".$login->results[0]->id_office_admin;
+					$method = "GET";
+					$fields = array();
+					$login = CurlController::request($url,$method,$fields);
+				}
+
+				/*=============================================
 				Crear variable de Sesión
 				=============================================*/
-
 				$_SESSION["admin"] = $login->results[0];
-
 				echo '<script>
-
 					localStorage.setItem("tokenAdmin","'.$login->results[0]->token_admin.'");
 					fncMatPreloader("off");
 					fncFormatInputs();
 					location.reload();
-
 				</script>';
 
 				/*=============================================
