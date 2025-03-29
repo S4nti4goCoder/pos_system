@@ -274,9 +274,9 @@ function loadAjaxTable(
   between1,
   between2
 ) {
-  if("filter" != "search"){
-		fncSweetAlert("loading", "Cargando información...", "");
-	}
+  if (filter != "search") {
+    fncSweetAlert("loading", "Cargando información...", "");
+  }
 
   var data = new FormData();
   data.append("contentModule", contentModule);
@@ -298,10 +298,9 @@ function loadAjaxTable(
     cache: false,
     processData: false,
     success: function (response) {
-      if("filter" != "search"){
-				fncSweetAlert("close", "", "");
-
-			}
+      if ("filter" != "search") {
+        fncSweetAlert("close", "", "");
+      }
 
       /*=============================================
 			Limpiar la selección de items

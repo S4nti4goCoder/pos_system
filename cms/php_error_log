@@ -192,3 +192,21 @@ Stack trace:
 #6 C:\xampp\htdocs\pos_system\cms\index.php(26): TemplateController->index()
 #7 {main}
   thrown in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\tables\manage\blocks\forms\text.php on line 8
+[29-Mar-2025 08:42:23 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 36
+[29-Mar-2025 08:42:23 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:23 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:23 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:23 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:23 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:24 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 36
+[29-Mar-2025 08:42:24 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:24 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:24 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:24 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:24 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 36
+[29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
