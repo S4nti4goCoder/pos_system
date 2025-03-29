@@ -169,6 +169,8 @@ if($adminTable->status == 404){
     <!-- https://codemirror.net/ -->
     <link rel="stylesheet" href="/views/assets/plugins/codemirror/codemirror.css">
 	<link rel="stylesheet" href="/views/assets/plugins/codemirror/monokai.css">
+	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
+    <link rel="stylesheet" href="/views/assets/plugins/jdSlider/jdSlider.css">
 
 	<!--=============================================
 	PLUGINS JS
@@ -211,6 +213,8 @@ if($adminTable->status == 404){
 	<script src="/views/assets/plugins/codemirror/formatting.js"></script>
 	<!-- https://www.chartjs.org/ -->
 	<script src="/views/assets/plugins/chartjs/chartjs.min.js"></script>
+	<!-- https://www.jqueryscript.net/slider/Carousel-Slideshow-jdSlider.html -->
+	<script src="/views/assets/plugins/jdSlider/jdSlider.js"></script>
 
 	<!--=============================================
 	CUSTOM CSS

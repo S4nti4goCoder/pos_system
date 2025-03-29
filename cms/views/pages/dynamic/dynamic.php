@@ -101,3 +101,5 @@ if($modules->status == 200){
     </div>
 
 </div>
+
+<script src="/views/assets/js/pos/pos.js"></script>
