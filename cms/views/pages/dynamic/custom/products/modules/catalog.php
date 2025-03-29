@@ -85,6 +85,18 @@ if ($products->status == 200) {
 
     </div>
 
+    <?php if ($totalPageProducts > 1): ?>
+        <div id="loadPageProducts" class="d-flex justify-content-center mb-5">
+            <div><button class="btn btn-sm rounded bg-blue px-3 py-2">Cargar más productos</button></div>
+        </div>
+    <?php endif ?>
+
+    <input type="hidden" id="totalPagesProducts" value="<?php echo $totalPageProducts ?>">
+	<input type="hidden" id="currentPageProducts" value="1">
+	<input type="hidden" id="limitProduct" value="<?php echo $limit ?>">
+	<input type="hidden" id="idOffice" value="<?php echo $_SESSION["admin"]->id_office_admin ?>">
+	<input type="hidden" id="filterByCategory" value="all">
+
 <?php else: ?>
 
     <div class="row p-2 my-5 text-center">

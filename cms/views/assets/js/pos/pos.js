@@ -1,7 +1,6 @@
 /*=============================================
 JD SLIDER
 =============================================*/
-
 $(".jd-slider").jdSlider({
   wrap: ".slide-inner",
   slideShow: 4,
@@ -21,7 +20,6 @@ $(".jd-slider").jdSlider({
 /*=============================================
 CARGAR MÁS PRODUCTOS
 =============================================*/
-
 $(document).on("click", "#loadPageProducts", function () {
   if (
     Number($("#currentPageProducts").val()) <
@@ -39,6 +37,7 @@ $(document).on("click", "#loadPageProducts", function () {
     var limit = Number($("#limitProduct").val());
     var startAt = nextPage * limit - limit;
     var category = $("#filterByCategory").val();
+    var search = $("#searchProduct").val();
 
     loadMoreProducts(limit, startAt, category, search);
   } else {
@@ -50,7 +49,6 @@ $(document).on("click", "#loadPageProducts", function () {
 /*=============================================
 FILTRAR PRODUCTOS POR CATEGORÍAS
 =============================================*/
-
 $(document).on("click", ".loadCategory", function () {
   var category = $(this).attr("idCategory");
   $("#filterByCategory").val(category);
@@ -58,6 +56,7 @@ $(document).on("click", ".loadCategory", function () {
   var limit = Number($("#limitProduct").val());
   var startAt = 0;
   $("#currentPageProducts").val(1);
+  var search = $("#searchProduct").val(); 
 
   loadMoreProducts(limit, startAt, category, search);
 });
@@ -65,7 +64,6 @@ $(document).on("click", ".loadCategory", function () {
 /*=============================================
 FILTRAR PRODUCTOS POR BÚSQUEDA
 =============================================*/
-
 $(document).on("keyup", "#searchProduct", function () {
   var search = $(this).val();
 
@@ -80,8 +78,7 @@ $(document).on("keyup", "#searchProduct", function () {
 /*=============================================
 FUNCIÓN PARA CARGAR MÁS PRODUCTOS
 =============================================*/
-
-function loadMoreProducts(limit, startAt, category, search) {
+function loadMoreProducts(limit,startAt,category,search) {
   if (search == "") {
     fncSweetAlert("loading", "Cargando productos...", "");
   }
@@ -101,24 +98,25 @@ function loadMoreProducts(limit, startAt, category, search) {
     cache: false,
     processData: false,
     success: function (response) {
-      if (JSON.parse(response).htmlProducts != "") {
+      var parsedResponse = JSON.parse(response);
+
+      if (parsedResponse.htmlProducts != "") {
         if (startAt == 0) {
-          $(".viewProducts").html(JSON.parse(response).htmlProducts);
+          $(".viewProducts").html(parsedResponse.htmlProducts);
         } else {
-          $(".viewProducts").append(JSON.parse(response).htmlProducts);
+          $(".viewProducts").append(parsedResponse.htmlProducts);
         }
 
         if (
-          JSON.parse(response).totalPagesProducts > 1 &&
-          $("#currentPageProducts").val() <
-            JSON.parse(response).totalPagesProducts
+          parsedResponse.totalPagesProducts > 1 &&
+          $("#currentPageProducts").val() < parsedResponse.totalPagesProducts
         ) {
           $("#loadPageProducts").removeClass("d-none");
           $("#loadPageProducts").addClass("d-block");
         }
 
         if (
-          JSON.parse(response).totalPagesProducts <= 1 &&
+          parsedResponse.totalPagesProducts <= 1 &&
           $("#currentPageProducts").val() == 1
         ) {
           $("#loadPageProducts").addClass("d-none");

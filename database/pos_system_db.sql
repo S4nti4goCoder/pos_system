@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-03-2025 a las 00:49:36
+-- Tiempo de generación: 29-03-2025 a las 08:26:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -130,7 +130,7 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id_category`, `title_category`, `img_category`, `order_category`, `status_category`, `date_created_category`, `date_updated_category`) VALUES
 (1, 'Aud%C3%ADfonos', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b15a5f8315915.png', 0, 1, '2025-02-16', '2025-02-16 03:24:51'),
 (2, 'Zapatos', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b15ae56d5ae29.png', 0, 1, '2025-02-16', '2025-02-16 03:26:43'),
-(3, 'Tel%C3%A9fonos+m%C3%B3viles', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b15b38d40f452.png', 0, 1, '2025-02-16', '2025-02-16 03:27:56'),
+(3, 'Teléfonos', 'http://cms.pos.com/views/assets/files/67b15b38d40f452.png', 0, 1, '2025-02-16', '2025-03-29 00:42:24'),
 (4, 'Relojes', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b15b6d3f7d145.png', 0, 1, '2025-02-16', '2025-02-16 03:28:50'),
 (5, 'Port%C3%A1tiles', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b15b96583c926.png', 0, 1, '2025-02-16', '2025-02-16 03:29:29');
 
@@ -324,7 +324,8 @@ INSERT INTO `files` (`id_file`, `id_folder_file`, `name_file`, `extension_file`,
 (17, 1, '676336fb70b6d27', 'png', 'image/png', 11585, 'http://cms.pos.com/views/assets/files/67b513a1cf59e29.png', NULL, NULL, '2025-02-19', '2025-02-18 23:11:29'),
 (18, 1, '6763372162e555', 'png', 'image/png', 10007, 'http://cms.pos.com/views/assets/files/67b513cf3ede415.png', NULL, NULL, '2025-02-19', '2025-02-18 23:12:15'),
 (19, 1, '6763375d7ae0e5', 'png', 'image/png', 10979, 'http://cms.pos.com/views/assets/files/67b513f87186b56.png', NULL, NULL, '2025-02-19', '2025-02-18 23:12:56'),
-(20, 1, '676337786b5b132', 'png', 'image/png', 10505, 'http://cms.pos.com/views/assets/files/67b51425c18eb41.png', NULL, NULL, '2025-02-19', '2025-02-18 23:13:41');
+(20, 1, '676337786b5b132', 'png', 'image/png', 10505, 'http://cms.pos.com/views/assets/files/67b51425c18eb41.png', NULL, NULL, '2025-02-19', '2025-02-18 23:13:41'),
+(21, 1, '67659e224786f6', 'png', 'image/png', 1072, 'http://cms.pos.com/views/assets/files/67e742629d30818.png', NULL, NULL, '2025-03-29', '2025-03-29 00:44:18');
 
 -- --------------------------------------------------------
 
@@ -349,7 +350,7 @@ CREATE TABLE `folders` (
 --
 
 INSERT INTO `folders` (`id_folder`, `name_folder`, `size_folder`, `total_folder`, `max_upload_folder`, `url_folder`, `keys_folder`, `date_created_folder`, `date_updated_folder`) VALUES
-(1, 'Server', '200000000000', 12318483, '500000000', 'http://cms.pos.com', NULL, '2025-02-14', '2025-02-18 23:13:41');
+(1, 'Server', '200000000000', 12319555, '500000000', 'http://cms.pos.com', NULL, '2025-02-14', '2025-03-29 00:44:18');
 
 -- --------------------------------------------------------
 
@@ -523,7 +524,7 @@ INSERT INTO `products` (`id_product`, `title_product`, `img_product`, `id_catego
 (11, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:20:53'),
 (12, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:21:28'),
 (13, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:22:00'),
-(14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 1, '2025-02-19', '2025-02-19 00:22:28'),
+(14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 0, 30, 1, 1, '2025-02-19', '2025-03-29 04:54:01'),
 (15, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:15'),
 (16, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:22'),
 (17, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:28'),
@@ -591,7 +592,7 @@ INSERT INTO `purchases` (`id_purchase`, `supplier_purchase`, `id_product_purchas
 (10, 'Fossil', 10, 399, '30%25', 518.7, 100, 39900, '6014567865', 1, '2025-02-21', '2025-02-21 00:17:17'),
 (11, 'Apple', 11, 1099, '40%25', 1538.6, 100, 109900, '6014567865', 1, '2025-02-21', '2025-02-21 00:21:27'),
 (12, 'Lenovo', 12, 599, '40%25', 838.6, 100, 59900, '6014567872', 1, '2025-02-21', '2025-02-21 00:22:23'),
-(13, 'Lenovo', 14, 999, '40%25', 1398.6, 100, 99900, '6014567893', 1, '2025-02-21', '2025-02-21 00:23:00'),
+(13, 'Lenovo', 13, 999, '40%', 1398.6, 100, 99900, '6014567893', 1, '2025-02-21', '2025-03-29 05:08:47'),
 (14, 'Apple', 15, 300, '30%25', 390, 100, 30000, '6054321234', 2, '2025-02-21', '2025-02-21 00:24:06'),
 (15, 'JBL', 16, 100, '40%25', 140, 100, 10000, '605423274', 2, '2025-02-21', '2025-02-21 00:25:05'),
 (16, 'Nike', 17, 80, '50%25', 120, 100, 8000, '6043218787', 2, '2025-02-21', '2025-02-21 00:25:14'),
@@ -783,7 +784,7 @@ ALTER TABLE `columns`
 -- AUTO_INCREMENT de la tabla `files`
 --
 ALTER TABLE `files`
-  MODIFY `id_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_file` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `folders`

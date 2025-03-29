@@ -23,32 +23,43 @@ JD SLIDER
 <div class="jd-slider mb-0 pb-0">
     <div class="slide-inner">
         <ul class="slide-area">
+
             <?php if (!empty($categories)): ?>
+
                 <li>
-                    <div class="border-0 rounded text-center bg-white mx-1 p-3 pb-0">
+                    <div class="border-0 rounded text-center bg-white mx-1 p-3 pb-0 loadCategory" idCategory="all">
                         <img src="http://cms.pos.com/views/assets/files/67e742629d30818.png" class="img-fluid mx-auto" style="width:50px; cursor:pointer">
                         <p class="pt-2 mb-0 lead" style="cursor:move"><strong>Todo</strong></p>
+
                         <?php
-                        $url = "products?linkTo=status_product&equalTo=1&select=id_product";
+                        $url = "products?linkTo=status_product,id_office_product&equalTo=1," . $_SESSION["admin"]->id_office_admin . "&select=id_product";
                         $totalProducts = CurlController::request($url, $method, $fields)->total;
                         ?>
+
                         <p class="small pb-3" style="cursor:move"><?php echo $totalProducts ?> items</p>
                     </div>
                 </li>
+
                 <?php foreach ($categories as $key => $value): ?>
+
                     <li>
-                        <div class="border-0 rounded text-center bg-white mx-1 p-3 pb-0">
+                        <div class="border-0 rounded text-center bg-white mx-1 p-3 pb-0 loadCategory" idCategory="<?php echo $value->id_category ?>">
                             <img src="<?php echo urldecode($value->img_category) ?>" class="img-fluid mx-auto" style="width:50px; cursor:pointer">
                             <p class="pt-2 mb-0 lead" style="cursor:move"><strong><?php echo urldecode($value->title_category) ?></strong></p>
+
                             <?php
-                            $url = "products?linkTo=id_category_product,status_product&equalTo=" . $value->id_category . ",1&select=id_product";
+                            $url = "products?linkTo=id_category_product,status_product,id_office_product&equalTo=" . $value->id_category . ",1," . $_SESSION["admin"]->id_office_admin . "&select=id_product";
                             $totalProducts = CurlController::request($url, $method, $fields)->total;
                             ?>
+
                             <p class="small pb-3" style="cursor:move"><?php echo $totalProducts ?> items</p>
                         </div>
                     </li>
+
                 <?php endforeach ?>
+
             <?php endif ?>
+
         </ul>
         <a href="#" class="prev ps-1">
             <i class="bi bi-chevron-left"></i>
