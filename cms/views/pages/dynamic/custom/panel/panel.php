@@ -18,9 +18,20 @@ Custom
    	Start Custom
   	================================-->
 	<div class="card rounded">
-		<div class="card-header bg-light rounded-top" id="orderHeader" mode="off" idOrder>
-			<h6 class="card-title mt-2 float-start">Orden # 00000000</h6>
-		</div>
+		<?php if (!empty($order)): ?>
+
+			<div class="card-header backColor rounded-top" id="orderHeader" mode="on" idOrder="<?php echo $order->id_order ?>">
+			<h6 class="card-title mt-2 float-start">Orden # <?php echo $order->transaction_order ?></h6>
+			</div>
+
+		<?php else: ?>
+
+			<div class="card-header bg-light rounded-top" id="orderHeader" mode="off" idOrder>
+				<h6 class="card-title mt-2 float-start">Orden # 00000000</h6>
+			</div>
+
+		<?php endif ?>
+
 		<div class="card-body">
 
 			<?php

@@ -210,3 +210,20 @@ Stack trace:
 [29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
 [29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
 [29-Mar-2025 08:42:34 Europe/Berlin] PHP Warning:  Undefined property: stdClass::$total in C:\xampp\htdocs\pos_system\cms\views\pages\dynamic\custom\products\modules\categories.php on line 52
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "status" on null in C:\xampp\htdocs\pos_system\cms\views\template.php on line 33
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "results" on null in C:\xampp\htdocs\pos_system\cms\views\template.php on line 39
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Trying to access array offset on value of type null in C:\xampp\htdocs\pos_system\cms\views\template.php on line 39
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "status" on null in C:\xampp\htdocs\pos_system\cms\views\modules\sidebar.php on line 9
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "symbol_admin" on null in C:\xampp\htdocs\pos_system\cms\views\modules\sidebar.php on line 24
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "title_admin" on null in C:\xampp\htdocs\pos_system\cms\views\modules\sidebar.php on line 25
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "status" on null in C:\xampp\htdocs\pos_system\cms\views\template.php on line 300
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "status" on null in C:\xampp\htdocs\pos_system\cms\views\template.php on line 304
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "title_admin" on null in C:\xampp\htdocs\pos_system\cms\views\modules\modals\profile.php on line 65
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "symbol_admin" on null in C:\xampp\htdocs\pos_system\cms\views\modules\modals\profile.php on line 83
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "font_admin" on null in C:\xampp\htdocs\pos_system\cms\views\modules\modals\profile.php on line 100
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "font_admin" on null in C:\xampp\htdocs\pos_system\cms\views\modules\modals\profile.php on line 101
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "color_admin" on null in C:\xampp\htdocs\pos_system\cms\views\modules\modals\profile.php on line 114
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "back_admin" on null in C:\xampp\htdocs\pos_system\cms\views\modules\modals\profile.php on line 129
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "status" on null in C:\xampp\htdocs\pos_system\cms\views\modules\sidebar.php on line 9
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "status" on null in C:\xampp\htdocs\pos_system\cms\views\template.php on line 300
+[31-Mar-2025 00:10:32 Europe/Berlin] PHP Warning:  Attempt to read property "status" on null in C:\xampp\htdocs\pos_system\cms\views\template.php on line 304

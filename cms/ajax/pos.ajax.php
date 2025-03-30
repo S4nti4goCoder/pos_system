@@ -157,6 +157,7 @@ class PosController
 	    Crear nueva orden
     =============================================*/
     public $token;
+    public $seller;
 
     public function newOrder()
     {
@@ -195,7 +196,8 @@ class PosController
         /*=============================================
 		Crear número de transacción
 		=============================================*/
-        $transaction_order = TemplateController::genNumCode(9);
+        $transaction_order = TemplateController::genNumCode(12);
+
 
         /*=============================================
 		No repetir Número de transacción en BD
@@ -211,6 +213,7 @@ class PosController
             $method = "POST";
             $fields = array(
                 "transaction_order" => $transaction_order,
+                "id_admin_order" => $this->seller,
                 "id_office_order" => $this->idOffice,
                 "status_order" => "Pendiente",
                 "date_created_order" => date("Y-m-d")
@@ -228,7 +231,17 @@ class PosController
             } else {
                 echo "logout";
             }
-        }
+        }else{
+
+            /*=============================================
+			Repetir proceso
+			=============================================*/
+			$ajax = new PosController();
+			$ajax -> token = $this->token;
+			$ajax -> seller = $this->seller;
+			$ajax -> idOffice = $this->idOffice;
+			$ajax -> newOrder();
+		}
     }
 }
 
@@ -251,6 +264,7 @@ if (isset($_POST["limit"])) {
 if (isset($_POST["order"])) {
     $ajax = new PosController();
     $ajax->token = $_POST["token"];
+	$ajax -> seller = $_POST["seller"];
     $ajax->idOffice = $_POST["idOffice"];
     $ajax->newOrder();
 }

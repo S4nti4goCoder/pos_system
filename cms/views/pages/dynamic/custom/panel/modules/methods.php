@@ -1,4 +1,4 @@
-<div class="container mt-4 px-0" id="payMethods" style="display:none">
+<div class="container mt-4 px-0" id="payMethods" <?php if (empty($order)): ?> style="display:none"  <?php endif ?>>
     <h6>Método de Pago</h6>
     <div class="row row-cols-1 row-cols-3">
 		<div class="col">

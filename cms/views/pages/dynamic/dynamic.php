@@ -123,6 +123,21 @@ if ($updateStock && $_SESSION["admin"]->id_office_admin > 0) {
     }
 }
 
+/*=============================================
+Buscar orden iniciada
+=============================================*/
+$url = "orders?linkTo=id_admin_order,id_client_order,id_office_order&equalTo=" . $_SESSION["admin"]->id_admin . ",0," . $_SESSION["admin"]->id_office_admin;
+$method = "GET";
+$fields = array();
+
+$order = CurlController::request($url, $method, $fields);
+
+if ($order->status == 200) {
+    $order = $order->results[0];
+} else {
+    $order = null;
+}
+
 ?>
 
 <div class="container-fluid py-3 p-lg-4">

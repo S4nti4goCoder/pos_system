@@ -137,6 +137,7 @@ $(document).on("click", ".newOrder", function () {
     var data = new FormData();
     data.append("order", "new");
     data.append("idOffice", $("#idOffice").val());
+		data.append("seller",$("#seller").attr("idAdmin"));
     data.append("token", localStorage.getItem("tokenAdmin"));
 
     $.ajax({
