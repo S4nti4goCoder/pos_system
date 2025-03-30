@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-03-2025 a las 07:18:19
+-- Tiempo de generación: 30-03-2025 a las 09:35:16
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -106,6 +106,14 @@ CREATE TABLE `cashs` (
   `date_created_cash` date DEFAULT NULL,
   `date_updated_cash` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `cashs`
+--
+
+INSERT INTO `cashs` (`id_cash`, `start_cash`, `bills_cash`, `money_cash`, `diff_cash`, `end_cash`, `gap_cash`, `status_cash`, `date_start_cash`, `date_end_cash`, `id_admin_cash`, `id_office_cash`, `date_created_cash`, `date_updated_cash`) VALUES
+(1, 1000, 0, 0, 0, 0, 0, 0, '2025-03-29 02:29:04', '2025-03-30 01:03:00', 7, 1, '2025-03-29', '2025-03-30 07:29:54'),
+(2, 1000, 0, 0, 0, 0, 0, 1, '2025-03-30 02:29:13', '2025-03-30 01:03:00', 7, 1, '2025-03-30', '2025-03-30 07:29:17');
 
 -- --------------------------------------------------------
 
@@ -760,7 +768,7 @@ ALTER TABLE `bills`
 -- AUTO_INCREMENT de la tabla `cashs`
 --
 ALTER TABLE `cashs`
-  MODIFY `id_cash` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cash` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`

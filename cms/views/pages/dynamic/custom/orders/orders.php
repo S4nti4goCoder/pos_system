@@ -24,7 +24,7 @@ Custom
 	<!--==============================
     	Start Custom
   	================================-->
-		<button type="button" class="btn btn-default rounded backColor"><i class="bi bi-cart4"></i> Crear Orden</button>
+		<button type="button" class="btn btn-default rounded backColor newOrder"><i class="bi bi-cart4"></i> Crear Orden</button>
 		<button type="button" class="btn btn-default rounded bg-orange mx-1"><i class="fas fa-broom"></i> Remover Orden</button>
 		<button type="button" class="btn btn-default rounded bg-teal"><i class="bi bi-search"></i> Buscar Orden</button>
 </div>

@@ -56,7 +56,7 @@ $(document).on("click", ".loadCategory", function () {
   var limit = Number($("#limitProduct").val());
   var startAt = 0;
   $("#currentPageProducts").val(1);
-  var search = $("#searchProduct").val(); 
+  var search = $("#searchProduct").val();
 
   loadMoreProducts(limit, startAt, category, search);
 });
@@ -78,7 +78,7 @@ $(document).on("keyup", "#searchProduct", function () {
 /*=============================================
 FUNCIÓN PARA CARGAR MÁS PRODUCTOS
 =============================================*/
-function loadMoreProducts(limit,startAt,category,search) {
+function loadMoreProducts(limit, startAt, category, search) {
   if (search == "") {
     fncSweetAlert("loading", "Cargando productos...", "");
   }
@@ -128,3 +128,36 @@ function loadMoreProducts(limit,startAt,category,search) {
     },
   });
 }
+
+/*=============================================
+CREAR NUEVA ÓRDEN
+=============================================*/
+$(document).on("click", ".newOrder", function () {
+  if ($("#idOffice").val() > 0) {
+    var data = new FormData();
+    data.append("order", "new");
+    data.append("idOffice", $("#idOffice").val());
+    data.append("token", localStorage.getItem("tokenAdmin"));
+
+    $.ajax({
+      url: "/ajax/pos.ajax.php",
+      method: "POST",
+      data: data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (response) {
+        if (response == "current cash error") {
+          fncToastr("error", "No hay caja abierta el día de hoy");
+          return;
+        }
+        if (response == "yesterday cash error") {
+          fncToastr("error", "No ha cerrado caja del día anterior");
+          return;
+        }
+      },
+    });
+  } else {
+    fncToastr("error", "Asignar sucursal a esta orden");
+  }
+});

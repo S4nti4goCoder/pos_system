@@ -1,6 +1,7 @@
 <?php
 
 require_once "../controllers/curl.controller.php";
+require_once "../controllers/template.controller.php";
 
 class PosController
 {
@@ -38,41 +39,41 @@ class PosController
                     $products = array();
                     $totalPageProducts = 0;
                 }
-            }else{
+            } else {
 
-				/*=============================================
+                /*=============================================
 				Columnas de búsqueda
 				=============================================*/
-				$linkTo = ["sku_product","title_product"];
+                $linkTo = ["sku_product", "title_product"];
 
-				/*=============================================
+                /*=============================================
 				Itineración de búsqueda
 				=============================================*/
-				foreach ($linkTo as $key => $value) {
-					
-					$url = "relations?rel=products,categories&type=product,category&linkTo=".$value.",id_office_product,status_product&search=".str_replace(" ", "_",$this->search).",".$this->idOffice.",1&orderBy=id_product&orderMode=DESC&startAt=".$this->startAt."&endAt=".$this->limit;
+                foreach ($linkTo as $key => $value) {
 
-					$method = "GET";
-					$fields = array();
+                    $url = "relations?rel=products,categories&type=product,category&linkTo=" . $value . ",id_office_product,status_product&search=" . str_replace(" ", "_", $this->search) . "," . $this->idOffice . ",1&orderBy=id_product&orderMode=DESC&startAt=" . $this->startAt . "&endAt=" . $this->limit;
 
-					$products = CurlController::request($url,$method,$fields);
+                    $method = "GET";
+                    $fields = array();
 
-					if($products->status == 200){
-						$products = $products->results;
+                    $products = CurlController::request($url, $method, $fields);
 
-						/*=============================================
+                    if ($products->status == 200) {
+                        $products = $products->results;
+
+                        /*=============================================
 						Traer Total de productos
 						=============================================*/
-						$url = "relations?rel=products,categories&type=product,category&linkTo=".$value.",id_office_product,status_product&search=".str_replace(" ", "_",$this->search).",".$this->idOffice.",1";
+                        $url = "relations?rel=products,categories&type=product,category&linkTo=" . $value . ",id_office_product,status_product&search=" . str_replace(" ", "_", $this->search) . "," . $this->idOffice . ",1";
 
-						$totalPageProducts = ceil(CurlController::request($url,$method,$fields)->total/$this->limit);
-						break;
-					}else{
-						$products = array();
-						$totalPageProducts = 0;
-					}
-				}
-			}
+                        $totalPageProducts = ceil(CurlController::request($url, $method, $fields)->total / $this->limit);
+                        break;
+                    } else {
+                        $products = array();
+                        $totalPageProducts = 0;
+                    }
+                }
+            }
         } else {
             $url = "relations?rel=products,categories&type=product,category&linkTo=id_office_product,status_product,id_category_product&equalTo=" . $this->idOffice . ",1," . $this->category . "&orderBy=id_product&orderMode=DESC&startAt=" . $this->startAt . "&endAt=" . $this->limit;
             $method = "GET";
@@ -151,6 +152,51 @@ class PosController
 
         echo json_encode($response);
     }
+
+    /*=============================================
+	    Crear nueva orden
+    =============================================*/
+    public $token;
+
+    public function newOrder()
+    {
+
+        /*=============================================
+		Validar primero que exista caja del día abierta
+		=============================================*/
+        $url = "cashs?linkTo=date_created_cash,status_cash,id_office_cash&equalTo=" . date("Y-m-d") . ",1," . $this->idOffice . "&select=status_cash";
+        $method = "GET";
+        $fields = array();
+
+        $cash = CurlController::request($url, $method, $fields);
+
+        if ($cash->status == 404) {
+            echo "current cash error";
+            return;
+        } else {
+
+            /*====================================================
+			Validar que la caja del día anterior haya sido cerrada
+			====================================================*/
+            $yesterday = date("Y-m-d", strtotime(date("Y-m-d")."- 1 days"));
+			
+			$url = "cashs?linkTo=date_created_cash,status_cash,id_office_cash&equalTo=".$yesterday.",1,".$this->idOffice."&select=status_cash"; 
+			$method = "GET";
+			$fields = array();
+
+			$cash = CurlController::request($url,$method,$fields);
+
+			if($cash->status == 200){
+				echo "yesterday cash error";
+				return;
+			}
+        }
+
+        /*=============================================
+		Crear número de transacción
+		=============================================*/
+        $transaction_order = TemplateController::genNumCode(9);
+    }
 }
 
 /*=============================================
@@ -164,4 +210,14 @@ if (isset($_POST["limit"])) {
     $ajax->search = $_POST["search"];
     $ajax->idOffice = $_POST["idOffice"];
     $ajax->loadProducts();
+}
+
+/*=============================================
+	Crear nueva orden
+=============================================*/
+if (isset($_POST["order"])) {
+    $ajax = new PosController();
+    $ajax->token = $_POST["token"];
+    $ajax->idOffice = $_POST["idOffice"];
+    $ajax->newOrder();
 }
