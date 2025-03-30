@@ -150,10 +150,57 @@ $(document).on("click", ".newOrder", function () {
         if (response == "current cash error") {
           fncToastr("error", "No hay caja abierta el día de hoy");
           return;
-        }
-        if (response == "yesterday cash error") {
+        } else if (response == "yesterday cash error") {
           fncToastr("error", "No ha cerrado caja del día anterior");
           return;
+        } else if (response == "logout") {
+          fncSweetAlert(
+            "error",
+            "Token vencido, debe iniciar sesión nuevamente",
+            setTimeout(() => {
+              window.location = "/logout";
+            }, 1250)
+          );
+        } else {
+          if (JSON.parse(response).type == "new") {
+            fncToastr("success", "Orden creada con éxito");
+          }
+
+          /*=============================================
+	   			Organizamos cabecera de la orden 
+	   			=============================================*/
+          $("#orderHeader").attr("mode", "on");
+          $("#orderHeader").attr("idOrder", JSON.parse(response).id_order);
+          $("#orderHeader").removeClass("bg-light");
+          $("#orderHeader").addClass("backColor");
+          $("#orderHeader h6").html(
+            "Orden # " + JSON.parse(response).transaction_order
+          );
+
+          /*=============================================
+	   			Habilitamos la opción de agregar cliente 
+	   			=============================================*/
+          $("#addClient").removeClass("d-none");
+
+          /*=============================================
+	   			Habilitar módulo de productos añadidos
+	   			=============================================*/
+          $("#countProduct").removeClass("bg-light");
+          $("#countProduct").addClass("backColor");
+          $("#cleanListProduct").removeClass("d-none");
+          $("#cleanListProduct").attr("idOrder", JSON.parse(response).id_order);
+          $("#addProduct").html("");
+
+          /*=============================================
+	   			Habilitar módulo de totales
+	   			=============================================*/
+          $("#granTotal").removeClass("bg-light");
+          $("#granTotal").addClass("bg-blue");
+
+          /*=============================================
+	   			Habilitar métodos de pago
+	   			=============================================*/
+          $("#payMethods").show();
         }
       },
     });

@@ -336,4 +336,22 @@ class TemplateController
 		$numCode = substr(str_shuffle($chain), 0, $length);
 		return $numCode;
 	}
+
+	/*=============================================
+	Validar no repetir transacción
+	=============================================*/
+	static public function transValidate($numCode)
+	{
+		$url = "orders?linkTo=transaction_order&equalTo=" . $numCode . "&select=id_order";
+		$method = "GET";
+		$fields = array();
+
+		$validate = CurlController::request($url, $method, $fields);
+
+		if ($validate->status == 200) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

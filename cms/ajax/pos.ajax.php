@@ -178,24 +178,57 @@ class PosController
             /*====================================================
 			Validar que la caja del día anterior haya sido cerrada
 			====================================================*/
-            $yesterday = date("Y-m-d", strtotime(date("Y-m-d")."- 1 days"));
-			
-			$url = "cashs?linkTo=date_created_cash,status_cash,id_office_cash&equalTo=".$yesterday.",1,".$this->idOffice."&select=status_cash"; 
-			$method = "GET";
-			$fields = array();
+            $yesterday = date("Y-m-d", strtotime(date("Y-m-d") . "- 1 days"));
 
-			$cash = CurlController::request($url,$method,$fields);
+            $url = "cashs?linkTo=date_created_cash,status_cash,id_office_cash&equalTo=" . $yesterday . ",1," . $this->idOffice . "&select=status_cash";
+            $method = "GET";
+            $fields = array();
 
-			if($cash->status == 200){
-				echo "yesterday cash error";
-				return;
-			}
+            $cash = CurlController::request($url, $method, $fields);
+
+            if ($cash->status == 200) {
+                echo "yesterday cash error";
+                return;
+            }
         }
 
         /*=============================================
 		Crear número de transacción
 		=============================================*/
         $transaction_order = TemplateController::genNumCode(9);
+
+        /*=============================================
+		No repetir Número de transacción en BD
+		=============================================*/
+        $validate = TemplateController::transValidate($transaction_order);
+
+        if ($validate) {
+
+            /*=============================================
+			Crear nueva orden
+			=============================================*/
+            $url = "orders?&token=" . $this->token . "&table=admins&suffix=admin";
+            $method = "POST";
+            $fields = array(
+                "transaction_order" => $transaction_order,
+                "id_office_order" => $this->idOffice,
+                "status_order" => "Pendiente",
+                "date_created_order" => date("Y-m-d")
+            );
+
+            $createOrder = CurlController::request($url, $method, $fields);
+
+            if ($createOrder->status == 200) {
+                $response = array(
+                    "type" => "new",
+                    "id_order" => $createOrder->results->lastId,
+                    "transaction_order" => $transaction_order
+                );
+                echo json_encode($response);
+            } else {
+                echo "logout";
+            }
+        }
     }
 }
 

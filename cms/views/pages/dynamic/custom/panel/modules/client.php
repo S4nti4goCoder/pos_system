@@ -2,7 +2,7 @@
     <div class="col-7">
         <div class="form-group">
             <label class="mb-1" for="clientList">Cliente</label>
-            <span class="btn badge badge-default border-0 float-end rounded backColor">Agregar</span>
+            <span class="btn badge badge-default border-0 float-end rounded backColor d-none" id="addClient">Agregar</span>
             <select class="form-control rounded-start custom-select select2" id="clientList">
                 <option value="">Buscar</option>
             </select>

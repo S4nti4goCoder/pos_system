@@ -15,4 +15,4 @@
     </ul>
 </div>
 
-<h6 class="text-center px-3 py-4 my-3 rounded border-0 w-100 font-weight-bold bg-light">Gran Total: $ 0</h6>
+<h6 class="text-center px-3 py-4 my-3 rounded border-0 w-100 font-weight-bold bg-light" id="granTotal">Gran Total: $ 0</h6>
