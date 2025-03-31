@@ -18,7 +18,7 @@ if ($clients->status == 200) {
     <div class="col-7">
         <div class="form-group">
             <label class="mb-1" for="clientList">Cliente</label>
-            <span class="btn badge badge-default border-0 float-end rounded bg-purple <?php if (empty($order)): ?> d-none <?php endif ?>" id="addClient">Agregar</span>
+            <span class="btn badge badge-default border-0 float-end rounded backColor <?php if (empty($order)): ?> d-none <?php endif ?>" id="addClient">Agregar</span>
             <select class="form-control rounded-start custom-select select2" id="clientList">
                 <option value="">Buscar</option>
                 <?php if (!empty($clients)): ?>

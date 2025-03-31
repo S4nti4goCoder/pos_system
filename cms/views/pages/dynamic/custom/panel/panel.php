@@ -39,6 +39,7 @@ Custom
 			include "modules/list.php";
 			include "modules/totals.php";
 			include "modules/methods.php";
+			include "modules/modals.php";
 			?>
 
 		</div>

@@ -228,6 +228,60 @@ $(document).on("change", "#clientList", function () {
 });
 
 /*=============================================
+Agregar nuevo Cliente
+=============================================*/
+$(document).on("click", "#addClient", function () {
+  $("#modalClient").modal("show");
+  $("#modalClient").on("shown.bs.modal", function () {
+    $(".alertClient").remove();
+
+    /*=============================================
+    variables formulario de cliente
+    =============================================*/
+    var name_client = "";
+    var surname_client = "";
+    var dni_client = "";
+    var email_client = "";
+    var phone_client = "";
+    var address_client = "";
+
+    /*=============================================
+    Capturamos cambios en el formulario de cliente
+    =============================================*/
+    $(".changeFormClient").change(function () {
+      name_client = $("#name_client").val();
+      surname_client = $("#surname_client").val();
+      dni_client = $("#dni_client").val();
+      email_client = $("#email_client").val();
+      phone_client = $("#phone_client").val();
+      address_client = $("#address_client").val();
+    });
+
+    /*=============================================
+    guardar formulario de cliente
+    =============================================*/
+    $("#btnAddClient").click(function () {
+      if (
+        name_client != "" &&
+        surname_client != "" &&
+        dni_client != "" &&
+        email_client != "" &&
+        phone_client != "" &&
+        address_client != ""
+      ) {
+      } else {
+        $(this)
+          .parent()
+          .parent()
+          .before(
+            `<div class="alert alert-danger rounded mx-3 alertClient">No pueden ir campos vacíos </div>`
+          );
+      }
+    });
+  });
+});
+
+/*=============================================
 Actualizar cambios en la orden
 =============================================*/
 function updateOrder() {
