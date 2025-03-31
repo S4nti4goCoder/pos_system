@@ -126,7 +126,7 @@ if ($updateStock && $_SESSION["admin"]->id_office_admin > 0) {
 /*=============================================
 Buscar orden iniciada
 =============================================*/
-$url = "orders?linkTo=id_admin_order,id_client_order,id_office_order&equalTo=" . $_SESSION["admin"]->id_admin . ",0," . $_SESSION["admin"]->id_office_admin;
+$url = "orders?linkTo=id_admin_order,status_order,id_office_order,date_created_order&equalTo=" . $_SESSION["admin"]->id_admin . ",Pendiente," . $_SESSION["admin"]->id_office_admin.",".date("Y-m-d");
 $method = "GET";
 $fields = array();
 

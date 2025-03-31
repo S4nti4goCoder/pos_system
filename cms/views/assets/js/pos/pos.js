@@ -133,11 +133,20 @@ function loadMoreProducts(limit, startAt, category, search) {
 CREAR NUEVA ÓRDEN
 =============================================*/
 $(document).on("click", ".newOrder", function () {
+  if ($("#orderHeader").attr("mode") == "on") {
+    if ($("#clientList").val() == "") {
+      fncToastr(
+        "error",
+        "Antes de crear otra orden, agregue cliente a la orden actual"
+      );
+      return;
+    }
+  }
   if ($("#idOffice").val() > 0) {
     var data = new FormData();
     data.append("order", "new");
     data.append("idOffice", $("#idOffice").val());
-		data.append("seller",$("#seller").attr("idAdmin"));
+    data.append("seller", $("#seller").attr("idAdmin"));
     data.append("token", localStorage.getItem("tokenAdmin"));
 
     $.ajax({
