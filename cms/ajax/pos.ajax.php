@@ -267,6 +267,40 @@ class PosController
             echo "logout";
         }
     }
+
+    /*=============================================
+	Agregar nuevo cliente
+	=============================================*/
+    public $name_client;
+    public $surname_client;
+    public $cc_client;
+    public $email_client;
+    public $phone_client;
+    public $address_client;
+
+    public function newClient()
+    {
+        $url = "clients?token=" . $this->token . "&table=admins&suffix=admin";
+        $method = "POST";
+        $fields = array(
+            "name_client" => $this->name_client,
+            "surname_client" => $this->surname_client,
+            "cc_client" => $this->cc_client,
+            "email_client" => $this->email_client,
+            "phone_client" => $this->phone_client,
+            "address_client" => $this->address_client,
+            "id_office_client" => $this->idOffice,
+            "date_created_client" => date("Y-m-d")
+        );
+
+        $addClient = CurlController::request($url, $method, $fields);
+
+        if ($addClient->status == 200) {
+            echo $addClient->results->lastId;
+        } else {
+            echo "logout";
+        }
+    }
 }
 
 /*=============================================
@@ -302,4 +336,21 @@ if (isset($_POST["idOrder"])) {
     $ajax->idOrder = $_POST["idOrder"];
     $ajax->idClient = $_POST["idClient"];
     $ajax->updateOrder();
+}
+
+/*=============================================
+Agregar nuevo cliente
+=============================================*/
+
+if (isset($_POST["name_client"])) {
+    $ajax = new PosController();
+    $ajax->name_client = $_POST["name_client"];
+    $ajax->surname_client = $_POST["surname_client"];
+    $ajax->cc_client = $_POST["cc_client"];
+    $ajax->email_client = $_POST["email_client"];
+    $ajax->phone_client = $_POST["phone_client"];
+    $ajax->address_client = $_POST["address_client"];
+    $ajax -> idOffice = $_POST["idOffice"];
+    $ajax->token = $_POST["token"];
+    $ajax->newClient();
 }

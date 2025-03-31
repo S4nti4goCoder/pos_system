@@ -26,8 +26,8 @@ Modal para agregar cliente
                 <div class="row row-cols-1 row-cols-sm-2  my-3">
                     <div class="col">
                         <div class="form-floating">
-                            <input type="text" class="form-control changeFormClient rounded" id="dni_client" placeholder="Ingresar Documento">
-                            <label for="dni_client">Documento</label>
+                            <input type="text" class="form-control changeFormClient rounded" id="cc_client" placeholder="Ingresar Documento">
+                            <label for="cc_client">Documento</label>
                         </div>
                     </div>
                     <div class="col">

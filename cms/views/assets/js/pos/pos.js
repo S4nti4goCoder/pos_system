@@ -240,7 +240,7 @@ $(document).on("click", "#addClient", function () {
     =============================================*/
     var name_client = "";
     var surname_client = "";
-    var dni_client = "";
+    var cc_client = "";
     var email_client = "";
     var phone_client = "";
     var address_client = "";
@@ -251,7 +251,7 @@ $(document).on("click", "#addClient", function () {
     $(".changeFormClient").change(function () {
       name_client = $("#name_client").val();
       surname_client = $("#surname_client").val();
-      dni_client = $("#dni_client").val();
+      cc_client = $("#cc_client").val();
       email_client = $("#email_client").val();
       phone_client = $("#phone_client").val();
       address_client = $("#address_client").val();
@@ -264,11 +264,49 @@ $(document).on("click", "#addClient", function () {
       if (
         name_client != "" &&
         surname_client != "" &&
-        dni_client != "" &&
+        cc_client != "" &&
         email_client != "" &&
         phone_client != "" &&
         address_client != ""
       ) {
+        var data = new FormData();
+        data.append("name_client", name_client);
+        data.append("surname_client", surname_client);
+        data.append("cc_client", cc_client);
+        data.append("email_client", email_client);
+        data.append("phone_client", phone_client);
+        data.append("address_client", address_client);
+        data.append("idOffice", $("#idOffice").val());
+        data.append("token", localStorage.getItem("tokenAdmin"));
+
+        $.ajax({
+          url: "/ajax/pos.ajax.php",
+          method: "POST",
+          data: data,
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function (response) {
+            if (response == "logout") {
+              fncSweetAlert(
+                "error",
+                "Token vencido, debe iniciar sesión nuevamente",
+                setTimeout(() => {
+                  window.location = "/logout";
+                }, 1250)
+              );
+            } else {
+              $("#clientList").append(`
+                <option value="${response}" selected>${name_client} ${surname_client} ${cc_client}</option>
+               `);
+               
+              $("#modalClient").modal("hide");
+
+              fncToastr("success", "El cliente se ha agregado con éxito");
+              updateOrder();
+            }
+          },
+        });
       } else {
         $(this)
           .parent()
