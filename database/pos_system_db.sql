@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-03-2025 a las 04:01:26
+-- Tiempo de generación: 31-03-2025 a las 07:30:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,7 +54,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `name_admin`, `id_office_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
-(1, 'superadmin@pos.com', '', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMzNzI0NDQsImV4cCI6MTc0MzQ1ODg0NCwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.Atvn9BtkUvgVu3-kcU24naqzr08KsL17PcgoulQKK5o', '1743458844', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', '', 'El Programador', 0, NULL, '2025-02-14', '2025-03-30 22:07:24'),
+(1, 'superadmin@pos.com', '', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMzOTc5NDYsImV4cCI6MTc0MzQ4NDM0NiwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.gyO7NHeUkg9mn8YqMcd4rBl8MihpX9EEmqVine9HXWg', '1743484346', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', '', 'El Programador', 0, NULL, '2025-02-14', '2025-03-31 05:12:26'),
 (2, 'admin@pos.com', '', 'admin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA0MDcsImV4cCI6MTc0MzIyNjgwNywiZGF0YSI6eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBwb3MuY29tIn19.h-kOkv9mNhUhup37tQpJSTovwT-tUcCStC_SAcbut_U', '1743226807', 1, '', '', '', '', '', '', 'Sara Perez', 0, NULL, '2025-03-27', '2025-03-28 05:47:01'),
 (3, 'supervisor@pos.com', '', 'editor', '{\"posify\":\"on\",\"clientes\":\"on\",\"productos\":\"on\",\"compras\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA2NjMsImV4cCI6MTc0MzIyNzA2MywiZGF0YSI6eyJpZCI6MywiZW1haWwiOiJzdXBlcnZpc29yQHBvcy5jb20ifX0.heafrQdOV-CWa0OgEUpfavjKREHmWZ67CP9b_gjFEus', '1743227063', 1, '', '', '', '', '', '', 'Jorge Riquelme', 0, NULL, '2025-03-28', '2025-03-28 05:46:43'),
 (4, 'admin@pueblolindo.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'admin', '%7B%22todo%22%3A%22on%22%7D', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxOTY2MTgsImV4cCI6MTc0MzI4MzAxOCwiZGF0YSI6eyJpZCI6NCwiZW1haWwiOiJhZG1pbkBwdWVibG9saW5kby5jb20ifX0.32Tm3M7j5xxqzC64MYpZCGBjbZJg-OOxAE66-gjDXik', '1743283018', 1, '', '', '', '', '', '', 'Jaime+Suarez', 1, NULL, '2025-03-28', '2025-03-28 21:16:58'),
@@ -112,7 +112,7 @@ CREATE TABLE `cashs` (
 --
 
 INSERT INTO `cashs` (`id_cash`, `start_cash`, `bills_cash`, `money_cash`, `diff_cash`, `end_cash`, `gap_cash`, `status_cash`, `date_start_cash`, `date_end_cash`, `id_admin_cash`, `id_office_cash`, `date_created_cash`, `date_updated_cash`) VALUES
-(1, 1000, 0, 0, 0, 0, 0, 1, '2025-03-30 17:03:00', '0000-00-00 00:00:00', 7, 1, '2025-03-31', '2025-03-30 22:12:13');
+(1, 1000, 0, 0, 0, 0, 0, 1, '0000-00-00 00:00:00', '2025-03-31 00:03:00', 1, 1, '2025-03-31', '2025-03-31 05:13:10');
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,8 @@ INSERT INTO `clients` (`id_client`, `cc_client`, `name_client`, `surname_client`
 (6, '27409327409', 'Jose', 'Martinez', 'jose@correo.com', 'Calle+8+%23+64+45', '3029470932', 2, '2025-02-15', '2025-02-15 02:10:04'),
 (7, '39748093748', 'Miguel', 'Montes', 'miguel@correo.com', 'Calle+1+%23+64+45', '470932780', 3, '2025-02-15', '2025-02-15 02:10:53'),
 (8, '39748093748', 'Julio', 'Sanchez', 'julio@correo.com', 'Calle+10+%23+64+45', '384793827', 3, '2025-02-15', '2025-02-15 02:11:21'),
-(9, '37408327408', 'Karla', 'Tellez', 'karla@correo.com', 'Calle+15+%23+64+45', '3790478320', 3, '2025-02-15', '2025-02-15 02:12:02');
+(9, '37408327408', 'Karla', 'Tellez', 'karla@correo.com', 'Calle+15+%23+64+45', '3790478320', 3, '2025-02-15', '2025-02-15 02:12:02'),
+(10, '98765123', 'Marcos', 'Jimenez', 'marcos@correo.com', 'calle 34 ', '6012345678', 1, '2025-03-31', '2025-03-31 04:42:21');
 
 -- --------------------------------------------------------
 
@@ -460,7 +461,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `transaction_order`, `id_admin_order`, `id_client_order`, `subtotal_order`, `discount_order`, `tax_order`, `total_order`, `method_order`, `transfer_order`, `status_order`, `date_order`, `id_office_order`, `date_created_order`, `date_updated_order`) VALUES
-(1, '486658793951', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 02:01:03', 1, '2025-03-31', '2025-03-31 02:01:03');
+(1, '486658793951', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 05:12:54', 1, '2025-03-31', '2025-03-31 05:12:54'),
+(2, '733439255498', 1, 0, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 05:09:35', 1, '2025-03-31', '2025-03-31 05:09:35'),
+(3, '776118543628', 1, 0, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 05:11:12', 1, '2025-03-31', '2025-03-31 05:11:12'),
+(4, '591243724523', 1, 0, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 05:11:23', 1, '2025-03-31', '2025-03-31 05:11:23');
 
 -- --------------------------------------------------------
 
@@ -786,7 +790,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT de la tabla `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `columns`
@@ -822,7 +826,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `pages`
