@@ -1,3 +1,19 @@
+<?php
+
+$url = "clients";
+$method = "GET";
+$fields = array();
+
+$clients = CurlController::request($url, $method, $fields);
+
+if ($clients->status == 200) {
+    $clients = $clients->results;
+} else {
+    $clients = array();
+}
+
+?>
+
 <div class="row mb-4">
     <div class="col-7">
         <div class="form-group">
@@ -5,6 +21,15 @@
             <span class="btn badge badge-default border-0 float-end rounded bg-purple <?php if (empty($order)): ?> d-none <?php endif ?>" id="addClient">Agregar</span>
             <select class="form-control rounded-start custom-select select2" id="clientList">
                 <option value="">Buscar</option>
+                <?php if (!empty($clients)): ?>
+                    <?php foreach ($clients as $key => $value): ?>
+                        <?php if (!empty($order)): ?>
+                            <option value="<?php echo $value->id_client ?>" <?php if ($order->id_client_order == $value->id_client): ?> selected <?php endif ?>><?php echo urldecode($value->name_client) . " " . urldecode($value->surname_client) . " " . urldecode($value->cc_client) ?></option>
+                        <?php else: ?>
+                            <option value="<?php echo $value->id_client ?>"><?php echo urldecode($value->name_client) . " " . urldecode($value->surname_client) . " " . urldecode($value->cc_client) ?></option>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                <?php endif ?>
             </select>
         </div>
     </div>

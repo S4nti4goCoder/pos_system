@@ -231,17 +231,41 @@ class PosController
             } else {
                 echo "logout";
             }
-        }else{
+        } else {
 
             /*=============================================
 			Repetir proceso
 			=============================================*/
-			$ajax = new PosController();
-			$ajax -> token = $this->token;
-			$ajax -> seller = $this->seller;
-			$ajax -> idOffice = $this->idOffice;
-			$ajax -> newOrder();
-		}
+            $ajax = new PosController();
+            $ajax->token = $this->token;
+            $ajax->seller = $this->seller;
+            $ajax->idOffice = $this->idOffice;
+            $ajax->newOrder();
+        }
+    }
+
+    /*=============================================
+	Actualizar orden
+	=============================================*/
+    public $idOrder;
+    public $idClient;
+
+    public function updateOrder()
+    {
+        $url = "orders?id=" . $this->idOrder . "&nameId=id_order&token=" . $this->token . "&table=admins&suffix=admin";
+        $method = "PUT";
+        $fields = array(
+            "id_client_order" => $this->idClient,
+        );
+        $fields = http_build_query($fields);
+
+        $updateOrder = CurlController::request($url, $method, $fields);
+
+        if ($updateOrder->status == 200) {
+            echo "ok";
+        } else {
+            echo "logout";
+        }
     }
 }
 
@@ -264,7 +288,18 @@ if (isset($_POST["limit"])) {
 if (isset($_POST["order"])) {
     $ajax = new PosController();
     $ajax->token = $_POST["token"];
-	$ajax -> seller = $_POST["seller"];
+    $ajax->seller = $_POST["seller"];
     $ajax->idOffice = $_POST["idOffice"];
     $ajax->newOrder();
+}
+
+/*=============================================
+Actualizar orden
+=============================================*/
+if (isset($_POST["idOrder"])) {
+    $ajax = new PosController();
+    $ajax->token = $_POST["token"];
+    $ajax->idOrder = $_POST["idOrder"];
+    $ajax->idClient = $_POST["idClient"];
+    $ajax->updateOrder();
 }

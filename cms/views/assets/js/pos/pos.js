@@ -218,3 +218,47 @@ $(document).on("click", ".newOrder", function () {
     fncToastr("error", "Asignar sucursal a esta orden");
   }
 });
+
+/*=============================================
+Elegir Cliente
+=============================================*/
+
+$(document).on("change", "#clientList", function () {
+  updateOrder();
+});
+
+/*=============================================
+Actualizar cambios en la orden
+=============================================*/
+function updateOrder() {
+  if ($("#orderHeader").attr("mode") == "on") {
+    var idOrder = $("#orderHeader").attr("idOrder");
+    var idClient = $("#clientList").val();
+
+    var data = new FormData();
+    data.append("idOrder", idOrder);
+    data.append("idClient", idClient);
+    data.append("token", localStorage.getItem("tokenAdmin"));
+
+    $.ajax({
+      url: "/ajax/pos.ajax.php",
+      method: "POST",
+      data: data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (response) {
+        console.log(response);
+        if (response == "logout") {
+          fncSweetAlert(
+            "error",
+            "Token vencido, debe iniciar sesión nuevamente",
+            setTimeout(() => {
+              window.location = "/logout";
+            }, 1250)
+          );
+        }
+      },
+    });
+  }
+}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-03-2025 a las 00:13:43
+-- Tiempo de generación: 31-03-2025 a las 04:01:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -460,7 +460,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `transaction_order`, `id_admin_order`, `id_client_order`, `subtotal_order`, `discount_order`, `tax_order`, `total_order`, `method_order`, `transfer_order`, `status_order`, `date_order`, `id_office_order`, `date_created_order`, `date_updated_order`) VALUES
-(1, '486658793951', 1, 0, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-30 22:13:05', 1, '2025-03-31', '2025-03-30 22:13:05');
+(1, '486658793951', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 02:01:03', 1, '2025-03-31', '2025-03-31 02:01:03');
 
 -- --------------------------------------------------------
 
