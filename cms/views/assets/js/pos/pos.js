@@ -299,7 +299,7 @@ $(document).on("click", "#addClient", function () {
               $("#clientList").append(`
                 <option value="${response}" selected>${name_client} ${surname_client} ${cc_client}</option>
                `);
-               
+
               $("#modalClient").modal("hide");
 
               fncToastr("success", "El cliente se ha agregado con éxito");
@@ -354,3 +354,38 @@ function updateOrder() {
     });
   }
 }
+
+/*=============================================
+Agregar Producto
+=============================================*/
+$(document).on("click", ".addProductPos", function () {
+  if ($("#orderHeader").attr("mode") == "on") {
+    if ($("#clientList").val() == "") {
+      fncToastr("error", "Antes de agregar producto elige un cliente");
+      return;
+    }
+
+    var data = new FormData();
+    data.append("idProduct", $(this).attr("idProduct"));
+    data.append("idOrder", $("#orderHeader").attr("idOrder"));
+    data.append("idClient", $("#clientList").val());
+    data.append("seller", $("#seller").attr("idAdmin"));
+    data.append("idOffice", $("#idOffice").val());
+    data.append("token", localStorage.getItem("tokenAdmin"));
+
+    $.ajax({
+      url: "/ajax/pos.ajax.php",
+      method: "POST",
+      data: data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (response) {
+        if (response == "error stock") {
+          fncToastr("error", "El producto no posee stock");
+        }
+        console.log("response: ", response);
+      },
+    });
+  }
+});

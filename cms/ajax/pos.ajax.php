@@ -301,6 +301,58 @@ class PosController
             echo "logout";
         }
     }
+
+    /*=============================================
+	Agregar producto a la lista de órdenes
+	=============================================*/
+    public $idProduct;
+
+    public function addProductPos()
+    {
+        $url = "relations?rel=purchases,products&type=purchase,product&linkTo=id_product&equalTo=" . $this->idProduct;
+        $method = "GET";
+        $fields = array();
+
+        $getProduct = CurlController::request($url, $method, $fields);
+
+        if ($getProduct->status == 200) {
+            $product = $getProduct->results[0];
+            if ($product->stock_product == 0) {
+                echo "error stock";
+                return;
+            } else {
+
+                /*=============================================
+				Subir a ventas
+				=============================================*/
+                if ($product->discount_product > 0) {
+                    $price_purchase = $product->price_purchase - ($product->price_purchase * ($product->discount_product / 100));
+                } else {
+                    $price_purchase = $product->price_purchase;
+                }
+
+                $url = "sales?token=" . $this->token . "&table=admins&suffix=admin";
+                $method = "POST";
+                $fields = array(
+                    "id_order_sale" => $this->idOrder,
+                    "id_product_sale" => $this->idProduct,
+                    "tax_type_sale" => explode("_", $product->tax_product)[0],
+                    "tax_sale" => explode("_", $product->tax_product)[1],
+                    "discount_sale" => $product->discount_product,
+                    "qty_sale" => 1,
+                    "subtotal_sale" => $product->price_purchase,
+                    "status_sale" => "Pendiente",
+                    "id_admin_sale" => $this->seller,
+                    "id_client_sale" => $this->idClient,
+                    "id_office_sale" => $this->idOffice,
+                    "date_created_sale" => date("Y-m-d")
+                );
+				$createSale = CurlController::request($url,$method,$fields);
+                echo '<pre>'; print_r($createSale); echo '</pre>';
+
+            }
+        }
+    }
 }
 
 /*=============================================
@@ -341,7 +393,6 @@ if (isset($_POST["idOrder"])) {
 /*=============================================
 Agregar nuevo cliente
 =============================================*/
-
 if (isset($_POST["name_client"])) {
     $ajax = new PosController();
     $ajax->name_client = $_POST["name_client"];
@@ -350,7 +401,21 @@ if (isset($_POST["name_client"])) {
     $ajax->email_client = $_POST["email_client"];
     $ajax->phone_client = $_POST["phone_client"];
     $ajax->address_client = $_POST["address_client"];
-    $ajax -> idOffice = $_POST["idOffice"];
+    $ajax->idOffice = $_POST["idOffice"];
     $ajax->token = $_POST["token"];
     $ajax->newClient();
+}
+
+/*=============================================
+Agregar producto a la lista de órdenes
+=============================================*/
+if (isset($_POST["idProduct"])) {
+    $ajax = new PosController();
+    $ajax->idProduct = $_POST["idProduct"];
+    $ajax->idOrder = $_POST["idOrder"];
+    $ajax->idClient = $_POST["idClient"];
+    $ajax->seller = $_POST["seller"];
+    $ajax->idOffice = $_POST["idOffice"];
+    $ajax->token = $_POST["token"];
+    $ajax->addProductPos();
 }
