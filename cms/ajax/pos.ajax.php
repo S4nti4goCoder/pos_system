@@ -100,7 +100,7 @@ class PosController
 
         if (!empty($products)) {
             foreach ($products as $key => $value) {
-                $htmlProducts .= '<div class="col-12 col-lg-6 col-xl-4 p-2 btn addProductPos" idProduct="'.$value->id_product.'">
+                $htmlProducts .= '<div class="col-12 col-lg-6 col-xl-4 p-2 btn addProductPos" idProduct="' . $value->id_product . '">
 					<div class="card rounded border-0 position-relative">';
                 if ($value->discount_product > 0) {
                     $htmlProducts .= '<div class="position-absolute small bg-red p-1 shadow-sm rounded" style="top:4px; left:4px; font-size:10px">' . $value->discount_product . '% OFF</div>';
@@ -331,13 +331,27 @@ class PosController
             } else {
 
                 /*=============================================
+				Validar que el producto no exista en esa orden
+				=============================================*/
+                $url = "sales?linkTo=id_order_sale,id_product_sale&equalTo=" . $this->idOrder . "," . $this->idProduct . "&select=id_sale";
+                $method = "GET";
+                $fields = array();
+
+                $getSale = CurlController::request($url, $method, $fields);
+
+                if ($getSale->status == 200) {
+                    echo "product exist";
+                    return;
+                }
+
+                /*=============================================
 				Subir a ventas
 				=============================================*/
-                if ($product->discount_product > 0) {
-                    $price_purchase = $product->price_purchase - ($product->price_purchase * ($product->discount_product / 100));
-                } else {
-                    $price_purchase = $product->price_purchase;
-                }
+                if($product->discount_product > 0){
+					$price_purchase = $product->price_purchase-($product->price_purchase*($product->discount_product/100));
+				}else{
+					$price_purchase = $product->price_purchase;
+				}
 
                 $url = "sales?token=" . $this->token . "&table=admins&suffix=admin";
                 $method = "POST";
@@ -365,47 +379,75 @@ class PosController
                     $html = '<tr>			
 								<td>
 									<div>
-										<img src="' . urldecode($product->img_product) . '" class="me-auto rounded mt-2 float-start"style="width:60px !important; height:60px !important">
+										<img src="'.urldecode($product->img_product).'" class="me-auto rounded mt-2 float-start"style="width:60px !important; height:60px !important">
 										<div class="ms-2 float-start">
-											<span class="badge badge-default backColor rounded" style="font-size:10px">' . urldecode($product->sku_product) . '</span>';
-                    if ($product->discount_product > 0) {
-                        $html .= '<span class="badge badge-default bg-red rounded ms-1" style="font-size:10px">' . $product->discount_product . '%</span>
-												<h6 class="font-weight-bold  mb-0 text-muted"><strong>' . urldecode($product->title_product) . '</strong></h6>
-												<small>$ ' . number_format($price_purchase, 2) . ' <span class="ms-1 text-red" style="font-size:12px"><s>$ ' . number_format($product->price_purchase, 2) . ' </s></span></small>';
-                    } else {
-                        $html .= '<h6 class="font-weight-bold  mb-0 text-muted"><strong>' . urldecode($product->title_product) . '</strong></h6>
-												<small>$ ' . number_format($product->price_purchase, 2) . '</small>';
-                    }
-                    $html .= '</div>
+											<span class="badge badge-default backColor rounded" style="font-size:10px">'.urldecode($product->sku_product).'</span>';
+											if($product->discount_product > 0){
+												$html .= '<span class="badge badge-default bg-red rounded ms-1" style="font-size:10px">'.$product->discount_product.'%</span>
+												<h6 class="font-weight-bold  mb-0 text-muted"><strong>'.urldecode($product->title_product).'</strong></h6>
+												<small>$ '.number_format($price_purchase,2).' <span class="ms-1 text-red" style="font-size:12px"><s>$ '.number_format($product->price_purchase,2).' </s></span></small>';
+											}else{
+												$html .= '<h6 class="font-weight-bold  mb-0 text-muted"><strong>'.urldecode($product->title_product).'</strong></h6>
+												<small>$ '.number_format($product->price_purchase,2).'</small>';
+											}
+										$html .= '</div>
 									</div>
 								</td>
 								<td class="text-center">
-									<div class="d-flex justify-content-center">								
+									<div class="d-flex justify-content-center">										
 										<div class="input-group mb-3 mt-2" style="width:160px">										
-											<span class="input-group-text rounded-start bg-light btnQty" type="btnMin" style="cursor:pointer" key="' . $product->id_product . '">
+											<span class="input-group-text rounded-start bg-light btnQty" type="btnMin" style="cursor:pointer" key="'.$product->id_product.'">
 												<i class="bi bi-dash-lg"></i>
 											</span>
-											<input type="number" class="form-control text-center showQuantity showQuantity_' . $product->id_product . '" value="1" key="' . $product->id_product . '" style="font-size:12px">
-											<span class="input-group-text rounded-end bg-light btnQty" type="btnMax" style="cursor:pointer" key="' . $product->id_product . '">
+											<input type="number" class="form-control text-center showQuantity showQuantity_'.$product->id_product.'" value="1" key="'.$product->id_product.'" style="font-size:12px">
+											<span class="input-group-text rounded-end bg-light btnQty" type="btnMax" style="cursor:pointer" key="'.$product->id_product.'">
 												<i class="bi bi-plus-lg"></i>
 											</span>
 										</div>
-									</div>									
+									</div>							
 								</td>
 								<td>
-									<h6 class="text-center my-3 pricePurchase" pricePurchase="' . $price_purchase . '">$ ' . number_format($price_purchase, 2) . '</h6>
+									<h6 class="text-center my-3 pricePurchase pricePurchase_'.$product->id_product.'" pricePurchase="'.$product->price_purchase.'" originalPricePurchase="'.$product->price_purchase.'">$ '.number_format($product->price_purchase,2).'</h6>
 								</td>
 								<td class="text-center">
-									<button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red deleteSale idSale="' . $createSale->results->lastId . '" taxSale="' . explode("_", $product->tax_product)[1] . '" discountSale="' . $product->discount_product . '">
+									<button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red deleteSale deleteSale_'.$product->id_product.'" idSale="'.$createSale->results->lastId.'" taxSale="'.explode("_",$product->tax_product)[1].'" discountSale="'.$product->discount_product.'">
 										<i class="bi bi-trash"></i>
 									</button>
 								</td>
 							</tr>';
-                    echo $html;
+						echo $html;
                 } else {
                     echo "logout";
                 }
             }
+        }
+    }
+
+    /*=============================================
+	Actualizar Cantidad
+	=============================================*/
+    public $idSaleUpdate;
+    public $qtySale;
+    public $subtotalSale;
+
+    public function updateSale()
+    {
+
+        $url = "sales?id=" . $this->idSaleUpdate . "&nameId=id_sale&token=" . $this->token . "&table=admins&suffix=admin";
+        $method = "PUT";
+        $fields = array(
+            "qty_sale" => $this->qtySale,
+            "subtotal_sale" => round($this->subtotalSale, 2)
+        );
+
+        $fields = http_build_query($fields);
+
+        $updateSale = CurlController::request($url, $method, $fields);
+
+        if ($updateSale->status == 200) {
+            echo "ok";
+        } else {
+            echo "logout";
         }
     }
 }
@@ -477,4 +519,16 @@ if (isset($_POST["idProduct"])) {
     $ajax->idOffice = $_POST["idOffice"];
     $ajax->token = $_POST["token"];
     $ajax->addProductPos();
+}
+
+/*=============================================
+Actualizar Cantidad
+=============================================*/
+if (isset($_POST["idSaleUpdate"])) {
+    $ajax = new PosController();
+    $ajax->idSaleUpdate = $_POST["idSaleUpdate"];
+    $ajax->qtySale = $_POST["qtySale"];
+    $ajax->subtotalSale = $_POST["subtotalSale"];
+    $ajax->token = $_POST["token"];
+    $ajax->updateSale();
 }

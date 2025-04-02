@@ -355,6 +355,8 @@ $(document).on("click", ".addProductPos", function () {
               window.location = "/logout";
             }, 1250)
           );
+        } else if (response == "product exist") {
+          fncToastr("error", "El producto ya está agregado a la orden");
         } else {
           /*=============================================
 	        Pintar en el HTML el producto agregado
@@ -372,6 +374,105 @@ $(document).on("click", ".addProductPos", function () {
     fncToastr("error", "Antes de agregar producto genere una orden");
   }
 });
+
+/*=============================================
+Manipular Cantidad con botones
+=============================================*/
+$(document).on("click", ".btnQty", function () {
+  /*=============================================
+	Capturar id del producto
+	=============================================*/
+  var key = $(this).attr("key");
+
+  /*=============================================
+	Disminuir cantidad
+	=============================================*/
+  if ($(this).attr("type") == "btnMin") {
+    if (Number($(".showQuantity_" + key).val()) > 1) {
+      $(".showQuantity_" + key).val(
+        Number($(".showQuantity_" + key).val()) - 1
+      );
+    }
+  }
+
+  /*=============================================
+	Aumentar cantidad
+	=============================================*/
+  if ($(this).attr("type") == "btnMax") {
+    $(".showQuantity_" + key).val(Number($(".showQuantity_" + key).val()) + 1);
+  }
+  changeQuantity(key);
+});
+
+/*=============================================
+Manipular Cantidad manualmente
+=============================================*/
+$(document).on("change", ".showQuantity", function () {
+  if ($(this).val() < 1) {
+    $(this).val(1);
+    fncToastr("error", "No puede ingresar número inferior a 1");
+    return;
+  }
+
+  changeQuantity($(this).attr("key"));
+});
+
+/*=============================================
+Cambio de cantidad
+=============================================*/
+function changeQuantity(key) {
+  /*=============================================
+	Capturamos descuento
+	=============================================*/
+  var discount = Number($(".deleteSale_" + key).attr("discountSale"));
+
+  /*=============================================
+	Actualizamos subtotal
+	=============================================*/
+  var pricePurchase =
+    Number($(".pricePurchase_" + key).attr("originalPricePurchase")) *
+    $(".showQuantity_" + key).val();
+  $(".pricePurchase_" + key).attr("pricePurchase", pricePurchase);
+  if (discount > 0) {
+    pricePurchase = pricePurchase - pricePurchase * (discount / 100);
+    $(".pricePurchase_" + key).html(money(pricePurchase.toFixed(2)));
+  } else {
+    $(".pricePurchase_" + key).html(money(pricePurchase.toFixed(2)));
+  }
+
+  /*=============================================
+	Actualizamos cantidad y subtotal en base de datos
+	=============================================*/
+  var data = new FormData();
+  data.append("idSaleUpdate", $(".deleteSale_" + key).attr("idSale"));
+  data.append("qtySale", $(".showQuantity_" + key).val());
+  data.append("subtotalSale", pricePurchase);
+  data.append("token", localStorage.getItem("tokenAdmin"));
+  $.ajax({
+    url: "/ajax/pos.ajax.php",
+    method: "POST",
+    data: data,
+    contentType: false,
+    cache: false,
+    processData: false,
+    success: function (response) {
+      if (response == "logout") {
+        fncSweetAlert(
+          "error",
+          "Token vencido, debe iniciar sesión nuevamente",
+          setTimeout(() => {
+            window.location = "/logout";
+          }, 1250)
+        );
+      } else {
+        /*=============================================
+        Calculamos Productos
+        =============================================*/
+        calculateProducts();
+      }
+    },
+  });
+}
 
 /*=============================================
 Cálculos de productos
