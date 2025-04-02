@@ -323,6 +323,7 @@ $(document).on("click", "#addClient", function () {
 Agregar Producto
 =============================================*/
 $(document).on("click", ".addProductPos", function () {
+  fncSweetAlert("loading", "Cargando producto...", "");
   if ($("#orderHeader").attr("mode") == "on") {
     if ($("#clientList").val() == "") {
       fncToastr("error", "Antes de agregar producto elige un cliente");
@@ -345,6 +346,7 @@ $(document).on("click", ".addProductPos", function () {
       cache: false,
       processData: false,
       success: function (response) {
+        fncSweetAlert("close", "", "");
         if (response == "error stock") {
           fncToastr("error", "El producto no posee stock");
         } else if (response == "logout") {
@@ -429,16 +431,9 @@ function changeQuantity(key) {
   /*=============================================
 	Actualizamos subtotal
 	=============================================*/
-  var pricePurchase =
-    Number($(".pricePurchase_" + key).attr("originalPricePurchase")) *
-    $(".showQuantity_" + key).val();
-  $(".pricePurchase_" + key).attr("pricePurchase", pricePurchase);
-  if (discount > 0) {
-    pricePurchase = pricePurchase - pricePurchase * (discount / 100);
-    $(".pricePurchase_" + key).html(money(pricePurchase.toFixed(2)));
-  } else {
-    $(".pricePurchase_" + key).html(money(pricePurchase.toFixed(2)));
-  }
+  var pricePurchase = Number($(".pricePurchase_"+key).attr("originalPricePurchase"))*$(".showQuantity_"+key).val();
+	$(".pricePurchase_"+key).attr("pricePurchase", pricePurchase);
+	$(".pricePurchase_"+key).html(money(pricePurchase.toFixed(2)));
 
   /*=============================================
 	Actualizamos cantidad y subtotal en base de datos
@@ -473,6 +468,49 @@ function changeQuantity(key) {
     },
   });
 }
+
+/*=============================================
+Eliminar producto de la orden
+=============================================*/
+$(document).on("click", ".deleteSale", function () {
+  var idSale = $(this).attr("idSale");
+  var elem = $(this);
+
+  fncSweetAlert("confirm", "¿Está seguro de borrar este producto?", "").then(
+    (resp) => {
+      if (resp) {
+        var data = new FormData();
+        data.append("idSaleDelete", idSale);
+        data.append("token", localStorage.getItem("tokenAdmin"));
+        $.ajax({
+          url: "/ajax/pos.ajax.php",
+          method: "POST",
+          data: data,
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function (response) {
+            if (response == "logout") {
+              fncSweetAlert(
+                "error",
+                "Token vencido, debe iniciar sesión nuevamente",
+                setTimeout(() => {
+                  window.location = "/logout";
+                }, 1250)
+              );
+            } else if (response == "error") {
+              fncToastr("error", "El producto no se puede remover");
+            } else {
+              fncToastr("success", "El producto se ha removido correctamente");
+              $(elem).parent().parent().remove();
+              calculateProducts();
+            }
+          },
+        });
+      }
+    }
+  );
+});
 
 /*=============================================
 Cálculos de productos

@@ -347,11 +347,11 @@ class PosController
                 /*=============================================
 				Subir a ventas
 				=============================================*/
-                if($product->discount_product > 0){
-					$price_purchase = $product->price_purchase-($product->price_purchase*($product->discount_product/100));
-				}else{
-					$price_purchase = $product->price_purchase;
-				}
+                if ($product->discount_product > 0) {
+                    $price_purchase = $product->price_purchase - ($product->price_purchase * ($product->discount_product / 100));
+                } else {
+                    $price_purchase = $product->price_purchase;
+                }
 
                 $url = "sales?token=" . $this->token . "&table=admins&suffix=admin";
                 $method = "POST";
@@ -379,43 +379,43 @@ class PosController
                     $html = '<tr>			
 								<td>
 									<div>
-										<img src="'.urldecode($product->img_product).'" class="me-auto rounded mt-2 float-start"style="width:60px !important; height:60px !important">
+										<img src="' . urldecode($product->img_product) . '" class="me-auto rounded mt-2 float-start"style="width:60px !important; height:60px !important">
 										<div class="ms-2 float-start">
-											<span class="badge badge-default backColor rounded" style="font-size:10px">'.urldecode($product->sku_product).'</span>';
-											if($product->discount_product > 0){
-												$html .= '<span class="badge badge-default bg-red rounded ms-1" style="font-size:10px">'.$product->discount_product.'%</span>
-												<h6 class="font-weight-bold  mb-0 text-muted"><strong>'.urldecode($product->title_product).'</strong></h6>
-												<small>$ '.number_format($price_purchase,2).' <span class="ms-1 text-red" style="font-size:12px"><s>$ '.number_format($product->price_purchase,2).' </s></span></small>';
-											}else{
-												$html .= '<h6 class="font-weight-bold  mb-0 text-muted"><strong>'.urldecode($product->title_product).'</strong></h6>
-												<small>$ '.number_format($product->price_purchase,2).'</small>';
-											}
-										$html .= '</div>
+											<span class="badge badge-default backColor rounded" style="font-size:10px">' . urldecode($product->sku_product) . '</span>';
+                    if ($product->discount_product > 0) {
+                        $html .= '<span class="badge badge-default bg-red rounded ms-1" style="font-size:10px">' . $product->discount_product . '%</span>
+												<h6 class="font-weight-bold  mb-0 text-muted"><strong>' . urldecode($product->title_product) . '</strong></h6>
+												<small>$ ' . number_format($price_purchase, 2) . ' <span class="ms-1 text-red" style="font-size:12px"><s>$ ' . number_format($product->price_purchase, 2) . ' </s></span></small>';
+                    } else {
+                        $html .= '<h6 class="font-weight-bold  mb-0 text-muted"><strong>' . urldecode($product->title_product) . '</strong></h6>
+												<small>$ ' . number_format($product->price_purchase, 2) . '</small>';
+                    }
+                    $html .= '</div>
 									</div>
 								</td>
 								<td class="text-center">
 									<div class="d-flex justify-content-center">										
 										<div class="input-group mb-3 mt-2" style="width:160px">										
-											<span class="input-group-text rounded-start bg-light btnQty" type="btnMin" style="cursor:pointer" key="'.$product->id_product.'">
+											<span class="input-group-text rounded-start bg-light btnQty" type="btnMin" style="cursor:pointer" key="' . $product->id_product . '">
 												<i class="bi bi-dash-lg"></i>
 											</span>
-											<input type="number" class="form-control text-center showQuantity showQuantity_'.$product->id_product.'" value="1" key="'.$product->id_product.'" style="font-size:12px">
-											<span class="input-group-text rounded-end bg-light btnQty" type="btnMax" style="cursor:pointer" key="'.$product->id_product.'">
+											<input type="number" class="form-control text-center showQuantity showQuantity_' . $product->id_product . '" value="1" key="' . $product->id_product . '" style="font-size:12px">
+											<span class="input-group-text rounded-end bg-light btnQty" type="btnMax" style="cursor:pointer" key="' . $product->id_product . '">
 												<i class="bi bi-plus-lg"></i>
 											</span>
 										</div>
 									</div>							
 								</td>
 								<td>
-									<h6 class="text-center my-3 pricePurchase pricePurchase_'.$product->id_product.'" pricePurchase="'.$product->price_purchase.'" originalPricePurchase="'.$product->price_purchase.'">$ '.number_format($product->price_purchase,2).'</h6>
+									<h6 class="text-center my-3 pricePurchase pricePurchase_' . $product->id_product . '" pricePurchase="' . $product->price_purchase . '" originalPricePurchase="' . $product->price_purchase . '">$ ' . number_format($product->price_purchase, 2) . '</h6>
 								</td>
 								<td class="text-center">
-									<button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red deleteSale deleteSale_'.$product->id_product.'" idSale="'.$createSale->results->lastId.'" taxSale="'.explode("_",$product->tax_product)[1].'" discountSale="'.$product->discount_product.'">
+									<button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red deleteSale deleteSale_' . $product->id_product . '" idSale="' . $createSale->results->lastId . '" taxSale="' . explode("_", $product->tax_product)[1] . '" discountSale="' . $product->discount_product . '">
 										<i class="bi bi-trash"></i>
 									</button>
 								</td>
 							</tr>';
-						echo $html;
+                    echo $html;
                 } else {
                     echo "logout";
                 }
@@ -448,6 +448,40 @@ class PosController
             echo "ok";
         } else {
             echo "logout";
+        }
+    }
+
+    /*=============================================
+	Remover Venta
+	=============================================*/
+    public $idSaleDelete;
+    public function deleteSale()
+    {
+        /*=============================================
+		Validar que la venta no esté finalizada
+		=============================================*/
+        $url = "sales?linkTo=id_sale,status_sale&equalTo=" . $this->idSaleDelete . ",Completada";
+        $method = "GET";
+        $fields = array();
+
+        $getSale = CurlController::request($url, $method, $fields);
+        if ($getSale->status == 200) {
+            echo "error";
+            return;
+        } else {
+            /*=============================================
+			Eliminar venta
+			=============================================*/
+            $url = "sales?id=" . $this->idSaleDelete . "&nameId=id_sale&token=" . $this->token . "&table=admins&suffix=admin";
+            $method = "DELETE";
+            $fields = array();
+
+            $deleteSale = CurlController::request($url, $method, $fields);
+            if ($deleteSale->status == 200) {
+                echo "ok";
+            } else {
+                echo "logout";
+            }
         }
     }
 }
@@ -531,4 +565,14 @@ if (isset($_POST["idSaleUpdate"])) {
     $ajax->subtotalSale = $_POST["subtotalSale"];
     $ajax->token = $_POST["token"];
     $ajax->updateSale();
+}
+
+/*=============================================
+Remover Venta
+=============================================*/
+if (isset($_POST["idSaleDelete"])) {
+    $ajax = new PosController();
+    $ajax->idSaleDelete = $_POST["idSaleDelete"];
+    $ajax->token = $_POST["token"];
+    $ajax->deleteSale();
 }
