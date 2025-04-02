@@ -385,7 +385,7 @@ class PosController
 									</div>									
 								</td>
 								<td>
-									<h6 class="text-center my-3 pricePurchase pricePurchase_'.$product->id_product.'" pricePurchase="'.$product->price_purchase.'" originalPricePurchase="'.$product->price_purchase.'">$ '.number_format($product->price_purchase,2).'</h6>
+									<h6 class="text-center my-3 pricePurchase" pricePurchase="'.$price_purchase.'">$ '.number_format($price_purchase,2).'</h6>
 								</td>
 								<td class="text-center">
 									<button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red deleteSale deleteSale_'.$product->id_product.'" idSale="'.$createSale->results->lastId.'" taxSale="'.explode("_",$product->tax_product)[1].'" discountSale="'.$product->discount_product.'">

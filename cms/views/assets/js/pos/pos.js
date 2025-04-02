@@ -392,7 +392,15 @@ $(document).on("click", ".addProductPos", function () {
             }, 1250)
           );
         } else {
+          /*=============================================
+	        Pintar en el HTML el producto agregado
+	        =============================================*/
           $("#addProduct").append(response);
+
+          /*=============================================
+	        Calcular los totales de la orden
+	        =============================================*/
+          calculateProducts();
         }
       },
     });
@@ -400,3 +408,36 @@ $(document).on("click", ".addProductPos", function () {
     fncToastr("error", "Antes de agregar producto genere una orden");
   }
 });
+
+/*=============================================
+Cálculos de productos
+=============================================*/
+function calculateProducts() {
+  /*=============================================
+	Contabilizamos el total de productos
+	=============================================*/
+  var showQuantity = $(".showQuantity");
+  var totalQty = 0;
+
+  showQuantity.each((i) => {
+    totalQty += Number($(showQuantity[i]).val());
+  });
+
+  $("#countProduct").html(totalQty);
+
+  /*=============================================
+	Contabilizamos los subtotales
+	=============================================*/
+  var pricePurchase = $(".pricePurchase");
+  var totalPricePurchase = 0;
+
+  pricePurchase.each((i) => {
+    totalPricePurchase += Number($(pricePurchase[i]).attr("pricePurchase"));
+  });
+
+  /*=============================================
+	Subtotal
+	=============================================*/
+  $("#subtotal").attr("subtotal", totalPricePurchase.toFixed(2));
+  $("#subtotal").html(money(totalPricePurchase.toFixed(2)));
+}

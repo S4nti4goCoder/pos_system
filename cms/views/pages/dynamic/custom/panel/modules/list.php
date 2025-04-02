@@ -1,6 +1,8 @@
 <?php
 
 if (!empty($order)) {
+    $totalProducts = 0;
+
     $url = "relations?rel=sales,products&type=sale,product&linkTo=id_order_sale&equalTo=" . $order->id_order;
     $method = "GET";
     $fields = array();
@@ -8,6 +10,9 @@ if (!empty($order)) {
     $getSales = CurlController::request($url, $method, $fields);
     if ($getSales->status == 200) {
         $sales = $getSales->results;
+        foreach ($sales as $key => $value) {
+            $totalProducts += $value->qty_sale;
+        }
     } else {
         $sales = array();
     }
@@ -16,7 +21,15 @@ if (!empty($order)) {
 ?>
 
 <div class="container mt-3 px-0">
-    <h6 class="float-start">Productos Añadidos <span class="badge badge-default	<?php if (empty($order)): ?> bg-light <?php else: ?> backColor <?php endif ?>  rounded" id="countProduct">0</span></h6>
+    <h6 class="float-start">Productos Añadidos
+        <span class="badge badge-default	<?php if (empty($order)): ?> bg-light <?php else: ?> backColor <?php endif ?>  rounded" id="countProduct">
+            <?php if (!empty($order)): ?>
+                <?php echo $totalProducts ?>
+            <?php else: ?>
+                0
+            <?php endif ?>
+        </span>
+    </h6>
     <span class="float-end text-orange <?php if (empty($order)): ?> d-none <?php endif ?> btn" id="cleanListProduct" idOrder><i class="fas fa-broom"></i> limpiar</span>
     <div class="clearfix"></div>
     <table class="table table-striped table-borderless">
@@ -49,7 +62,7 @@ if (!empty($order)) {
                                         <h6 class="font-weight-bold  mb-0 text-muted"><strong><?php echo urldecode($value->title_product) ?></strong></h6>
                                         <small>$ <?php echo number_format($price_purchase, 2) ?> <span class="ms-1 text-red" style="font-size:12px"><s>$ <?php echo number_format($price_purchase, 2) ?></s></span></small>
 
-                                    <?php else: 
+                                    <?php else:
                                         $price_purchase = $original_price;
                                     ?>
                                         <h6 class="font-weight-bold  mb-0 text-muted"><strong><?php echo urldecode($value->title_product) ?></strong></h6>
@@ -65,7 +78,7 @@ if (!empty($order)) {
                                     <span class="input-group-text rounded-start bg-light btnQty" type="btnMin" style="cursor:pointer">
                                         <i class="bi bi-dash-lg"></i>
                                     </span>
-                                    <input type="number" class="form-control text-center showQuantity" style="font-size: 12px;" value="1">
+                                    <input type="number" class="form-control text-center showQuantity" style="font-size: 12px;" value="<?php echo $value->qty_sale ?>">
                                     <span class="input-group-text rounded-end bg-light btnQty" type="btnMin" style="cursor:pointer">
                                         <i class="bi bi-plus-lg"></i>
                                     </span>
@@ -73,7 +86,7 @@ if (!empty($order)) {
                             </div>
                         </td>
                         <td>
-                            <h6 class="text-center my-3">$ <?php echo  number_format($price_purchase, 2) ?></h6>
+                            <h6 class="text-center my-3 pricePurchase" pricePurchase="<?php echo $price_purchase*$value->qty_sale ?>">$ <?php echo  number_format($price_purchase, 2) ?></h6>
                         </td>
                         <td class="text-center">
                             <button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red">
