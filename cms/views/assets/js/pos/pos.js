@@ -383,9 +383,20 @@ $(document).on("click", ".addProductPos", function () {
       success: function (response) {
         if (response == "error stock") {
           fncToastr("error", "El producto no posee stock");
+        } else if (response == "logout") {
+          fncSweetAlert(
+            "error",
+            "Token vencido, debe iniciar sesión nuevamente",
+            setTimeout(() => {
+              window.location = "/logout";
+            }, 1250)
+          );
+        } else {
+          $("#addProduct").append(response);
         }
-        console.log("response: ", response);
       },
     });
+  } else {
+    fncToastr("error", "Antes de agregar producto genere una orden");
   }
 });

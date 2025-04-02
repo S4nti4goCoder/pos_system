@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-04-2025 a las 05:00:38
+-- Tiempo de generación: 02-04-2025 a las 04:14:05
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,7 +54,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `name_admin`, `id_office_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
-(1, 'superadmin@pos.com', '', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDM0NzQ0NDQsImV4cCI6MTc0MzU2MDg0NCwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.vA5DaZvrEBNWxdh64q226gu0u8FUCLh8vivUbSljsRw', '1743560844', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', '', 'El Programador', 0, NULL, '2025-02-14', '2025-04-01 02:27:24'),
+(1, 'superadmin@pos.com', '', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDM1NTAwNTksImV4cCI6MTc0MzYzNjQ1OSwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.we4dDruhMzE0AtSeDiAFIcx1fPoP3F-DJs14Jh-32Lo', '1743636459', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', '', 'El Programador', 0, NULL, '2025-02-14', '2025-04-01 23:27:39'),
 (2, 'admin@pos.com', '', 'admin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA0MDcsImV4cCI6MTc0MzIyNjgwNywiZGF0YSI6eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBwb3MuY29tIn19.h-kOkv9mNhUhup37tQpJSTovwT-tUcCStC_SAcbut_U', '1743226807', 1, '', '', '', '', '', '', 'Sara Perez', 0, NULL, '2025-03-27', '2025-03-28 05:47:01'),
 (3, 'supervisor@pos.com', '', 'editor', '{\"posify\":\"on\",\"clientes\":\"on\",\"productos\":\"on\",\"compras\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA2NjMsImV4cCI6MTc0MzIyNzA2MywiZGF0YSI6eyJpZCI6MywiZW1haWwiOiJzdXBlcnZpc29yQHBvcy5jb20ifX0.heafrQdOV-CWa0OgEUpfavjKREHmWZ67CP9b_gjFEus', '1743227063', 1, '', '', '', '', '', '', 'Jorge Riquelme', 0, NULL, '2025-03-28', '2025-03-28 05:46:43'),
 (4, 'admin@pueblolindo.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'admin', '%7B%22todo%22%3A%22on%22%7D', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxOTY2MTgsImV4cCI6MTc0MzI4MzAxOCwiZGF0YSI6eyJpZCI6NCwiZW1haWwiOiJhZG1pbkBwdWVibG9saW5kby5jb20ifX0.32Tm3M7j5xxqzC64MYpZCGBjbZJg-OOxAE66-gjDXik', '1743283018', 1, '', '', '', '', '', '', 'Jaime+Suarez', 1, NULL, '2025-03-28', '2025-03-28 21:16:58'),
@@ -112,7 +112,7 @@ CREATE TABLE `cashs` (
 --
 
 INSERT INTO `cashs` (`id_cash`, `start_cash`, `bills_cash`, `money_cash`, `diff_cash`, `end_cash`, `gap_cash`, `status_cash`, `date_start_cash`, `date_end_cash`, `id_admin_cash`, `id_office_cash`, `date_created_cash`, `date_updated_cash`) VALUES
-(1, 1000, 0, 0, 0, 0, 0, 1, '2025-03-31 21:03:00', '0000-00-00 00:00:00', 1, 1, '2025-04-01', '2025-04-01 02:30:23');
+(1, 1000, 0, 0, 0, 0, 0, 1, '2025-04-01 18:03:00', '0000-00-00 00:00:00', 1, 1, '2025-04-02', '2025-04-01 23:27:59');
 
 -- --------------------------------------------------------
 
@@ -465,7 +465,8 @@ INSERT INTO `orders` (`id_order`, `transaction_order`, `id_admin_order`, `id_cli
 (2, '733439255498', 1, 0, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 05:09:35', 1, '2025-03-31', '2025-03-31 05:09:35'),
 (3, '776118543628', 1, 0, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 05:11:12', 1, '2025-03-31', '2025-03-31 05:11:12'),
 (4, '591243724523', 1, 0, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-03-31 05:11:23', 1, '2025-03-31', '2025-03-31 05:11:23'),
-(5, '661233961554', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-04-01 02:58:46', 1, '2025-04-01', '2025-04-01 02:58:46');
+(5, '661233961554', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-04-01 02:58:46', 1, '2025-04-01', '2025-04-01 02:58:46'),
+(6, '419433665389', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-04-01 23:28:17', 1, '2025-04-02', '2025-04-01 23:28:17');
 
 -- --------------------------------------------------------
 
@@ -543,7 +544,7 @@ INSERT INTO `products` (`id_product`, `title_product`, `img_product`, `id_catego
 (11, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
 (12, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
 (13, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
-(14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 100, 30, 1, 1, '2025-02-19', '2025-03-30 04:11:09'),
+(14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 99, 30, 1, 1, '2025-02-19', '2025-04-01 23:27:45'),
 (15, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:15'),
 (16, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:22'),
 (17, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:28'),
@@ -670,7 +671,9 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id_sale`, `id_order_sale`, `id_product_sale`, `tax_type_sale`, `tax_sale`, `discount_sale`, `qty_sale`, `subtotal_sale`, `status_sale`, `id_admin_sale`, `id_client_sale`, `id_office_sale`, `date_created_sale`, `date_updated_sale`) VALUES
-(1, 5, 14, 'IVA', 19, 30, 1, 1398.6, 'Pendiente', 1, 1, 1, '2025-04-01', '2025-04-01 02:58:55');
+(1, 6, 13, 'IVA', 19, 0, 1, 1398.6, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 02:13:09'),
+(2, 6, 12, 'IVA', 19, 0, 1, 838.6, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 02:13:09'),
+(3, 6, 10, 'IVA', 19, 0, 1, 518.7, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 02:13:10');
 
 --
 -- Índices para tablas volcadas
@@ -834,7 +837,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `pages`
@@ -858,7 +861,7 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
