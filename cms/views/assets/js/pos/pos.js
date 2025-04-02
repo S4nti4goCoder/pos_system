@@ -320,42 +320,6 @@ $(document).on("click", "#addClient", function () {
 });
 
 /*=============================================
-Actualizar cambios en la orden
-=============================================*/
-function updateOrder() {
-  if ($("#orderHeader").attr("mode") == "on") {
-    var idOrder = $("#orderHeader").attr("idOrder");
-    var idClient = $("#clientList").val();
-
-    var data = new FormData();
-    data.append("idOrder", idOrder);
-    data.append("idClient", idClient);
-    data.append("token", localStorage.getItem("tokenAdmin"));
-
-    $.ajax({
-      url: "/ajax/pos.ajax.php",
-      method: "POST",
-      data: data,
-      contentType: false,
-      cache: false,
-      processData: false,
-      success: function (response) {
-        console.log(response);
-        if (response == "logout") {
-          fncSweetAlert(
-            "error",
-            "Token vencido, debe iniciar sesión nuevamente",
-            setTimeout(() => {
-              window.location = "/logout";
-            }, 1250)
-          );
-        }
-      },
-    });
-  }
-}
-
-/*=============================================
 Agregar Producto
 =============================================*/
 $(document).on("click", ".addProductPos", function () {
@@ -440,4 +404,103 @@ function calculateProducts() {
 	=============================================*/
   $("#subtotal").attr("subtotal", totalPricePurchase.toFixed(2));
   $("#subtotal").html(money(totalPricePurchase.toFixed(2)));
+
+  /*=============================================
+	Contabilizamos los descuentos e impuestos
+	=============================================*/
+  var deleteSale = $(".deleteSale");
+  var calculateDiscount = 0;
+  var totalPriceDiscount = 0;
+  var calculateTax = 0;
+  var totalPriceTax = 0;
+
+  deleteSale.each((i) => {
+    calculateDiscount =
+      Number($(pricePurchase[i]).attr("pricePurchase")) *
+      (Number($(deleteSale[i]).attr("discountSale")) / 100);
+    totalPriceDiscount += calculateDiscount;
+
+    if (Number($(deleteSale[i]).attr("discountSale")) > 0) {
+      calculateTax =
+        (Number($(pricePurchase[i]).attr("pricePurchase")) -
+          Number(calculateDiscount)) *
+        (Number($(deleteSale[i]).attr("taxSale")) / 100);
+    } else {
+      calculateTax =
+        Number($(pricePurchase[i]).attr("pricePurchase")) *
+        (Number($(deleteSale[i]).attr("taxSale")) / 100);
+    }
+    totalPriceTax += calculateTax;
+  });
+
+  /*=============================================
+	Descuento
+	=============================================*/
+  $("#discount").attr("discount", totalPriceDiscount.toFixed(2));
+  $("#discount").html(money(totalPriceDiscount.toFixed(2)));
+
+  /*=============================================
+	Impuesto
+	=============================================*/
+  $("#tax").attr("tax", totalPriceTax.toFixed(2));
+  $("#tax").html(money(totalPriceTax.toFixed(2)));
+
+  /*=============================================
+	Gran Total
+	=============================================*/
+  var total =
+    Number($("#subtotal").attr("subtotal")) -
+    Number($("#discount").attr("discount")) +
+    Number($("#tax").attr("tax"));
+  $("#granTotal span").attr("granTotal", total.toFixed(2));
+  $("#granTotal span").html(money(total.toFixed(2)));
+
+  /*=============================================
+	Actualizar Órden
+	=============================================*/
+  updateOrder();
+}
+
+/*=============================================
+Actualizar cambios en la orden
+=============================================*/
+function updateOrder() {
+  if ($("#orderHeader").attr("mode") == "on") {
+    var idOrder = $("#orderHeader").attr("idOrder");
+    var idClient = $("#clientList").val();
+    var subtotalOrder = $("#subtotal").attr("subtotal");
+    var discountOrder = $("#discount").attr("discount");
+    var taxOrder = $("#tax").attr("tax");
+    var totalOrder = $("#granTotal span").attr("granTotal");
+
+    var data = new FormData();
+    data.append("idOrderUpdate", idOrder);
+    data.append("idClient", idClient);
+    data.append("subtotalOrder", subtotalOrder);
+    data.append("discountOrder", discountOrder);
+    data.append("taxOrder", taxOrder);
+    data.append("totalOrder", totalOrder);
+    data.append("token", localStorage.getItem("tokenAdmin"));
+
+    $.ajax({
+      url: "/ajax/pos.ajax.php",
+      method: "POST",
+      data: data,
+      contentType: false,
+      cache: false,
+      processData: false,
+      success: function (response) {
+        console.log(response);
+        if (response == "logout") {
+          fncSweetAlert(
+            "error",
+            "Token vencido, debe iniciar sesión nuevamente",
+            setTimeout(() => {
+              window.location = "/logout";
+            }, 1250)
+          );
+        }
+      },
+    });
+  }
 }

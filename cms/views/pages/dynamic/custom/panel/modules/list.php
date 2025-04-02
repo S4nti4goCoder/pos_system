@@ -86,10 +86,10 @@ if (!empty($order)) {
                             </div>
                         </td>
                         <td>
-                            <h6 class="text-center my-3 pricePurchase" pricePurchase="<?php echo $price_purchase*$value->qty_sale ?>">$ <?php echo  number_format($price_purchase, 2) ?></h6>
+                            <h6 class="text-center my-3 pricePurchase" pricePurchase="<?php echo $price_purchase * $value->qty_sale ?>">$ <?php echo  number_format($price_purchase, 2) ?></h6>
                         </td>
                         <td class="text-center">
-                            <button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red">
+                            <button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red deleteSale" idSale="<?php echo $value->id_sale ?>" taxSale="<?php echo explode("_", $value->tax_product)[1] ?>" discountSale="<?php echo $value->discount_product ?>">
                                 <i class="bi bi-trash"></i>
                             </button>
                         </td>

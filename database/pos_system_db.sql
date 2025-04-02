@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2025 a las 05:13:11
+-- Tiempo de generación: 02-04-2025 a las 06:53:50
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -461,7 +461,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `transaction_order`, `id_admin_order`, `id_client_order`, `subtotal_order`, `discount_order`, `tax_order`, `total_order`, `method_order`, `transfer_order`, `status_order`, `date_order`, `id_office_order`, `date_created_order`, `date_updated_order`) VALUES
-(1, '857532436986', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-04-02 03:13:00', 1, '2025-04-02', '2025-04-02 03:13:00');
+(1, '857532436986', 1, 1, 4286.22, 293.71, 758.58, 4751.09, NULL, NULL, 'Pendiente', '2025-04-02 04:53:25', 1, '2025-04-02', '2025-04-02 04:53:25');
 
 -- --------------------------------------------------------
 
@@ -666,9 +666,11 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id_sale`, `id_order_sale`, `id_product_sale`, `tax_type_sale`, `tax_sale`, `discount_sale`, `qty_sale`, `subtotal_sale`, `status_sale`, `id_admin_sale`, `id_client_sale`, `id_office_sale`, `date_created_sale`, `date_updated_sale`) VALUES
-(1, 1, 13, 'IVA', 19, 0, 1, 1398.6, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 03:13:01'),
-(2, 1, 12, 'IVA', 19, 0, 1, 838.6, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 03:13:02'),
-(3, 1, 10, 'IVA', 19, 0, 1, 518.7, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 03:13:03');
+(1, 1, 13, 'IVA', 19, 0, 1, 1398.6, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 04:50:37'),
+(2, 1, 13, 'IVA', 19, 0, 1, 1398.6, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 04:51:57'),
+(3, 1, 14, 'IVA', 19, 30, 1, 1398.6, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 04:52:06'),
+(4, 1, 4, 'IVA', 19, 0, 1, 120, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 04:53:15'),
+(5, 1, 1, 'IVA', 19, 0, 1, 390, 'Pendiente', 1, 1, 1, '2025-04-02', '2025-04-02 04:53:25');
 
 --
 -- Índices para tablas volcadas
@@ -856,7 +858,7 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

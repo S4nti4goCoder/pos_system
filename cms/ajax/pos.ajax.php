@@ -100,7 +100,7 @@ class PosController
 
         if (!empty($products)) {
             foreach ($products as $key => $value) {
-                $htmlProducts .= '<div class="col-12 col-lg-6 col-xl-4 p-2 btn">
+                $htmlProducts .= '<div class="col-12 col-lg-6 col-xl-4 p-2 btn addProductPos" idProduct="'.$value->id_product.'">
 					<div class="card rounded border-0 position-relative">';
                 if ($value->discount_product > 0) {
                     $htmlProducts .= '<div class="position-absolute small bg-red p-1 shadow-sm rounded" style="top:4px; left:4px; font-size:10px">' . $value->discount_product . '% OFF</div>';
@@ -249,6 +249,10 @@ class PosController
 	=============================================*/
     public $idOrder;
     public $idClient;
+    public $subtotalOrder;
+    public $discountOrder;
+    public $taxOrder;
+    public $totalOrder;
 
     public function updateOrder()
     {
@@ -256,6 +260,10 @@ class PosController
         $method = "PUT";
         $fields = array(
             "id_client_order" => $this->idClient,
+            "subtotal_order" => $this->subtotalOrder,
+            "discount_order" => $this->discountOrder,
+            "tax_order" => $this->taxOrder,
+            "total_order" => $this->totalOrder
         );
         $fields = http_build_query($fields);
 
@@ -357,43 +365,43 @@ class PosController
                     $html = '<tr>			
 								<td>
 									<div>
-										<img src="'.urldecode($product->img_product).'" class="me-auto rounded mt-2 float-start"style="width:60px !important; height:60px !important">
+										<img src="' . urldecode($product->img_product) . '" class="me-auto rounded mt-2 float-start"style="width:60px !important; height:60px !important">
 										<div class="ms-2 float-start">
-											<span class="badge badge-default backColor rounded" style="font-size:10px">'.urldecode($product->sku_product).'</span>';
-											if($product->discount_product > 0){
-												$html .= '<span class="badge badge-default bg-red rounded ms-1" style="font-size:10px">'.$product->discount_product.'%</span>
-												<h6 class="font-weight-bold  mb-0 text-muted"><strong>'.urldecode($product->title_product).'</strong></h6>
-												<small>$ '.number_format($price_purchase,2).' <span class="ms-1 text-red" style="font-size:12px"><s>$ '.number_format($product->price_purchase,2).' </s></span></small>';
-											}else{
-												$html .= '<h6 class="font-weight-bold  mb-0 text-muted"><strong>'.urldecode($product->title_product).'</strong></h6>
-												<small>$ '.number_format($product->price_purchase,2).'</small>';
-											}
-										$html .= '</div>
+											<span class="badge badge-default backColor rounded" style="font-size:10px">' . urldecode($product->sku_product) . '</span>';
+                    if ($product->discount_product > 0) {
+                        $html .= '<span class="badge badge-default bg-red rounded ms-1" style="font-size:10px">' . $product->discount_product . '%</span>
+												<h6 class="font-weight-bold  mb-0 text-muted"><strong>' . urldecode($product->title_product) . '</strong></h6>
+												<small>$ ' . number_format($price_purchase, 2) . ' <span class="ms-1 text-red" style="font-size:12px"><s>$ ' . number_format($product->price_purchase, 2) . ' </s></span></small>';
+                    } else {
+                        $html .= '<h6 class="font-weight-bold  mb-0 text-muted"><strong>' . urldecode($product->title_product) . '</strong></h6>
+												<small>$ ' . number_format($product->price_purchase, 2) . '</small>';
+                    }
+                    $html .= '</div>
 									</div>
 								</td>
 								<td class="text-center">
 									<div class="d-flex justify-content-center">								
 										<div class="input-group mb-3 mt-2" style="width:160px">										
-											<span class="input-group-text rounded-start bg-light btnQty" type="btnMin" style="cursor:pointer" key="'.$product->id_product.'">
+											<span class="input-group-text rounded-start bg-light btnQty" type="btnMin" style="cursor:pointer" key="' . $product->id_product . '">
 												<i class="bi bi-dash-lg"></i>
 											</span>
-											<input type="number" class="form-control text-center showQuantity showQuantity_'.$product->id_product.'" value="1" key="'.$product->id_product.'" style="font-size:12px">
-											<span class="input-group-text rounded-end bg-light btnQty" type="btnMax" style="cursor:pointer" key="'.$product->id_product.'">
+											<input type="number" class="form-control text-center showQuantity showQuantity_' . $product->id_product . '" value="1" key="' . $product->id_product . '" style="font-size:12px">
+											<span class="input-group-text rounded-end bg-light btnQty" type="btnMax" style="cursor:pointer" key="' . $product->id_product . '">
 												<i class="bi bi-plus-lg"></i>
 											</span>
 										</div>
 									</div>									
 								</td>
 								<td>
-									<h6 class="text-center my-3 pricePurchase" pricePurchase="'.$price_purchase.'">$ '.number_format($price_purchase,2).'</h6>
+									<h6 class="text-center my-3 pricePurchase" pricePurchase="' . $price_purchase . '">$ ' . number_format($price_purchase, 2) . '</h6>
 								</td>
 								<td class="text-center">
-									<button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red deleteSale deleteSale_'.$product->id_product.'" idSale="'.$createSale->results->lastId.'" taxSale="'.explode("_",$product->tax_product)[1].'" discountSale="'.$product->discount_product.'">
+									<button type="button" class="btn btn-sm rounded ms-1 mt-2 py-2 px-3 bg-red deleteSale idSale="' . $createSale->results->lastId . '" taxSale="' . explode("_", $product->tax_product)[1] . '" discountSale="' . $product->discount_product . '">
 										<i class="bi bi-trash"></i>
 									</button>
 								</td>
 							</tr>';
-						echo $html;
+                    echo $html;
                 } else {
                     echo "logout";
                 }
@@ -429,11 +437,15 @@ if (isset($_POST["order"])) {
 /*=============================================
 Actualizar orden
 =============================================*/
-if (isset($_POST["idOrder"])) {
+if (isset($_POST["idOrderUpdate"])) {
     $ajax = new PosController();
     $ajax->token = $_POST["token"];
-    $ajax->idOrder = $_POST["idOrder"];
+    $ajax->idOrder = $_POST["idOrderUpdate"];
     $ajax->idClient = $_POST["idClient"];
+    $ajax->subtotalOrder = $_POST["subtotalOrder"];
+    $ajax->discountOrder = $_POST["discountOrder"];
+    $ajax->taxOrder = $_POST["taxOrder"];
+    $ajax->totalOrder = $_POST["totalOrder"];
     $ajax->updateOrder();
 }
 
