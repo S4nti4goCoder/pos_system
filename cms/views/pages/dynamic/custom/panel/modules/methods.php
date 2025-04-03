@@ -2,7 +2,7 @@
     <h6>Método de Pago</h6>
     <div class="row row-cols-1 row-cols-3">
 		<div class="col">
-			<div class="card rounded btn bg-pink" method="efectivo">
+			<div class="card rounded btn bg-pink payMethod" method="efectivo">
 				<div class="card-body text-center">
 					<i class="bi bi-cash-coin"></i>
 					<br>
@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		<div class="col">
-			<div class="card rounded btn bg-info" method="transferencia">
+			<div class="card rounded btn bg-info payMethod" method="transferencia">
 				<div class="card-body text-center">
 					<i class="bi bi-qr-code-scan"></i>
 					<br>
@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="col">
-			<div class="card rounded btn bg-success" method="tarjeta">
+			<div class="card rounded btn bg-success payMethod" method="tarjeta">
 				<div class="card-body text-center">
 					<i class="bi bi-credit-card-fill"></i>
 					<br>

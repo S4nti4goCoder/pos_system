@@ -3,6 +3,8 @@
 require_once "../controllers/curl.controller.php";
 require_once "../controllers/template.controller.php";
 
+date_default_timezone_set("America/Bogota");
+
 class PosController
 {
 

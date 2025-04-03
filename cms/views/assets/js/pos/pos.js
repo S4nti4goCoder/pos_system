@@ -756,3 +756,83 @@ $(document).on("click", ".removeOrder", function () {
     }
   );
 });
+
+/*=============================================
+Ventana Modal de pagos
+=============================================*/
+$(document).on("click", ".payMethod", function () {
+  if ($("#addProduct tr").length == 0) {
+    fncToastr("error", "No hay productos añadidos");
+    return;
+  }
+
+  var method = $(this).attr("method");
+  $("#modalPayMethod").modal("show");
+  $("#modalPayMethod").on("shown.bs.modal", function () {
+    $("#idOrderPay").val($("#orderHeader").attr("idOrder"));
+    $("#methodPay").val(method);
+
+    /*=============================================
+		Ocultar todos los métodos
+		=============================================*/
+    var allMethods = $(".allMethods");
+    allMethods.each((i) => {
+      $(allMethods[i]).hide();
+    });
+
+    /*=============================================
+		Activar formulario efectivo
+		=============================================*/
+    if (method == "efectivo") {
+      $("#typePay").html("en efectivo");
+      $("#methodCash").show();
+      $("#totalPayCash").val($("#granTotal span").attr("granTotal"));
+
+      /*=============================================
+			Mostrar la diferencia
+			=============================================*/
+      $(document).on("change", "#cashPay", function () {
+        var total = Number($("#granTotal span").attr("granTotal"));
+        var cash = Number($(this).val());
+
+        $("#returnPay").val((cash - total).toFixed(2));
+
+        if (cash - total < 0) {
+          $("#returnPay").after(
+            `<div class="alert alert-danger rounded mt-3 alertReturn">El monto a devolver no puede ser negativo</div>`
+          );
+        } else {
+          $(".alertReturn").remove();
+        }
+      });
+      $("#idTransferPay").attr("required", false);
+    }
+
+    /*=============================================
+		Activar formulario transferencia
+		=============================================*/
+    if (method == "transferencia") {
+      $("#typePay").html("con transferencia");
+      $("#methodTransfer").show();
+      $("#totalPayTransfer").val($("#granTotal span").attr("granTotal"));
+      $("#idTransferPay").attr("required", true);
+
+      /*=============================================
+			Guardar el Id de la Transferencia
+			=============================================*/
+      $(document).on("change", "#idTransferPay", function () {
+        $("#transferPay").val($(this).val());
+      });
+    }
+
+    /*=============================================
+		Activar formulario Tarjeta
+		=============================================*/
+    if (method == "tarjeta") {
+      $("#typePay").html("con tarjeta");
+      $("#methodCard").show();
+      $("#totalPayCard").val($("#granTotal span").attr("granTotal"));
+      $("#idTransferPay").attr("required", false);
+    }
+  });
+});

@@ -63,3 +63,100 @@ Modal para agregar cliente
         </div>
     </div>
 </div>
+
+<!-- =======================================
+Modal para métodos de pago
+==========================================-->
+<div class="modal fade" id="modalPayMethod">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content rounded">
+            <form method="POST">
+                <div class="modal-header">
+                    <h4 class="modal-title">Pago <span id="typePay"></span></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="idOrderPay" name="idOrderPay">
+                    <input type="hidden" id="methodPay" name="methodPay">
+                    <input type="hidden" id="transferPay" name="transferPay">
+
+                    <!--====================================================
+          			Método de pago en efectivo
+          			=====================================================-->
+                    <div class="allMethods" id="methodCash" style="display:none">
+                        <div class="row row-cols-1 row-cols-sm-2">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="number" class="form-control rounded form-control-lg" id="totalPayCash" readonly>
+                                    <label ifor="totalPayCash">$ Total a Pagar</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="number" class="form-control rounded form-control-lg" id="cashPay" placeholder="Ingresa el monto">
+                                    <label for="cashPay">$ Efectivo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-1">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="number" class="form-control rounded form-control-lg" id="returnPay" readonly>
+                                    <label for="returnPay">$ Diferencia</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--====================================================
+          			Método de pago en transferencia
+          			=====================================================-->
+                    <div class="allMethods" id="methodTransfer" style="display:none">
+                        <div class="row row-cols-1 row-cols-sm-2">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="number" class="form-control rounded form-control-lg" id="totalPayTransfer" readonly>
+                                    <label for="totalPayTransfer">$ Total a Pagar</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="text" class="form-control rounded form-control-lg" id="idTransferPay" placeholder="Ingresa el id de la transferencia">
+                                    <label for="idTransferPay">ID Transfer</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--====================================================
+          			Método de pago con tarjeta
+          			=====================================================-->
+                    <div class="allMethods" id="methodCard" style="display:none">
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 mt-3">
+                                    <input type="number" class="form-control rounded form-control-lg" id="totalPayCard" readonly>
+                                    <label for="totalPayCard">$ Total a Pagar</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center flex-wrap align-content-center" style="height:100px">
+                            <div class="w-100 text-center">
+                                <span class="spinner-border spinner-border-lg"></span>
+                            </div>
+                            <div>En proceso de validación...</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <div>
+                        <button type="button" class="btn btn-default border rounded" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-default backColor rounded">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
