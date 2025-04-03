@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2025 a las 01:57:44
+-- Tiempo de generación: 03-04-2025 a las 05:55:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -112,7 +112,8 @@ CREATE TABLE `cashs` (
 --
 
 INSERT INTO `cashs` (`id_cash`, `start_cash`, `bills_cash`, `money_cash`, `diff_cash`, `end_cash`, `gap_cash`, `status_cash`, `date_start_cash`, `date_end_cash`, `id_admin_cash`, `id_office_cash`, `date_created_cash`, `date_updated_cash`) VALUES
-(1, 1000, 0, 0, 0, 0, 0, 1, '2025-04-02 18:03:00', '0000-00-00 00:00:00', 1, 1, '2025-04-03', '2025-04-02 23:36:10');
+(1, 1000, 0, 0, 0, 0, 0, 0, '2025-04-02 18:03:00', '0000-00-00 00:00:00', 1, 1, '2025-04-03', '2025-04-03 03:53:24'),
+(2, 1000, 0, 0, 0, 0, 0, 1, '2025-04-02 22:03:00', '0000-00-00 00:00:00', 1, 1, '2025-04-02', '2025-04-03 03:53:17');
 
 -- --------------------------------------------------------
 
@@ -461,9 +462,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `transaction_order`, `id_admin_order`, `id_client_order`, `subtotal_order`, `discount_order`, `tax_order`, `total_order`, `method_order`, `transfer_order`, `status_order`, `date_order`, `id_office_order`, `date_created_order`, `date_updated_order`) VALUES
-(1, '857532436986', 1, 1, 3635.8, 419.58, 611.08, 3827.3, NULL, NULL, 'Pendiente', '2025-04-02 07:50:08', 1, '2025-04-02', '2025-04-02 07:50:08'),
-(2, '132559862817', 1, 1, 1398.6, 419.58, 186.01, 1165.03, NULL, NULL, 'Pendiente', '2025-04-02 07:30:34', 1, '2025-04-02', '2025-04-02 07:30:34'),
-(3, '855247631361', 1, 1, 3635.8, 839.16, 531.36, 3328, NULL, NULL, 'Pendiente', '2025-04-02 23:56:30', 1, '2025-04-03', '2025-04-02 23:56:30');
+(2, '132559862817', 1, 9, 6391.7, 839.16, 1054.98, 6607.52, 'efectivo', '', 'Completada', '2025-04-03 03:44:37', 1, '2025-04-02', '2025-04-03 03:44:37'),
+(3, '855247631361', 1, 1, 4260.8, 0, 809.55, 5070.35, NULL, NULL, 'Pendiente', '2025-04-03 01:17:11', 1, '2025-04-03', '2025-04-03 01:17:11'),
+(4, '469224295117', 1, 1, 838.6, 0, 159.33, 997.93, 'efectivo', '', 'Completada', '2025-04-03 03:53:49', 1, '2025-04-02', '2025-04-03 03:53:49'),
+(5, '436173529298', 1, 3, 518.7, 0, 98.55, 617.25, 'efectivo', '', 'Completada', '2025-04-03 03:55:13', 1, '2025-04-02', '2025-04-03 03:55:13');
 
 -- --------------------------------------------------------
 
@@ -491,14 +493,14 @@ INSERT INTO `pages` (`id_page`, `title_page`, `url_page`, `icon_page`, `type_pag
 (2, 'Admins', 'admins', 'bi bi-person-fill-gear', 'modules', 2, '2025-02-14', '2025-02-14 07:06:16'),
 (3, 'Archivos', 'archivos', 'bi bi-file-earmark-image', 'custom', 4, '2025-02-14', '2025-02-15 00:58:28'),
 (4, 'Sucursales', 'sucursales', 'bi bi-shop', 'modules', 3, '2025-02-15', '2025-02-15 00:58:28'),
-(5, 'Clientes', 'clientes', 'bi bi-people', 'modules', 1000, '2025-02-15', '2025-02-15 01:46:20'),
-(6, 'Categorías', 'categorias', 'bi bi-card-list', 'modules', 1000, '2025-02-16', '2025-02-16 03:14:14'),
-(7, 'Productos', 'productos', 'bi bi-box', 'modules', 1000, '2025-02-18', '2025-02-18 22:35:38'),
-(8, 'Compras', 'compras', 'bi bi-basket-fill', 'modules', 1000, '2025-02-20', '2025-02-20 22:30:25'),
-(9, 'Órdenes', 'ordenes', 'bi bi-ticket-detailed', 'modules', 1000, '2025-02-21', '2025-02-21 00:42:04'),
-(10, 'Ventas', 'ventas', 'bi bi-cash-coin', 'modules', 1000, '2025-02-21', '2025-02-21 03:21:36'),
-(11, 'Caja', 'caja', 'fas fa-cash-register', 'modules', 1000, '2025-02-22', '2025-02-22 04:51:36'),
-(12, 'Gastos', 'gastos', 'fas fa-money-bill-wave', 'modules', 1000, '2025-02-22', '2025-02-22 05:04:23');
+(5, 'Clientes', 'clientes', 'bi bi-people', 'modules', 5, '2025-02-15', '2025-04-03 01:57:14'),
+(6, 'Categorías', 'categorias', 'bi bi-card-list', 'modules', 6, '2025-02-16', '2025-04-03 01:57:14'),
+(7, 'Productos', 'productos', 'bi bi-box', 'modules', 7, '2025-02-18', '2025-04-03 01:57:14'),
+(8, 'Compras', 'compras', 'bi bi-basket-fill', 'modules', 8, '2025-02-20', '2025-04-03 01:57:14'),
+(9, 'Órdenes', 'ordenes', 'bi bi-ticket-detailed', 'modules', 9, '2025-02-21', '2025-04-03 01:57:14'),
+(10, 'Ventas', 'ventas', 'bi bi-cash-coin', 'modules', 10, '2025-02-21', '2025-04-03 01:57:14'),
+(11, 'Caja', 'caja', 'fas fa-cash-register', 'modules', 11, '2025-02-22', '2025-04-03 01:57:14'),
+(12, 'Gastos', 'gastos', 'fas fa-money-bill-wave', 'modules', 12, '2025-02-22', '2025-04-03 01:57:14');
 
 -- --------------------------------------------------------
 
@@ -668,8 +670,12 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id_sale`, `id_order_sale`, `id_product_sale`, `tax_type_sale`, `tax_sale`, `discount_sale`, `qty_sale`, `subtotal_sale`, `status_sale`, `id_admin_sale`, `id_client_sale`, `id_office_sale`, `date_created_sale`, `date_updated_sale`) VALUES
-(5, 3, 12, 'IVA', 19, 0, 1, 838.6, 'Pendiente', 1, 1, 1, '2025-04-03', '2025-04-02 23:52:19'),
-(9, 3, 14, 'IVA', 19, 30, 2, 2797.2, 'Pendiente', 1, 1, 1, '2025-04-03', '2025-04-02 23:56:30');
+(8, 2, 13, 'IVA', 19, 0, 2, 2237.2, 'Completada', 1, 9, 1, '2025-04-02', '2025-04-03 03:44:37'),
+(9, 2, 12, 'IVA', 19, 0, 1, 838.6, 'Completada', 1, 9, 1, '2025-04-02', '2025-04-03 03:44:37'),
+(10, 2, 10, 'IVA', 19, 0, 1, 518.7, 'Completada', 1, 9, 1, '2025-04-02', '2025-04-03 03:44:37'),
+(11, 2, 14, 'IVA', 19, 30, 2, 2797.2, 'Completada', 1, 9, 1, '2025-04-02', '2025-04-03 03:44:37'),
+(12, 4, 12, 'IVA', 19, 0, 1, 838.6, 'Completada', 1, 1, 1, '2025-04-02', '2025-04-03 03:53:49'),
+(13, 5, 10, 'IVA', 19, 0, 1, 518.7, 'Completada', 1, 3, 1, '2025-04-02', '2025-04-03 03:55:13');
 
 --
 -- Índices para tablas volcadas
@@ -785,7 +791,7 @@ ALTER TABLE `bills`
 -- AUTO_INCREMENT de la tabla `cashs`
 --
 ALTER TABLE `cashs`
-  MODIFY `id_cash` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cash` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -833,7 +839,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `pages`
@@ -857,7 +863,7 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

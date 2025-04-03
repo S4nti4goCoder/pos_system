@@ -836,3 +836,12 @@ $(document).on("click", ".payMethod", function () {
     }
   });
 });
+
+/*=============================================
+Remover alertas del POS
+=============================================*/
+if ($(".alertPos").length > 0) {
+  setTimeout(() => {
+    $(".alertPos").remove();
+  }, 10000);
+}

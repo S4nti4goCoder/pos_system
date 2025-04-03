@@ -21,7 +21,7 @@ Custom
 		<?php if (!empty($order)): ?>
 
 			<div class="card-header backColor rounded-top" id="orderHeader" mode="on" idOrder="<?php echo $order->id_order ?>">
-			<h6 class="card-title mt-2 float-start">Orden # <?php echo $order->transaction_order ?></h6>
+				<h6 class="card-title mt-2 float-start">Orden # <?php echo $order->transaction_order ?></h6>
 			</div>
 
 		<?php else: ?>
@@ -39,6 +39,9 @@ Custom
 			include "modules/list.php";
 			include "modules/totals.php";
 			include "modules/methods.php";
+			require_once "controllers/orders.controller.php";
+			$order = new OrdersController();
+			$order->manageOrder();
 			include "modules/modals.php";
 			?>
 

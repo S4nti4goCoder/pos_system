@@ -70,7 +70,7 @@ Modal para métodos de pago
 <div class="modal fade" id="modalPayMethod">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded">
-            <form method="POST">
+            <form method="POST" action="/posify">
                 <div class="modal-header">
                     <h4 class="modal-title">Pago <span id="typePay"></span></h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
