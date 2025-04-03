@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2025 a las 00:29:36
+-- Tiempo de generación: 04-04-2025 a las 01:09:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -425,7 +425,9 @@ INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_modu
 (27, 13, 'metrics', 'clientes', '', '{\"type\":\"total\",\"table\":\"clients\", \"column\":\"id_client\",\"config\":\"unit\",\"icon\":\"fas fa-users\",\"color\":\"43, 62, 101\"  }', 25, 1, '2025-04-03', '2025-04-03 20:09:23'),
 (28, 13, 'graphics', 'gráfico de ventas diarias', '', '{\"type\":\"bar\",\"table\":\"orders\",\"xAxis\":\"date_created_order\",\"yAxis\":\"total_order\",\"color\":\"134, 153, 163\"}', 100, 1, '2025-04-03', '2025-04-03 20:57:30'),
 (29, 13, 'graphics', 'gráfico de ventas mensuales', '', '{\"type\":\"line\",\"table\":\"orders\",\"xAxis\":\"date_created_order\",\"yAxis\":\"total_order\",\"color\":\"252, 115, 3\"}', 100, 1, '2025-04-03', '2025-04-03 21:39:11'),
-(30, 13, 'graphics', 'ventas por sucursal', '', '{\"type\":\"bar\",\"table\":\"orders\",\"xAxis\":\"id_office_order\",\"yAxis\":\"total_order\",\"color\":\"5, 195, 251\"}', 50, 1, '2025-04-03', '2025-04-03 22:16:53');
+(30, 13, 'graphics', 'ventas por sucursal', '', '{\"type\":\"bar\",\"table\":\"orders\",\"xAxis\":\"id_office_order\",\"yAxis\":\"total_order\",\"color\":\"5, 195, 251\"}', 50, 1, '2025-04-03', '2025-04-03 22:16:53'),
+(31, 13, 'graphics', 'compras por sucursal', '', '{\"type\":\"bar\",\"table\":\"purchases\",\"xAxis\":\"id_office_purchase\",\"yAxis\":\"invest_purchase\",\"color\":\"247, 183, 49\"}', 50, 1, '2025-04-03', '2025-04-03 22:32:08'),
+(32, 13, 'custom', 'productos mas vendidos', '', '', 50, 1, '2025-04-03', '2025-04-03 22:53:46');
 
 -- --------------------------------------------------------
 
@@ -691,7 +693,7 @@ CREATE TABLE `sales` (
 
 INSERT INTO `sales` (`id_sale`, `id_order_sale`, `id_product_sale`, `tax_type_sale`, `tax_sale`, `discount_sale`, `qty_sale`, `subtotal_sale`, `status_sale`, `id_admin_sale`, `id_client_sale`, `id_office_sale`, `date_created_sale`, `date_updated_sale`) VALUES
 (1, 1, 14, 'IVA', 19, 30, 1, 1398.6, 'Completada', 1, 1, 1, '2025-04-02', '2025-04-03 04:42:21'),
-(5, 3, 14, 'IVA', 19, 30, 1, 1398.6, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 05:33:40'),
+(5, 3, 14, 'IVA', 19, 30, 1, 1398.6, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 23:01:54'),
 (6, 3, 13, 'IVA', 19, 0, 1, 1118.6, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 05:33:40'),
 (7, 3, 10, 'IVA', 19, 0, 2, 1037.4, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 05:33:40'),
 (8, 3, 9, 'IVA', 19, 0, 3, 1166.1, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 05:33:40'),
@@ -853,7 +855,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT de la tabla `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `offices`
