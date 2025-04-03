@@ -484,6 +484,43 @@ class PosController
             }
         }
     }
+
+    /*=============================================
+	Remover todas las Ventas
+	=============================================*/
+    public $idOrderSale;
+    public function deleteAllSale()
+    {
+        /*=============================================
+		Validar que la venta no esté finalizada
+		=============================================*/
+        $url = "sales?linkTo=id_order_sale,status_sale&equalTo=" . $this->idOrderSale . ",Pendiente";
+        $method = "GET";
+        $fields = array();
+
+        $getSale = CurlController::request($url, $method, $fields);
+        if ($getSale->status == 200) {
+			$countDeleteSale = 0;
+            foreach ($getSale->results as $key => $value) {
+                /*=============================================
+				Eliminar venta
+				=============================================*/
+                $url = "sales?id=" . $value->id_sale . "&nameId=id_sale&token=" . $this->token . "&table=admins&suffix=admin";
+                $method = "DELETE";
+                $fields = array();
+
+                $deleteSale = CurlController::request($url, $method, $fields);
+                if ($deleteSale->status == 200) {
+                    $countDeleteSale++;
+                    if ($countDeleteSale == count($getSale->results)) {
+                        echo "ok";
+                    }
+                }
+            }
+        } else {
+            echo "error";
+        }
+    }
 }
 
 /*=============================================
@@ -575,4 +612,14 @@ if (isset($_POST["idSaleDelete"])) {
     $ajax->idSaleDelete = $_POST["idSaleDelete"];
     $ajax->token = $_POST["token"];
     $ajax->deleteSale();
+}
+
+/*=============================================
+Remover todas las Ventas
+=============================================*/
+if (isset($_POST["idOrderSale"])) {
+    $ajax = new PosController();
+    $ajax->idOrderSale = $_POST["idOrderSale"];
+    $ajax->token = $_POST["token"];
+    $ajax->deleteAllSale();
 }

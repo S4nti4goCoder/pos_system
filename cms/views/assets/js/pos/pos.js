@@ -324,6 +324,16 @@ Agregar Producto
 =============================================*/
 $(document).on("click", ".addProductPos", function () {
   fncSweetAlert("loading", "Cargando producto...", "");
+
+  /*=============================================
+	Subir el scroll a la parte superior
+	=============================================*/
+  $("html, body").animate(
+    {
+      scrollTop: 0,
+    },
+    300
+  );
   if ($("#orderHeader").attr("mode") == "on") {
     if ($("#clientList").val() == "") {
       fncToastr("error", "Antes de agregar producto elige un cliente");
@@ -431,9 +441,11 @@ function changeQuantity(key) {
   /*=============================================
 	Actualizamos subtotal
 	=============================================*/
-  var pricePurchase = Number($(".pricePurchase_"+key).attr("originalPricePurchase"))*$(".showQuantity_"+key).val();
-	$(".pricePurchase_"+key).attr("pricePurchase", pricePurchase);
-	$(".pricePurchase_"+key).html(money(pricePurchase.toFixed(2)));
+  var pricePurchase =
+    Number($(".pricePurchase_" + key).attr("originalPricePurchase")) *
+    $(".showQuantity_" + key).val();
+  $(".pricePurchase_" + key).attr("pricePurchase", pricePurchase);
+  $(".pricePurchase_" + key).html(money(pricePurchase.toFixed(2)));
 
   /*=============================================
 	Actualizamos cantidad y subtotal en base de datos
@@ -510,6 +522,56 @@ $(document).on("click", ".deleteSale", function () {
       }
     }
   );
+});
+
+/*=============================================
+Limpiar productos añadidos
+=============================================*/
+$(document).on("click", "#cleanListProduct", function () {
+  if ($("#addProduct tr").length == 0) {
+    fncToastr("error", "No hay productos a remover");
+    return;
+  }
+
+  var idOrderSale = $(this).attr("idOrder");
+  fncSweetAlert(
+    "confirm",
+    "¿Está seguro de borrar estos productos añadidos?",
+    ""
+  ).then((resp) => {
+    if (resp) {
+      fncSweetAlert("loading", "Eliminando productos...", "");
+      var data = new FormData();
+      data.append("idOrderSale", idOrderSale);
+      data.append("token", localStorage.getItem("tokenAdmin"));
+      $.ajax({
+        url: "/ajax/pos.ajax.php",
+        method: "POST",
+        data: data,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (response) {
+          fncSweetAlert("close", "", "");
+          if (response == "error") {
+            fncToastr("error", "Los productos no se pueden remover");
+          } else if (response == "logout") {
+            fncSweetAlert(
+              "error",
+              "Token vencido, debe iniciar sesión nuevamente",
+              setTimeout(() => {
+                window.location = "/logout";
+              }, 1250)
+            );
+          } else {
+            fncToastr("success", "Los productos se han removido correctamente");
+            $("#addProduct").html("");
+            calculateProducts();
+          }
+        },
+      });
+    }
+  });
 });
 
 /*=============================================
