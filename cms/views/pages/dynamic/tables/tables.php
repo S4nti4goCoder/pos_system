@@ -508,12 +508,14 @@ Cargamos el módulo tabla
 														}
 
 														/*=============================================
-										Contenido tipo Órden
-										=============================================*/
+													Contenido tipo Órden
+													=============================================*/
 													} else if ($item->type_column == "order") {
 
 
 														echo '<input type="number" class="form-control form-control-sm rounded changeOrder" value="' . $value[$item->title_column] . '" style="width:55px" idItem="' . base64_encode($value["id_" . $module->suffix_module]) . '" table="' . $module->title_module . '" suffix="' . $module->suffix_module . '" column="' . $item->title_column . '">';
+													} else if ($item->type_column == "posify") {
+														echo '<a href="/posify?order=' . urldecode($value[$item->title_column]) . '" style="color:inherit">' . urldecode($value[$item->title_column]) . '</a>';
 													} else {
 
 														echo TemplateController::reduceText(urldecode($value[$item->title_column]), 25);
@@ -566,14 +568,14 @@ Cargamos el módulo tabla
 				<?php if (!empty($table)): ?>
 
 					<!--=========================================
-	        Bloque final
-	        ===========================================-->
+	        		Bloque final
+	        		===========================================-->
 
 					<div class="d-lg-flex justify-content-lg-between mt-2 mb-0">
 
 						<!--=========================================
-	        	Visualización de registros
-	        	===========================================-->
+	        			Visualización de registros
+	        			===========================================-->
 
 						<div class="mb-3 blockFooter" id="cont-filters">
 
