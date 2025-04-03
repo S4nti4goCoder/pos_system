@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2025 a las 05:55:54
+-- Tiempo de generación: 03-04-2025 a las 07:09:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -247,7 +247,7 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (45, 12, 'invest_purchase', 'Inversión ', 'money', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
 (46, 12, 'contact_purchase', 'Teléfono ', 'text', NULL, 1, '2025-02-20', '2025-02-20 22:36:22'),
 (47, 12, 'id_office_purchase', 'Sucursal', 'relations', 'offices', 1, '2025-02-20', '2025-02-20 22:40:50'),
-(48, 14, 'transaction_order', 'Transacción ', 'text', NULL, 1, '2025-02-21', '2025-02-21 00:50:48'),
+(48, 14, 'transaction_order', 'Transacción ', 'posify', NULL, 1, '2025-02-21', '2025-04-03 04:43:52'),
 (49, 14, 'id_admin_order', 'Vendedor', 'relations', 'admins', 1, '2025-02-21', '2025-02-21 00:51:33'),
 (50, 14, 'id_client_order', 'Cliente', 'relations', 'clients', 1, '2025-02-21', '2025-02-21 00:51:39'),
 (51, 14, 'subtotal_order', 'Subtotal', 'money', NULL, 1, '2025-02-21', '2025-02-21 00:50:48'),
@@ -462,10 +462,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_order`, `transaction_order`, `id_admin_order`, `id_client_order`, `subtotal_order`, `discount_order`, `tax_order`, `total_order`, `method_order`, `transfer_order`, `status_order`, `date_order`, `id_office_order`, `date_created_order`, `date_updated_order`) VALUES
-(2, '132559862817', 1, 9, 6391.7, 839.16, 1054.98, 6607.52, 'efectivo', '', 'Completada', '2025-04-03 03:44:37', 1, '2025-04-02', '2025-04-03 03:44:37'),
-(3, '855247631361', 1, 1, 4260.8, 0, 809.55, 5070.35, NULL, NULL, 'Pendiente', '2025-04-03 01:17:11', 1, '2025-04-03', '2025-04-03 01:17:11'),
-(4, '469224295117', 1, 1, 838.6, 0, 159.33, 997.93, 'efectivo', '', 'Completada', '2025-04-03 03:53:49', 1, '2025-04-02', '2025-04-03 03:53:49'),
-(5, '436173529298', 1, 3, 518.7, 0, 98.55, 617.25, 'efectivo', '', 'Completada', '2025-04-03 03:55:13', 1, '2025-04-02', '2025-04-03 03:55:13');
+(1, '943143249651', 1, 1, 1398.6, 419.58, 186.01, 1165.03, 'efectivo', '', 'Completada', '2025-04-03 04:42:21', 1, '2025-04-02', '2025-04-03 04:42:21'),
+(2, '981596463137', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-04-03 05:01:59', 1, '2025-04-02', '2025-04-03 05:01:59');
 
 -- --------------------------------------------------------
 
@@ -541,9 +539,9 @@ INSERT INTO `products` (`id_product`, `title_product`, `img_product`, `id_catego
 (9, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
 (10, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
 (11, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
-(12, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-04-02 23:52:13'),
-(13, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 98, 0, 1, 1, '2025-02-19', '2025-04-02 22:11:06'),
-(14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 99, 30, 1, 1, '2025-02-19', '2025-04-02 22:11:06'),
+(12, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 99, 0, 1, 1, '2025-02-19', '2025-04-03 04:59:45'),
+(13, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 99, 0, 1, 1, '2025-02-19', '2025-04-03 04:59:45'),
+(14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 98, 30, 1, 1, '2025-02-19', '2025-04-03 04:59:45'),
 (15, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:15'),
 (16, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:22'),
 (17, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:28'),
@@ -670,12 +668,7 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id_sale`, `id_order_sale`, `id_product_sale`, `tax_type_sale`, `tax_sale`, `discount_sale`, `qty_sale`, `subtotal_sale`, `status_sale`, `id_admin_sale`, `id_client_sale`, `id_office_sale`, `date_created_sale`, `date_updated_sale`) VALUES
-(8, 2, 13, 'IVA', 19, 0, 2, 2237.2, 'Completada', 1, 9, 1, '2025-04-02', '2025-04-03 03:44:37'),
-(9, 2, 12, 'IVA', 19, 0, 1, 838.6, 'Completada', 1, 9, 1, '2025-04-02', '2025-04-03 03:44:37'),
-(10, 2, 10, 'IVA', 19, 0, 1, 518.7, 'Completada', 1, 9, 1, '2025-04-02', '2025-04-03 03:44:37'),
-(11, 2, 14, 'IVA', 19, 30, 2, 2797.2, 'Completada', 1, 9, 1, '2025-04-02', '2025-04-03 03:44:37'),
-(12, 4, 12, 'IVA', 19, 0, 1, 838.6, 'Completada', 1, 1, 1, '2025-04-02', '2025-04-03 03:53:49'),
-(13, 5, 10, 'IVA', 19, 0, 1, 518.7, 'Completada', 1, 3, 1, '2025-04-02', '2025-04-03 03:55:13');
+(1, 1, 14, 'IVA', 19, 30, 1, 1398.6, 'Completada', 1, 1, 1, '2025-04-02', '2025-04-03 04:42:21');
 
 --
 -- Índices para tablas volcadas
@@ -839,7 +832,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `pages`
@@ -863,7 +856,7 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

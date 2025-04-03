@@ -25,7 +25,6 @@ if (isset($_GET["order"])) {
 <!--==============================
 Custom
 ================================-->
-
 <div class="<?php if ($module->width_module == "100"): ?> col-lg-12 <?php endif ?><?php if ($module->width_module == "75"): ?> col-lg-9 <?php endif ?><?php if ($module->width_module == "50"): ?> col-lg-6 <?php endif ?><?php if ($module->width_module == "33"): ?> col-lg-4 <?php endif ?><?php if ($module->width_module == "25"): ?> col-lg-3 <?php endif ?> col-12 mb-3 position-relative">
 
 	<?php if ($_SESSION["admin"]->rol_admin == "superadmin"): ?>
@@ -50,5 +49,5 @@ Custom
   	================================-->
 	<button type="button" class="btn btn-default rounded backColor newOrder"><i class="bi bi-cart4"></i> Crear Orden</button>
 	<button type="button" class="btn btn-default rounded bg-orange mx-1 removeOrder" <?php if (!empty($order)): ?>idOrder="<?php echo $order->id_order ?>" <?php else: ?> idOrder <?php endif ?>><i class="fas fa-broom"></i> Remover Orden</button>
-	<button type="button" class="btn btn-default rounded bg-teal"><i class="bi bi-search"></i> Buscar Orden</button>
+	<button type="button" class="btn btn-default rounded bg-teal" data-bs-toggle="modal" data-bs-target="#modalSearchOrder"><i class="bi bi-search"></i> Buscar Orden</button>
 </div>

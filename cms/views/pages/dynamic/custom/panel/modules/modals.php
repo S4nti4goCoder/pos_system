@@ -160,3 +160,36 @@ Modal para métodos de pago
         </div>
     </div>
 </div>
+
+<!-- =======================================
+Modal para buscar órdenes
+==========================================-->
+<div class="modal fade" id="modalSearchOrder">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content rounded">
+            <div class="modal-header">
+                <h4 class="modal-title">Buscar Orden</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+
+                <?php
+                $url = "relations?rel=modules,pages&type=module,page&linkTo=id_module&equalTo=14";
+                $method = "GET";
+                $fields = array();
+                $module = CurlController::request($url, $method, $fields);
+                if ($module->status == 200) {
+                    $module = $module->results[0];
+                    include "views/pages/dynamic/tables/tables.php";
+                } else {
+                    $module = array();
+                }
+                ?>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default border rounded" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
