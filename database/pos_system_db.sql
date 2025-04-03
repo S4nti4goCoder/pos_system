@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2025 a las 07:44:57
+-- Tiempo de generación: 03-04-2025 a las 07:57:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -243,7 +243,7 @@ INSERT INTO `columns` (`id_column`, `id_module_column`, `title_column`, `alias_c
 (32, 10, 'unit_product', 'Medida', 'select', 'unidad,centímetros cúbicos,decibel,pie cúbico,libra,tonelada', 1, '2025-02-18', '2025-02-18 23:23:00'),
 (33, 10, 'tax_product', 'Impuesto', 'select', 'IVA_19,INC_4', 1, '2025-02-18', '2025-02-18 22:53:36'),
 (34, 10, 'rte_product', 'Retención ', 'select', 'NULL,RETF_11', 1, '2025-02-18', '2025-02-18 22:55:46'),
-(35, 10, 'stock_product', 'Stock', 'int', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
+(35, 10, 'stock_product', 'Stock', 'stock', NULL, 1, '2025-02-18', '2025-04-03 05:47:39'),
 (36, 10, 'discount_product', 'Descuento', 'double', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
 (37, 10, 'status_product', 'Estado', 'boolean', NULL, 1, '2025-02-18', '2025-02-18 22:46:27'),
 (38, 10, 'id_office_product', 'Sucursal', 'relations', 'offices', 1, '2025-02-18', '2025-02-18 22:56:51'),
@@ -546,10 +546,10 @@ INSERT INTO `products` (`id_product`, `title_product`, `img_product`, `id_catego
 (6, 'Iphone+11', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512bd6039241.png', 3, 'PT006', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
 (7, 'Iphone+14+64GB', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512e57b1b121.png', 3, 'PT007', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
 (8, 'Rolex+Tribute+V3', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5130b951be59.png', 4, 'PT008', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
-(9, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
-(10, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
+(9, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 97, 0, 1, 1, '2025-02-19', '2025-04-03 05:46:43'),
+(10, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 98, 0, 1, 1, '2025-02-19', '2025-04-03 05:46:43'),
 (11, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-03-30 04:10:11'),
-(12, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 99, 0, 1, 1, '2025-02-19', '2025-04-03 04:59:45'),
+(12, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-04-03 05:46:43'),
 (13, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 99, 0, 1, 1, '2025-02-19', '2025-04-03 04:59:45'),
 (14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 98, 30, 1, 1, '2025-02-19', '2025-04-03 04:59:45'),
 (15, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:15'),

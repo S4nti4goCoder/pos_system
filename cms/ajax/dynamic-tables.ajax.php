@@ -326,6 +326,19 @@ class DynamicTablesController
 						} else if ($item->type_column == "order") {
 
 							$HTMLTable .= '<input type="number" class="form-control form-control-sm rounded changeOrder" value="' . $value[$item->title_column] . '" style="width:55px" idItem="' . base64_encode($value["id_" . $module->suffix_module]) . '" table="' . $module->title_module . '" suffix="' . $module->suffix_module . '" column="' . $item->title_column . '">';
+						} else if ($item->type_column == "posify") {
+							$HTMLTable .= '<a href="/posify?order=' . urldecode($value[$item->title_column]) . '" style="color:inherit">' . urldecode($value[$item->title_column]) . '</a>';
+						} else if ($item->type_column == "stock") {
+							if ($value[$item->title_column] < 50) {
+								$colorStock = "bg-maroon";
+							}
+							if ($value[$item->title_column] >= 50 && $value[$item->title_column] < 100) {
+								$colorStock = "bg-indigo";
+							}
+							if ($value[$item->title_column] >= 100) {
+								$colorStock = "bg-teal";
+							}
+							$HTMLTable .= '<span class="badge badge-sm badge-default ' . $colorStock . ' rounded py-1 px-3 mx-1 mt-1 text-uppercase small">' . $value[$item->title_column] . '</span>';
 						} else {
 
 							$HTMLTable .= TemplateController::reduceText(urldecode($value[$item->title_column]), 25);
