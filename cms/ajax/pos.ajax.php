@@ -500,7 +500,7 @@ class PosController
 
         $getSale = CurlController::request($url, $method, $fields);
         if ($getSale->status == 200) {
-			$countDeleteSale = 0;
+            $countDeleteSale = 0;
             foreach ($getSale->results as $key => $value) {
                 /*=============================================
 				Eliminar venta
@@ -519,6 +519,62 @@ class PosController
             }
         } else {
             echo "error";
+        }
+    }
+
+    /*=============================================
+	Remover Órden
+	=============================================*/
+    public $idOrderDelete;
+    public function deleteOrder()
+    {
+        /*=============================================
+		Validar que la órden no esté finalizada
+		=============================================*/
+        $url = "orders?linkTo=id_order,status_order&equalTo=" . $this->idOrderDelete . ",Completada";
+        $method = "GET";
+        $fields = array();
+
+        $getOrder = CurlController::request($url, $method, $fields);
+        if ($getOrder->status == 200) {
+            echo "error";
+        } else {
+
+            /*=============================================
+			Eliminar orden
+			=============================================*/
+            $url = "orders?id=" . $this->idOrderDelete . "&nameId=id_order&token=" . $this->token . "&table=admins&suffix=admin";
+            $method = "DELETE";
+            $fields = array();
+
+            $deleteOrder = CurlController::request($url, $method, $fields);
+            if ($deleteOrder->status == 200) {
+                $url = "sales?linkTo=id_order_sale&equalTo=" . $this->idOrderDelete;
+                $method = "GET";
+                $fields = array();
+
+                $getSales = CurlController::request($url, $method, $fields);
+                if ($getSales->status == 200) {
+                    $countDeleteSales = 0;
+                    foreach ($getSales->results as $key => $value) {
+
+                        /*=============================================
+						Eliminar venta
+						=============================================*/
+                        $url = "sales?id=" . $value->id_sale . "&nameId=id_sale&token=" . $this->token . "&table=admins&suffix=admin";
+                        $method = "DELETE";
+                        $fields = array();
+
+                        $deleteSale = CurlController::request($url, $method, $fields);
+                        if ($deleteSale->status == 200) {
+                            $countDeleteSales++;
+                            if ($countDeleteSales == count($getSales->results)) {
+                                echo "ok";
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -622,4 +678,14 @@ if (isset($_POST["idOrderSale"])) {
     $ajax->idOrderSale = $_POST["idOrderSale"];
     $ajax->token = $_POST["token"];
     $ajax->deleteAllSale();
+}
+
+/*=============================================
+Remover Órden
+=============================================*/
+if (isset($_POST["idOrderDelete"])) {
+    $ajax = new PosController();
+    $ajax->idOrderDelete = $_POST["idOrderDelete"];
+    $ajax->token = $_POST["token"];
+    $ajax->deleteOrder();
 }

@@ -176,6 +176,11 @@ $(document).on("click", ".newOrder", function () {
             fncToastr("success", "Orden creada con éxito");
           }
 
+          $(".removeOrder").attr(
+            "idOrder",
+            JSON.parse(response).transaction_order
+          );
+
           /*=============================================
 	   			Organizamos cabecera de la orden 
 	   			=============================================*/
@@ -705,3 +710,49 @@ function updateOrder() {
     });
   }
 }
+
+/*=============================================
+ELIMINAR ÓRDEN
+=============================================*/
+$(document).on("click", ".removeOrder", function () {
+  var idOrder = $(this).attr("idOrder");
+  fncSweetAlert("confirm", "¿Está seguro de remover esta orden?", "").then(
+    (resp) => {
+      if (resp) {
+        fncSweetAlert("loading", "Eliminando Orden...", "");
+
+        var data = new FormData();
+        data.append("idOrderDelete", idOrder);
+        data.append("token", localStorage.getItem("tokenAdmin"));
+        $.ajax({
+          url: "/ajax/pos.ajax.php",
+          method: "POST",
+          data: data,
+          contentType: false,
+          cache: false,
+          processData: false,
+          success: function (response) {
+            fncSweetAlert("close", "", "");
+            if (response == "error") {
+              fncToastr("error", "La orden no se puede remover");
+            } else if (response == "logout") {
+              fncSweetAlert(
+                "error",
+                "Token vencido, debe iniciar sesión nuevamente",
+                setTimeout(() => {
+                  window.location = "/logout";
+                }, 1250)
+              );
+            } else {
+              fncSweetAlert(
+                "success",
+                "La orden se ha removido con éxito",
+                setTimeout(() => location.reload(), 1250)
+              );
+            }
+          },
+        });
+      }
+    }
+  );
+});

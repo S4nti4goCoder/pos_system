@@ -7,9 +7,7 @@ if (!empty($order)) {
     $url = "relations?rel=sales,products&type=sale,product&linkTo=id_order_sale&equalTo=" . $order->id_order;
     $method = "GET";
     $fields = array();
-
     $getSales = CurlController::request($url, $method, $fields);
-
     if ($getSales->status == 200) {
         $sales = $getSales->results;
         foreach ($sales as $key => $value) {
