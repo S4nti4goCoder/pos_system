@@ -10,7 +10,7 @@ $suffix = end($suffix);
 
 if ($module->title_module == "gráfico de ventas diarias" && $module->id_page_module == 13) {
 	$url = $content->table . "?linkTo=status_order&equalTo=Completada&select=" . $content->xAxis . "," . $content->yAxis;
-} else if ($module->title_module == "ventas por sucursal") {
+} else if ($module->title_module == "ventas por sucursal" || $module->title_module == "compras por sucursal") {
 	$content->xAxis = "title_office";
 	$url = "relations?rel=" . $content->table . ",offices&type=" . $suffix . ",office&select=" . $content->xAxis . "," . $content->yAxis;
 } else {
@@ -98,7 +98,7 @@ if ($response->status == 200) {
 
 					<?php
 					foreach ($xAxis as $index => $item) {
-						echo "'".urldecode($item)."',";
+						echo "'" . urldecode($item) . "',";
 					}
 					?>
 
