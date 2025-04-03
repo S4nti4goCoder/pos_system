@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2025 a las 01:09:24
+-- Tiempo de generación: 04-04-2025 a las 01:49:26
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -55,7 +55,7 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id_admin`, `email_admin`, `password_admin`, `rol_admin`, `permissions_admin`, `token_admin`, `token_exp_admin`, `status_admin`, `title_admin`, `symbol_admin`, `font_admin`, `color_admin`, `back_admin`, `scode_admin`, `name_admin`, `id_office_admin`, `chatgpt_admin`, `date_created_admin`, `date_updated_admin`) VALUES
 (1, 'superadmin@pos.com', '', 'superadmin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDM3MTAyMTksImV4cCI6MTc0Mzc5NjYxOSwiZGF0YSI6eyJpZCI6MSwiZW1haWwiOiJzdXBlcmFkbWluQHBvcy5jb20ifX0.ocd05sgQ9XrMtpCgBslDYqPaONtJRRBVUVXW66a-zTI', '1743796619', 1, 'POSify', '<i class=\"bi bi-cart-check-fill\"></i>', '<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap\" rel=\"stylesheet\">', '#00a6fb', 'http://cms.pos.com/views/assets/files/67aeeca5d9fed33.jpg', '', 'El Programador', 0, NULL, '2025-02-14', '2025-04-03 19:56:59'),
-(2, 'admin@pos.com', '', 'admin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA0MDcsImV4cCI6MTc0MzIyNjgwNywiZGF0YSI6eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBwb3MuY29tIn19.h-kOkv9mNhUhup37tQpJSTovwT-tUcCStC_SAcbut_U', '1743226807', 1, '', '', '', '', '', '', 'Sara Perez', 0, NULL, '2025-03-27', '2025-03-28 05:47:01'),
+(2, 'admin@pos.com', '', 'admin', '{\"todo\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDM3MjQxMjAsImV4cCI6MTc0MzgxMDUyMCwiZGF0YSI6eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBwb3MuY29tIn19.7vsGEva0-TgyJwzY7Qcbu4wYrr61Gz04KLtmqQnOAWQ', '1743810520', 1, '', '', '', '', '', '', 'Sara Perez', 0, NULL, '2025-03-27', '2025-04-03 23:48:40'),
 (3, 'supervisor@pos.com', '', 'editor', '{\"posify\":\"on\",\"clientes\":\"on\",\"productos\":\"on\",\"compras\":\"on\"}', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxNDA2NjMsImV4cCI6MTc0MzIyNzA2MywiZGF0YSI6eyJpZCI6MywiZW1haWwiOiJzdXBlcnZpc29yQHBvcy5jb20ifX0.heafrQdOV-CWa0OgEUpfavjKREHmWZ67CP9b_gjFEus', '1743227063', 1, '', '', '', '', '', '', 'Jorge Riquelme', 0, NULL, '2025-03-28', '2025-03-28 05:46:43'),
 (4, 'admin@pueblolindo.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'admin', '%7B%22todo%22%3A%22on%22%7D', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMxOTY2MTgsImV4cCI6MTc0MzI4MzAxOCwiZGF0YSI6eyJpZCI6NCwiZW1haWwiOiJhZG1pbkBwdWVibG9saW5kby5jb20ifX0.32Tm3M7j5xxqzC64MYpZCGBjbZJg-OOxAE66-gjDXik', '1743283018', 1, '', '', '', '', '', '', 'Jaime+Suarez', 1, NULL, '2025-03-28', '2025-03-28 21:16:58'),
 (5, 'admin@colinas.com', '$2a$07$azybxcags23425sdg23sdeanQZqjaf6Birm2NvcYTNtJw24CsO5uq', 'admin', '%7B%22todo%22%3A%22on%22%7D', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDMyMDE2NjAsImV4cCI6MTc0MzI4ODA2MCwiZGF0YSI6eyJpZCI6NSwiZW1haWwiOiJhZG1pbkBjb2xpbmFzLmNvbSJ9fQ.fCx4jNzavfJlcOzONBdK7oVB2ZFjlFHHETR3Lb2y2Xs', '1743288060', 1, '', '', '', '', '', '', 'Marta+Galindo', 2, NULL, '2025-03-28', '2025-03-28 22:41:00'),
@@ -427,7 +427,8 @@ INSERT INTO `modules` (`id_module`, `id_page_module`, `type_module`, `title_modu
 (29, 13, 'graphics', 'gráfico de ventas mensuales', '', '{\"type\":\"line\",\"table\":\"orders\",\"xAxis\":\"date_created_order\",\"yAxis\":\"total_order\",\"color\":\"252, 115, 3\"}', 100, 1, '2025-04-03', '2025-04-03 21:39:11'),
 (30, 13, 'graphics', 'ventas por sucursal', '', '{\"type\":\"bar\",\"table\":\"orders\",\"xAxis\":\"id_office_order\",\"yAxis\":\"total_order\",\"color\":\"5, 195, 251\"}', 50, 1, '2025-04-03', '2025-04-03 22:16:53'),
 (31, 13, 'graphics', 'compras por sucursal', '', '{\"type\":\"bar\",\"table\":\"purchases\",\"xAxis\":\"id_office_purchase\",\"yAxis\":\"invest_purchase\",\"color\":\"247, 183, 49\"}', 50, 1, '2025-04-03', '2025-04-03 22:32:08'),
-(32, 13, 'custom', 'productos mas vendidos', '', '', 50, 1, '2025-04-03', '2025-04-03 22:53:46');
+(32, 13, 'custom', 'productos mas vendidos', '', '', 50, 1, '2025-04-03', '2025-04-03 22:53:46'),
+(33, 13, 'custom', 'clientes más activos', '', '', 50, 1, '2025-04-03', '2025-04-03 23:30:23');
 
 -- --------------------------------------------------------
 
@@ -855,7 +856,7 @@ ALTER TABLE `folders`
 -- AUTO_INCREMENT de la tabla `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_module` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `offices`

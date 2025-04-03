@@ -254,13 +254,13 @@ class ModulesController{
 				Validar primero que el módulo no exista
 				=============================================*/
 
-				$url = "modules?linkTo=title_module,type_module&equalTo=".strtolower(trim($_POST["title_module"])).",".$_POST["type_module"];
+				$url = "modules?linkTo=title_module,type_module&equalTo=".urlencode($_POST["title_module"]).",".$_POST["type_module"];
 				$method = "GET";
 				$fields = array();
 
 				$getModule = CurlController::request($url,$method,$fields);
 				
-				if($getModule->status == 200){
+				if(isset($getModule->status) && $getModule->status == 200){
 
 					echo '
 
