@@ -4,7 +4,6 @@ $xAxis = array();
 $yAxis = array();
 
 $content = json_decode($module->content_module);
-
 if ($module->title_module == "gráfico de ventas diarias" && $module->id_page_module == 13) {
 	$url = $content->table . "?linkTo=status_order&equalTo=Completada&select=" . $content->xAxis . "," . $content->yAxis;
 } else {
@@ -17,15 +16,28 @@ $response = CurlController::request($url, $method, $fields);
 if ($response->status == 200) {
 	$graphic = $response->results;
 	foreach (json_decode(json_encode($graphic), true) as $index => $item) {
-		array_push($xAxis, $item[$content->xAxis]);
-		$yAxis[$item[$content->xAxis]] = 0;
+		if ($module->title_module == "gráfico de ventas mensuales") {
+			array_push($xAxis, substr($item[$content->xAxis], 0, -3));
+			$yAxis[substr($item[$content->xAxis], 0, -3)] = 0;
+		} else {
+			array_push($xAxis, $item[$content->xAxis]);
+			$yAxis[$item[$content->xAxis]] = 0;
+		}
 	}
 
 	$xAxis = array_values(array_unique($xAxis));
 	foreach (json_decode(json_encode($graphic), true) as $index => $item) {
-		for ($i = 0; $i < count($xAxis); $i++) {
-			if ($xAxis[$i] == $item[$content->xAxis]) {
-				$yAxis[$item[$content->xAxis]] +=  $item[$content->yAxis];
+		foreach (json_decode(json_encode($graphic), true) as $index => $item) {
+			for ($i = 0; $i < count($xAxis); $i++) {
+				if ($module->title_module == "gráfico de ventas mensuales") {
+					if ($xAxis[$i] == substr($item[$content->xAxis], 0, -3)) {
+						$yAxis[substr($item[$content->xAxis], 0, -3)] +=  $item[$content->yAxis];
+					}
+				} else {
+					if ($xAxis[$i] == $item[$content->xAxis]) {
+						$yAxis[$item[$content->xAxis]] +=  $item[$content->yAxis];
+					}
+				}
 			}
 		}
 	}
