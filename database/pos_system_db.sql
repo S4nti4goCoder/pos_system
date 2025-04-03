@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2025 a las 07:09:11
+-- Tiempo de generación: 03-04-2025 a las 07:44:57
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -84,6 +84,14 @@ CREATE TABLE `bills` (
   `date_updated_bill` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `bills`
+--
+
+INSERT INTO `bills` (`id_bill`, `concept_bill`, `cost_bill`, `date_bill`, `id_admin_bill`, `id_office_bill`, `date_created_bill`, `date_updated_bill`) VALUES
+(1, 'Almuerzo', 50, '2025-04-03 05:03:00', 1, 1, '2025-04-03', '2025-04-03 05:22:46'),
+(2, 'Fotocopias', 10, '2025-04-03 05:03:00', 1, 1, '2025-04-03', '2025-04-03 05:23:04');
+
 -- --------------------------------------------------------
 
 --
@@ -113,7 +121,8 @@ CREATE TABLE `cashs` (
 
 INSERT INTO `cashs` (`id_cash`, `start_cash`, `bills_cash`, `money_cash`, `diff_cash`, `end_cash`, `gap_cash`, `status_cash`, `date_start_cash`, `date_end_cash`, `id_admin_cash`, `id_office_cash`, `date_created_cash`, `date_updated_cash`) VALUES
 (1, 1000, 0, 0, 0, 0, 0, 0, '2025-04-02 18:03:00', '0000-00-00 00:00:00', 1, 1, '2025-04-03', '2025-04-03 03:53:24'),
-(2, 1000, 0, 0, 0, 0, 0, 1, '2025-04-02 22:03:00', '0000-00-00 00:00:00', 1, 1, '2025-04-02', '2025-04-03 03:53:17');
+(2, 1000, 0, 0, 0, 0, 0, 0, '2025-04-02 22:03:00', '0000-00-00 00:00:00', 1, 1, '2025-04-02', '2025-04-03 05:23:23'),
+(3, 1000, -60, 5118.33, 6058.33, 6000, -58.33, 0, '2025-04-03 00:03:00', '2025-04-03 00:42:00', 1, 1, '2025-04-03', '2025-04-03 05:42:51');
 
 -- --------------------------------------------------------
 
@@ -463,7 +472,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id_order`, `transaction_order`, `id_admin_order`, `id_client_order`, `subtotal_order`, `discount_order`, `tax_order`, `total_order`, `method_order`, `transfer_order`, `status_order`, `date_order`, `id_office_order`, `date_created_order`, `date_updated_order`) VALUES
 (1, '943143249651', 1, 1, 1398.6, 419.58, 186.01, 1165.03, 'efectivo', '', 'Completada', '2025-04-03 04:42:21', 1, '2025-04-02', '2025-04-03 04:42:21'),
-(2, '981596463137', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-04-03 05:01:59', 1, '2025-04-02', '2025-04-03 05:01:59');
+(2, '981596463137', 1, 1, 0, 0, 0, 0, NULL, NULL, 'Pendiente', '2025-04-03 05:01:59', 1, '2025-04-02', '2025-04-03 05:01:59'),
+(3, '754657799523', 1, 1, 4720.7, 419.58, 817.21, 5118.33, 'efectivo', '', 'Completada', '2025-04-03 05:33:39', 1, '2025-04-03', '2025-04-03 05:33:39');
 
 -- --------------------------------------------------------
 
@@ -668,7 +678,11 @@ CREATE TABLE `sales` (
 --
 
 INSERT INTO `sales` (`id_sale`, `id_order_sale`, `id_product_sale`, `tax_type_sale`, `tax_sale`, `discount_sale`, `qty_sale`, `subtotal_sale`, `status_sale`, `id_admin_sale`, `id_client_sale`, `id_office_sale`, `date_created_sale`, `date_updated_sale`) VALUES
-(1, 1, 14, 'IVA', 19, 30, 1, 1398.6, 'Completada', 1, 1, 1, '2025-04-02', '2025-04-03 04:42:21');
+(1, 1, 14, 'IVA', 19, 30, 1, 1398.6, 'Completada', 1, 1, 1, '2025-04-02', '2025-04-03 04:42:21'),
+(5, 3, 14, 'IVA', 19, 30, 1, 1398.6, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 05:33:40'),
+(6, 3, 13, 'IVA', 19, 0, 1, 1118.6, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 05:33:40'),
+(7, 3, 10, 'IVA', 19, 0, 2, 1037.4, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 05:33:40'),
+(8, 3, 9, 'IVA', 19, 0, 3, 1166.1, 'Completada', 1, 1, 1, '2025-04-03', '2025-04-03 05:33:40');
 
 --
 -- Índices para tablas volcadas
@@ -778,13 +792,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT de la tabla `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id_bill` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bill` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `cashs`
 --
 ALTER TABLE `cashs`
-  MODIFY `id_cash` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_cash` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -832,7 +846,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT de la tabla `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `pages`
@@ -856,7 +870,7 @@ ALTER TABLE `purchases`
 -- AUTO_INCREMENT de la tabla `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_sale` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
