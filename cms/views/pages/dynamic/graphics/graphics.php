@@ -4,8 +4,15 @@ $xAxis = array();
 $yAxis = array();
 
 $content = json_decode($module->content_module);
+
+$suffix = explode("_", $content->yAxis);
+$suffix = end($suffix);
+
 if ($module->title_module == "gráfico de ventas diarias" && $module->id_page_module == 13) {
 	$url = $content->table . "?linkTo=status_order&equalTo=Completada&select=" . $content->xAxis . "," . $content->yAxis;
+} else if ($module->title_module == "ventas por sucursal") {
+	$content->xAxis = "title_office";
+	$url = "relations?rel=" . $content->table . ",offices&type=" . $suffix . ",office&select=" . $content->xAxis . "," . $content->yAxis;
 } else {
 	$url = $content->table . "?select=" . $content->xAxis . "," . $content->yAxis;
 }
@@ -90,12 +97,9 @@ if ($response->status == 200) {
 				labels: [
 
 					<?php
-
 					foreach ($xAxis as $index => $item) {
-
-						echo "'" . $item . "',";
+						echo "'".urldecode($item)."',";
 					}
-
 					?>
 
 				],
@@ -105,12 +109,9 @@ if ($response->status == 200) {
 					data: [
 
 						<?php
-
 						foreach ($xAxis as $index => $item) {
-
 							echo "'" . $yAxis[$item] . "',";
 						}
-
 						?>
 
 
