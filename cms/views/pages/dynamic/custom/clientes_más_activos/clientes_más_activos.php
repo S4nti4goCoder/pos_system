@@ -37,7 +37,6 @@ if ($bestClient->status == 200) {
 <!--==============================
 Custom
 ================================-->
-
 <div class="<?php if ($module->width_module == "100"): ?> col-lg-12 <?php endif ?><?php if ($module->width_module == "75"): ?> col-lg-9 <?php endif ?><?php if ($module->width_module == "50"): ?> col-lg-6 <?php endif ?><?php if ($module->width_module == "33"): ?> col-lg-4 <?php endif ?><?php if ($module->width_module == "25"): ?> col-lg-3 <?php endif ?> col-12 mb-3 position-relative">
 
 	<?php if ($_SESSION["admin"]->rol_admin == "superadmin"): ?>
@@ -72,15 +71,12 @@ Custom
 							<div class="d-flex border-bottom">
 								<div class="flex-fill w-100 text-center">
 									<span class="badge badge-default backColor rounded small mt-2"><?php echo TemplateController::reduceText(urldecode($listClients->title_office), 12) ?></span>
-
 								</div>
 								<div class="flex-fill w-100 text-center">
 									<p class="mt-2"><?php echo TemplateController::reduceText(urldecode($listClients->name_client) . " " . urldecode($listClients->surname_client), 10) ?></p>
-
 								</div>
 								<div class="flex-fill w-100 text-center">
 									<p class="mt-2"><?php echo TemplateController::reduceText(urldecode($listClients->email_client), 10) ?></p>
-
 								</div>
 								<div class="flex-fill w-100 text-center">
 									<p class="mt-2"><?php echo urldecode($listClients->phone_client) ?></p>

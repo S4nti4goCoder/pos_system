@@ -10,6 +10,7 @@ if ($_SESSION["admin"]->id_office_admin == 0 && isset($_GET["offices"])) {
 
 if (isset($_GET["offices"]) && $_SESSION["admin"]->id_office_admin > 0) {
     $_SESSION["admin"]->id_office_admin = explode("_", $_GET["offices"])[0];
+    $_SESSION["admin"]->title_office = explode("_", $_GET["offices"])[1];
 }
 
 /*=============================================
@@ -126,7 +127,7 @@ if ($updateStock && $_SESSION["admin"]->id_office_admin > 0) {
 /*=============================================
 Buscar orden iniciada
 =============================================*/
-$url = "orders?linkTo=id_admin_order,status_order,id_office_order,date_created_order&equalTo=" . $_SESSION["admin"]->id_admin . ",Pendiente," . $_SESSION["admin"]->id_office_admin.",".date("Y-m-d");
+$url = "orders?linkTo=id_admin_order,status_order,id_office_order,date_created_order&equalTo=" . $_SESSION["admin"]->id_admin . ",Pendiente," . $_SESSION["admin"]->id_office_admin . "," . date("Y-m-d");
 $method = "GET";
 $fields = array();
 

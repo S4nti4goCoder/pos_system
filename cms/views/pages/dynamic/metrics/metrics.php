@@ -4,19 +4,30 @@ $metric = 0;
 
 $content = json_decode($module->content_module);
 
+$suffix = explode("_", $content->column);
+$suffix = end($suffix);
+
 /*=============================================
 Traer info de la métrica
 =============================================*/
-if ($module->title_module == "ventas" && $module->id_page_module == 13) {
-	$url = $content->table . "?linkTo=status_order&equalTo=Completada&select=" . $content->column;
+if ($_SESSION["admin"]->id_office_admin > 0) {
+	if ($module->title_module == "ventas" && $module->id_page_module == 13) {
+		$url = $content->table . "?linkTo=status_order,id_office_order&equalTo=Completada," . $_SESSION["admin"]->id_office_admin . "&select=" . $content->column;
+	} else {
+		$url = $content->table . "?linkTo=id_office_" . $suffix . "&equalTo=" . $_SESSION["admin"]->id_office_admin . "&select=" . $content->column;
+	}
 } else {
-	$url = $content->table . "?select=" . $content->column;
+	if ($module->title_module == "ventas" && $module->id_page_module == 13) {
+		$url = $content->table . "?linkTo=status_order&equalTo=Completada&select=" . $content->column;
+	} else {
+		$url = $content->table . "?select=" . $content->column;
+	}
 }
+
 $method = "GET";
 $fields = array();
 
 $response = CurlController::request($url, $method, $fields);
-
 if ($response->status == 200) {
 
 	/*=============================================

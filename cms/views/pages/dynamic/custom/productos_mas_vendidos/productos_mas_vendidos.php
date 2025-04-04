@@ -3,7 +3,12 @@
 $productSale = array();
 $topProducts = array();
 
-$url = "sales?select=id_product_sale,qty_sale";
+if ($_SESSION["admin"]->id_office_admin > 0) {
+	$url = "sales?linkTo=id_office_sale&equalTo=" . $_SESSION["admin"]->id_office_admin . "&select=id_product_sale,qty_sale";
+} else {
+	$url = "sales?select=id_product_sale,qty_sale";
+}
+
 $method = "GET";
 $fields = array();
 
@@ -14,6 +19,7 @@ if ($bestProduct->status == 200) {
 	Creamos los índices del array
 	=============================================*/
 	foreach ($bestProduct->results as $key => $value) {
+
 		$productSale[$value->id_product_sale] = 0;
 	}
 
@@ -31,7 +37,8 @@ if ($bestProduct->status == 200) {
 
 <!--==============================
 Custom
-================================-->
+ ================================-->
+
 <div class="<?php if ($module->width_module == "100"): ?> col-lg-12 <?php endif ?><?php if ($module->width_module == "75"): ?> col-lg-9 <?php endif ?><?php if ($module->width_module == "50"): ?> col-lg-6 <?php endif ?><?php if ($module->width_module == "33"): ?> col-lg-4 <?php endif ?><?php if ($module->width_module == "25"): ?> col-lg-3 <?php endif ?> col-12 mb-3 position-relative">
 
 	<?php if ($_SESSION["admin"]->rol_admin == "superadmin"): ?>

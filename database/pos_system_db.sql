@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2025 a las 01:49:26
+-- Tiempo de generación: 04-04-2025 a las 02:16:19
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -567,34 +567,34 @@ INSERT INTO `products` (`id_product`, `title_product`, `img_product`, `id_catego
 (12, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 1, '2025-02-19', '2025-04-03 05:46:43'),
 (13, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 99, 0, 1, 1, '2025-02-19', '2025-04-03 04:59:45'),
 (14, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 97, 30, 1, 1, '2025-02-19', '2025-04-03 06:03:50'),
-(15, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:15'),
-(16, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:22'),
-(17, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:28'),
-(18, 'Blue+White+OGR', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5126993af317.png', 2, 'PT004', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:34'),
-(19, 'Green+Nike+Fe', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51293ea9fc59.png', 2, 'PT005', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:40'),
-(20, 'Iphone+11', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512bd6039241.png', 3, 'PT006', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:46'),
-(21, 'Iphone+14+64GB', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512e57b1b121.png', 3, 'PT007', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:23:52'),
-(22, 'Rolex+Tribute+V3', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5130b951be59.png', 4, 'PT008', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:00'),
-(23, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:05'),
-(24, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:12'),
-(25, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:18'),
-(26, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:24'),
-(27, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:30'),
-(28, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 2, '2025-02-19', '2025-02-19 00:24:36'),
-(29, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:25:53'),
-(30, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:25:59'),
-(31, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:05'),
-(32, 'Blue+White+OGR', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5126993af317.png', 2, 'PT004', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:12'),
-(33, 'Green+Nike+Fe', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51293ea9fc59.png', 2, 'PT005', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:18'),
-(34, 'Iphone+11', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512bd6039241.png', 3, 'PT006', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:24'),
-(35, 'Iphone+14+64GB', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512e57b1b121.png', 3, 'PT007', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:30'),
-(36, 'Rolex+Tribute+V3', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5130b951be59.png', 4, 'PT008', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:37'),
-(37, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:43'),
-(38, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:49'),
-(39, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:26:55'),
-(40, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:27:03'),
-(41, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:27:09'),
-(42, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 0, 0, 1, 3, '2025-02-19', '2025-02-19 00:27:15');
+(15, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:57:40'),
+(16, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:57:48'),
+(17, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:57:51'),
+(18, 'Blue+White+OGR', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5126993af317.png', 2, 'PT004', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:57:56'),
+(19, 'Green+Nike+Fe', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51293ea9fc59.png', 2, 'PT005', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:00'),
+(20, 'Iphone+11', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512bd6039241.png', 3, 'PT006', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:03'),
+(21, 'Iphone+14+64GB', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512e57b1b121.png', 3, 'PT007', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:06'),
+(22, 'Rolex+Tribute+V3', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5130b951be59.png', 4, 'PT008', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:09'),
+(23, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:12'),
+(24, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:28'),
+(25, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:31'),
+(26, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:34'),
+(27, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:37'),
+(28, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 2, '2025-02-19', '2025-04-03 23:58:41'),
+(29, 'Airpod+2', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b50e59d065857.png', 1, 'PT001', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:58:44'),
+(30, 'Swagme', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b511f3b9d8b19.png', 1, 'PT002', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:58:47'),
+(31, 'Red+Nike+Angelo', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51236c169e26.png', 2, 'PT003', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:58:50'),
+(32, 'Blue+White+OGR', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5126993af317.png', 2, 'PT004', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:58:52'),
+(33, 'Green+Nike+Fe', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51293ea9fc59.png', 2, 'PT005', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:58:55'),
+(34, 'Iphone+11', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512bd6039241.png', 3, 'PT006', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:58:58'),
+(35, 'Iphone+14+64GB', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b512e57b1b121.png', 3, 'PT007', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:59:01'),
+(36, 'Rolex+Tribute+V3', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b5130b951be59.png', 4, 'PT008', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:59:04'),
+(37, 'Timex+Black+Silver', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513356d92341.png', 4, 'PT009', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:59:07'),
+(38, 'Fossil+Pair+Of+3+in+1', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51365706b829.png', 4, 'PT0010', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:59:10'),
+(39, 'MacBook+Pro', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513a1cf59e29.png', 5, 'PT0011', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:59:13'),
+(40, 'IdeaPad+Slim+5+Gen+7', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513cf3ede415.png', 5, 'PT0012', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:59:16'),
+(41, 'Tablet+1.02+inch', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b513f87186b56.png', 5, 'PT0013', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:59:19'),
+(42, 'Yoga+Book+9i', 'http%3A%2F%2Fcms.pos.com%2Fviews%2Fassets%2Ffiles%2F67b51425c18eb41.png', 5, 'PT0014', 'unidad', 'IVA_19', 'NULL', 100, 0, 1, 3, '2025-02-19', '2025-04-03 23:59:22');
 
 -- --------------------------------------------------------
 
